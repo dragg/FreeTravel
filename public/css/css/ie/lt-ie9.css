@@ -1,0 +1,17 @@
+.drop-categories_item { *float: left; }
+
+.footer:before { background: #faaa37; }
+
+.promo-links_item:before {
+    content: "";
+    width: 4px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -4px;
+}
+
+.cart-action_promo .input-text { max-width: 189px; }
+
+.shopping-cart_table .input-text { max-width: 36px; }

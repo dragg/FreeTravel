@@ -1,0 +1,11 @@
+.btn, .search-action-wr, .menu, .banner, .tab-header_link, .titles-group, .promo-product_item.__promo-1 .product-price, .footer:before, .promo-links_item, .divider { filter: none; }
+
+.promo-links_item:before {
+    content: "";
+    width: 4px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -4px;
+}

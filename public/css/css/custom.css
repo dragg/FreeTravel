@@ -1,0 +1,171 @@
+.breadcrumbs{
+    margin-right: auto;
+    margin-left: auto;
+    width:940px;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.breadcrumbs ul li{
+    display: inline;
+}
+
+.qty-wrapper label{
+    display: inline;
+    padding-right: 5px;
+}
+
+.qty-wrapper input{
+    display: inline;
+    width: 55px;
+}
+
+.product-list_item{
+    height:255px;
+}
+
+
+ol.opc li.section{
+ list-style: none;
+}
+
+li.section .number{
+    display: none;
+}
+
+li.section div.step-title h2{
+    display: inline;
+}
+
+li.section div.step-title a {
+    display: inline;
+    text-transform: uppercase;
+    border-radius: 3px;
+    background-color: #AAAAAA;
+    color:white;
+    padding: 2px;
+    font-size: 8px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+}
+
+li.section div.step-title{
+    background: #F7F7F7;
+    border-top: 2px solid #ECECEC;
+    border-bottom: 2px solid #ECECEC;
+    border-left: 2px solid #ECECEC;
+    border-right: 2px solid #ECECEC;
+    padding: 5px;
+    margin-bottom: 5px;
+
+}
+
+.registration-selection,.returning-customer {
+    line-height: 1.5;
+}
+
+.registration-selection input[type=radio]{
+    margin-right: 3px;
+}
+
+.returning-customer .remember-me-popup{
+    display: none;
+}
+
+.returning-customer span.required,
+.returning-customer .validation-advice{
+    font-size: 12px;
+    color:#990000;
+    display: inline;
+}
+
+/* ============= CHECKOUT =============== */
+div.cart-action_update a.cart-action_update_link {
+    margin-left: -30px;
+}
+
+span.please-wait {
+    padding-left: 13px;
+}
+span.please-wait img {
+    display: inherit;
+}
+
+p.action-to-checkout_note {
+    margin-bottom: 10px;
+}
+
+#checkout-progress-wrapper {
+    font-size: 11px;
+}
+
+.checkout-onepage-index .col-main {
+    padding-right: 10px;
+}
+
+/* ============= CATALOG =============== */
+.product-list_item_name {
+    overflow: hidden;
+    height: 20px;
+}
+
+.product-list_item_img-wr {
+    height: 148px !important;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+li.page-nav_list_item.__active a {
+	border-bottom: none;
+}
+
+/* ============= FILTERS =============== */
+ul.category-search_list {
+    padding: 0;
+}
+
+/* ============= MY ORDERS =============== */
+tbody .order-cell-1 a {
+    color: #fe7806;
+}
+
+/* ============= HOME =============== */
+.promo-product_item.__promo-2 {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin-bottom: 14px;
+}
+
+body.__home-page {
+    background-size: cover;
+}
+
+/* ============= CMS PAGES =============== */
+div.cms p {
+    margin: 14px 0;
+}
+
+div.cms ul, div.cms ol {
+    padding-left: 40px;
+}
+
+/* ============= PRODUCT VIEW =============== */
+.thumbs-product ul.slides li {
+    display: block;
+    width: 77px;
+    float: left;
+    margin: 7px !important;
+}
+
+/* ============= QR CODE =============== */
+.block-qrcode {
+    margin-top: 10px;
+}
+
+/* ============= COUNTDOWN =============== */
+.wrapper-countdown {
+    margin-bottom: 10px;
+}
+.wrapper-countdown .main-countdown{
+    margin: 0;
+}
