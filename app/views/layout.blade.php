@@ -70,7 +70,7 @@
                             <li><a href="#"><span>Моё жильё</span></a></li>
                             <li class="__empty-cell"></li>
                             <li class="__empty-cell"><a href="#"><span>Заявки</span></a></li> 
-                            <li class="__empty-cell"><a href="/logout"><span>Выход</span></a></li> 
+                            <li class="__empty-cell"><a href="/log/logout"><span>Выход</span></a></li> 
                         <?php else: ?>
                             <li><a id="signup" href="#"><span>Регистрация</span></a></li>
                             <li><a id="signin" href="#"><span>Вход</span></a></li>

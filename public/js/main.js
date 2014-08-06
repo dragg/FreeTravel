@@ -31,12 +31,12 @@ $(document).ready(function(){
     });
 
     $('#link_signin').click(function(){
-       $.post('/signin', {
+       $.post('/log/signin', {
            email: $('#signin-user-email').val(),
            password: $('#signin-user-password').val()
        },
        function(res){
-           if(res.length != 0)
+           if(res[0] === true)
            {
                close_popup_window();
                location.reload();
@@ -59,7 +59,7 @@ $(document).ready(function(){
             repeat_password: $('#user-repeat-password').val()
         },
         function(res){
-            if(res != 0)
+            if(res[0] === true)
             {
                 close_popup_window();
                 $('#thank').removeAttr('hidden');
