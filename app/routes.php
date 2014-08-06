@@ -32,8 +32,29 @@ Route::get('/show/{id}', function(){
 });
 
 Route::post('/signin', function(){
+    $email = Input::get('email');
+    $password = Input::get('password');
     
+    $user = DB::table('users')->where('email', $email)->first();
+    $result = [];
     
+    if (isset($user) && Hash::check($password, $user->password))
+    {
+        $result["first_name"] = $user->first_name;
+        $result["last_name"] = $user->last_name;
+        $result["email"] = $user->email;
+        
+        if (Auth::check())
+{
+    // The user is logged in...
+}
+        if (!Auth::attempt(array('email' => $email, 'password' => $password), true))
+        {
+            $result = [];
+        }
+    }
+    
+    return Response::json($result);
     
 });
 
@@ -43,7 +64,7 @@ Route::post('/signup', function(){
     
 });
 
-Route::get('/logout', function(){
+Route::post('/logout', function(){
     
     
     

@@ -70,7 +70,7 @@
                         <li class="__empty-cell"></li>
                         <li class="__my-housing"><a href="#"><span>+1</span></a></li> -->
                         <li><a href="#"><span>Регистрация</span></a></li>
-                        <li><a href="#"><span>Вход</span></a></li>
+                        <li><a id="signin" href="#"><span>Вход</span></a></li>
 
                     </ul>
                 </menu>
@@ -82,21 +82,21 @@
         <!-- /wrapper -->
 
         <!-- popup login -->
-        <div class="popup-wrapper-bg" hidden>
+        <div id="signin" class="popup-wrapper-bg" hidden>
             <div class="popup">
                 <h6>Вход в систему</h6>
 
                 <div class="popup-inp-bar">
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="datepicker-1" placeholder="E-mail">
+                        <input class="input-text" type="text" id="user-email" placeholder="E-mail">
                     </div>
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="datepicker-1" placeholder="Пароль">
+                        <input class="input-text" type="text" id="user-password" placeholder="Пароль">
                     </div>
                 </div>
 
                 <div class="popup-btns-bar">
-                    <a href="#" class="btn--popup-btn __btn-green">Войти</a>
+                    <a id="link_signin" href="#" class="btn--popup-btn __btn-green">Войти</a>
                 </div>
                 <a href="#" class="popup-close"></a>
             </div>
@@ -183,5 +183,4 @@
         <!-- /popup thank -->
 
 	</body>
-
 </html>
