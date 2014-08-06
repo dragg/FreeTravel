@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	'host' => 'localhost',//'smtp.mailgun.org',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -120,5 +120,10 @@ return array(
 	*/
 
 	'pretend' => false,
+    
+        'mailgun' => array(
+            'domain' => 'your-mailgun-domain',
+            'secret' => 'your-mailgun-key',
+        ),
 
 );

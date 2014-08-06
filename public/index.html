@@ -61,45 +61,88 @@
         <!-- wrapper -->
         <div class="wrapper">
             <header class="header clearfix">
-                <a href="/" class="logo"><h1><span>Ino</span>Travel</h1></a>
+                <a href="#" class="logo"><h1><span>Ino</span>Travel</h1></a>
                 <menu class="header-menu">
                     <ul>
-                        <?php if(Auth::check()): ?>
-                        <li><a href="#"><span><?= Auth::user()->last_name . " ". Auth::user()->first_name ?></span></a></li>
-                            <li><img src="i/photo.jpg" alt="Photo-1"></li>
-                            <li><a href="#"><span>Моё жильё</span></a></li>
-                            <li class="__empty-cell"></li>
-                            <li class="__empty-cell"><a href="#"><span>Заявки</span></a></li> 
-                            <li class="__empty-cell"><a href="/logout"><span>Выход</span></a></li> 
-                        <?php else: ?>
-                            <li><a id="signup" href="#"><span>Регистрация</span></a></li>
-                            <li><a id="signin" href="#"><span>Вход</span></a></li>
-                        <?php endif; ?>
+                        <!-- <li><a href="#"><span>Иван Иванов</span></a></li>
+                        <li><img src="i/photo.jpg" alt="Photo-1"></li>
+                        <li><a href="#"><span>Моё жильё</span></a></li>
+                        <li class="__empty-cell"></li>
+                        <li class="__my-housing"><a href="#"><span>+1</span></a></li> -->
+                        <li><a href="#"><span>Регистрация</span></a></li>
+                        <li><a href="#"><span>Вход</span></a></li>
+
                     </ul>
                 </menu>
             </header>
-            
-            @yield('content')
+            <section class="content-wrapper __main">
+                <div class="content">
+                    <div class="main clearfix">
+                        <h1 class="main-title">Найти жильё</h1>
+                        <p class="main-subtitle">Ищите жильё сами или сдавайте его другим</p>
+                        <div class="main-form __bg-white-transparent">
+                            <form action="">
+                                <div class="">
+                                    <div class="main-select-wr">
+                                        <div class="transform-select-wr">
+                                            <select name="" id="" class="transform-select">
+                                                <option value="">State</option>
+                                                <option value="">State</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
+                                    <div class="main-inp-wr">
+                                        <input class="input-text datapicker" type="text" id="datepicker-1" placeholder="Прибытие">
+                                    </div>
+                                    <div class="main-inp-wr">
+                                        <input class="input-text datapicker" type="text" id="datepicker-2" placeholder="Прибытие">
+                                    </div>
+
+                                    <div class="main-inp-wr">
+                                        <div class="transform-select-wr">
+                                            <select name="" id="" class="transform-select">
+                                                <option value="">Country</option>
+                                                <option value="">Country</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <a href="#" class="btn--main-form __btn-green">Найти</a>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="main-guests __bg-white-transparent">
+                            <a href="#" class="btn--main-guests __btn-green">Приму гостей</a>
+                        </div>
+                        <div class="main-social-links">
+                            <a href="#" class="main-social-link __fa"></a>
+                            <a href="#" class="main-social-link __tw"></a>
+                            <a href="#" class="main-social-link __vk"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <!-- /wrapper -->
 
         <!-- popup login -->
-        <div id="signin" class="popup-wrapper-bg" hidden>
+        <div class="popup-wrapper-bg" hidden>
             <div class="popup">
                 <h6>Вход в систему</h6>
 
                 <div class="popup-inp-bar">
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="signin-user-email" placeholder="E-mail">
+                        <input class="input-text" type="text" id="datepicker-1" placeholder="E-mail">
                     </div>
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="signin-user-password" placeholder="Пароль">
+                        <input class="input-text" type="text" id="datepicker-1" placeholder="Пароль">
                     </div>
                 </div>
 
                 <div class="popup-btns-bar">
-                    <a id="link_signin" href="#" class="btn--popup-btn __btn-green">Войти</a>
+                    <a href="#" class="btn--popup-btn __btn-green">Войти</a>
                 </div>
                 <a href="#" class="popup-close"></a>
             </div>
@@ -107,7 +150,7 @@
         <!-- /popup login -->
 
         <!-- popup  entry details -->
-        <div id="" class="popup-wrapper-bg" hidden>
+        <div class="popup-wrapper-bg" hidden>
             <div class="popup __pop-entry">
                 <h6>Вход в систему</h6>
 
@@ -139,46 +182,46 @@
         </div>
         <!-- /popup  entry details -->
 
-         <!-- popup signup -->
-        <div id="signup" class="popup-wrapper-bg" hidden>
+         <!-- popup login -->
+        <div class="popup-wrapper-bg" hidden>
             <div class="popup">
                 <h6>Регистрация</h6>
 
                 <div class="popup-inp-bar">
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="user-first_name" placeholder="Имя">
+                        <input class="input-text" type="text" id="datepicker-1" placeholder="Имя">
                     </div>
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="user-last_name" placeholder="Фамилия">
+                        <input class="input-text" type="text" id="datepicker-1" placeholder="Фамилия">
                     </div>
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="signup-user-email" placeholder="E-mail">
+                        <input class="input-text" type="text" id="datepicker-1" placeholder="E-mail">
                     </div>
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="signup-user-password" placeholder="Пароль">
+                        <input class="input-text" type="text" id="datepicker-1" placeholder="Пароль">
                     </div>
                     <div class="popup-inp-wr">
-                        <input class="input-text" type="text" id="user-repeat-password" placeholder="Повторите пароль">
+                        <input class="input-text" type="text" id="datepicker-1" placeholder="Повторите пароль">
                     </div>
                 </div>
 
                 <div class="popup-btns-bar">
-                    <a id="link_signup" href="#" class="btn--popup-btn __btn-green">Зарегистрироватья</a>
+                    <a href="#" class="btn--popup-btn __btn-green">Зарегистрироватья</a>
                 </div>
                 <a href="#" class="popup-close"></a>
             </div>
         </div>
-        <!-- /popup signup -->
+        <!-- /popup login -->
 
         <!-- popup thank -->
-        <div id="thank" class="popup-wrapper-bg" hidden>
+        <div class="popup-wrapper-bg" hidden>
             <div class="popup __thank">
                 <h6>Спасибо!</h6>
 
                 <p class="">Регистрация прошла успешна. На Ваш почтовый ящик было отправлено письмо для подтверждения регистрации.</p>
 
                 <div class="popup-btns-bar">
-                    <a href="#" class="btn--popup-btn __btn-green" id="ok_thank">OK</a>
+                    <a href="#" class="btn--popup-btn __btn-green">OK</a>
                 </div>
                 <a href="#" class="popup-close"></a>
             </div>
@@ -186,4 +229,5 @@
         <!-- /popup thank -->
 
 	</body>
+
 </html>

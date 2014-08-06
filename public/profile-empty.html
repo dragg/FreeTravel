@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8" lang="en">		 <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9" lang="en">				 <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ru">							 <!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title></title>
+
+		<link rel="stylesheet" media="all" href="style/reset.css">
+        <link rel="stylesheet" media="all" href="js/plugins/select2-3.4.5/select2.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" media="all" href="style/style.css">
+
+
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="js/plugins/select2-3.4.5/select2.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+        <script src="js/plugins/select2-3.4.5/select2.min.js"></script>
+
+
+		<script src="js/main.js"></script>
+
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <link rel="stylesheet" media="all" href="style/ie/lt-ie9.css">
+		<![endif]-->
+
+        <!--[if gte IE 9]>
+            <link rel="stylesheet" media="all" href="style/ie/ie9.css">
+        <![endif]-->
+
+        <script>
+
+            $(document).ready(function(){
+                $('.transform-select').select2({
+                    minimumResultsForSearch: -1
+                });
+
+            });
+
+        </script>
+
+	</head>
+
+	<body>
+        <!-- wrapper -->
+        <div class="wrapper">
+            <header class="header clearfix">
+                <a href="#" class="logo"><h1><span>Ino</span>Travel</h1></a>
+                <menu class="header-menu">
+                    <ul>
+                        <!-- <li><a href="#"><span>Иван Иванов</span></a></li>
+                        <li><img src="i/photo.jpg" alt="Photo-1"></li>
+                        <li><a href="#"><span>Моё жильё</span></a></li>
+                        <li class="__empty-cell"></li>
+                        <li class="__my-housing"><a href="#"><span>+1</span></a></li> -->
+                        <li><a href="#"><span>Регистрация</span></a></li>
+                        <li><a href="#"><span>Вход</span></a></li>
+
+                    </ul>
+                </menu>
+            </header>
+            <section class="content-wrapper">
+                <div class="content __bg-white">
+                    <!-- profile -->
+                    <div class="profile clearfix">
+
+                        <!-- profile-form -->
+                        <div class="profile-form">
+                            <div class="request-head-links">
+                                <a href="#" class="request-housing __active"><em>Личные данные</em></a>
+                                <a href="#" class="request-housing"><em>Смена пароля</em></a>
+                            </div>
+                            <div class="profile-line">
+                                <div class="profile-inp-wr">
+                                    <input class="input-text" type="text" id="" placeholder="Имя">
+                                </div>
+                                <div class="profile-inp-wr">
+                                    <input class="input-text" type="text" id="" placeholder="Фамилия">
+                                </div>
+                                <div class="profile-inp-wr">
+                                    <input class="input-text" type="text" id="" placeholder="E-mail">
+                                </div>
+                            </div>
+
+                            <div class="profile-btns-bar">
+                                <a href="#" class="btn--profile __btn-green">Сохранить</a>
+                                <a href="#" class="btn--profile __btn-red">Отмена</a>
+                            </div>
+                        </div>
+                        <!-- /profile-form -->
+
+                        <div class="profile-load-photo">
+                            <div class="profile-load-img">
+                                <div class="profile-load-img-empty" hidden>нет фото</div>
+                                <img src="i/statham.jpg" alt="">
+                                <div class="search-load-controls-wr">
+                                    <a href="#" class="page-conrol __close"></a>
+                                </div>
+                            </div>
+                           <div class="input-filesuctom">
+                              <a class="btn--profile-load __btn-green">Загрузить</a>
+                              <input type="file" id="fileupload" name="f_File" multiple="">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /profile -->
+                </div>
+            </section>
+        </div>
+        <!-- /wrapper -->
+
+	</body>
+
+</html>

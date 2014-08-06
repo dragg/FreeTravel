@@ -45,9 +45,9 @@ Route::post('/signin', function(){
         $result["email"] = $user->email;
         
         if (Auth::check())
-{
-    // The user is logged in...
-}
+        {
+            // The user is logged in...
+        }
         if (!Auth::attempt(array('email' => $email, 'password' => $password), true))
         {
             $result = [];
@@ -60,14 +60,51 @@ Route::post('/signin', function(){
 
 Route::post('/signup', function(){
     
-    
-    
+    $email = Input::get('email');
+    $user = DB::table('users')->where('email', $email)->first();
+    if (isset($user)) 
+    {
+        //fail
+        return Response::json(0);
+    }
+    else
+    {
+//        Mail::send('emails.welcome', $data, function($message){
+//            $message->to('dragg.ko@gmail.com', 'Philip Brown')->subject('Welcome to Cribbb!');
+//        });
+//        Mail::send('emails.welcome', [], function($message) {
+//            $message->to('dragg.ko@gmail.com', 'Jon Doe')->subject('Welcome to the Laravel 4 Auth App!');
+//        });
+        
+//        $to      = 'dragg.ko@gmail.com';
+//        $subject = 'the subject';
+//        $message = 'hello';
+//        $headers = 'From: webmaster@example.com'; //. "\r\n" .
+////            'Reply-To: webmaster@example.com' . "\r\n" .
+////            'X-Mailer: PHP/' . phpversion();
+//
+//        mail($to, $subject, $message, $headers);
+        $to='dragg.ko@gmail.com';         
+        $subject='Send mail using php';
+        $message='This mail send using php';
+        $headers='From: dragg.ko@gmail.com';
+        $mail=mail($to,$subject,$message,$headers);
+        if($mail)
+{
+ echo'Mail send successfully';
+}
+else
+{
+ echo'Mail is not send';
+}
+        return Response::json(1);
+    }
 });
 
-Route::post('/logout', function(){
+Route::get('/logout', function(){
     
-    
-    
+    Auth::logout();
+    return Redirect::intended('/');
 });
 
 Route::controller('requests', 'RequestController');

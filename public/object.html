@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8" lang="en">		 <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9" lang="en">				 <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ru">							 <!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title></title>
+
+		<link rel="stylesheet" media="all" href="style/reset.css">
+        <link rel="stylesheet" media="all" href="js/plugins/select2-3.4.5/select2.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" media="all" href="style/style.css">
+
+
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="js/plugins/select2-3.4.5/select2.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+        <script src="js/plugins/select2-3.4.5/select2.min.js"></script>
+        <script src="js/plugins/flexslider/jquery.flexslider-min.js"></script>
+
+
+		<script src="js/main.js"></script>
+
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <link rel="stylesheet" media="all" href="style/ie/lt-ie9.css">
+		<![endif]-->
+
+        <!--[if gte IE 9]>
+            <link rel="stylesheet" media="all" href="style/ie/ie9.css">
+        <![endif]-->
+
+        <script>
+           $(window).load(function() {
+
+                $('#thumbs-product').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    slideshow: false,
+                    directionNav: true,
+
+                });
+
+            });
+        </script>
+
+	</head>
+
+	<body>
+        <!-- wrapper -->
+        <div class="wrapper">
+            <!-- header -->
+            <header class="header clearfix">
+                <a href="#" class="logo"><h1><span>Ino</span>Travel</h1></a>
+                <menu class="header-menu">
+                    <ul>
+                        <!-- <li><a href="#"><span>Иван Иванов</span></a></li>
+                        <li><img src="i/photo.jpg" alt="Photo-1"></li>
+                        <li><a href="#"><span>Моё жильё</span></a></li>
+                        <li class="__empty-cell"></li>
+                        <li class="__my-housing"><a href="#"><span>+1</span></a></li> -->
+                        <li><a href="#"><span>Регистрация</span></a></li>
+                        <li><a href="#"><span>Вход</span></a></li>
+
+                    </ul>
+                </menu>
+            </header>
+            <!-- /header -->
+
+            <!-- content-wrapper -->
+            <section class="content-wrapper">
+                <div class="content __bg-white">
+                   <div class="object">
+
+                        <!-- object-head -->
+                        <div class="object-head clearfix">
+                            <h2 class="page-title">Уютная картира на Западном</h2>
+                            <div class="page-controls-wr">
+                                <a href="#" class="page-conrol __write"></a>
+                                <a href="#" class="page-conrol __close"></a>
+                            </div>
+                        </div>
+                        <!-- /object-head -->
+
+                        <!-- object-media -->
+                        <div class="object-media clearfix">
+                            <div class="object-slider">
+                                <div id="thumbs-product" class="thumbs-product flexslider">
+                                    <ul class="slides">
+                                        <li><img src="i/product-slider/slide-1.jpg"></li>
+                                        <li><img src="i/product-slider/slide-1.jpg"></li>
+                                        <li><img src="i/product-slider/slide-1.jpg"></li>
+                                        <li><img src="i/product-slider/slide-1.jpg"></li>
+                                        <li><img src="i/product-slider/slide-1.jpg"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="object-info">
+                                <div class="object-contact">
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>Таганрог, ул. Калинина, д. 16, кв. 24</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __tel"></i></span>+7 909 418 1234</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>email@gmail.com</p>
+                                </div>
+                                <div class="object-manual clearfix">
+                                    <div class="manual-icon">
+                                        <i class="icon-top __bed"></i>
+                                        <span>3 спальных места</span>
+                                    </div>
+                                    <div class="manual-icon">
+                                        <i class="icon-top __inet"></i>
+                                        <span>Интернет</span>
+                                    </div>
+                                    <div class="manual-icon">
+                                        <i class="icon-top __washm"></i>
+                                        <span>Стиральная машина</span>
+                                    </div>
+                                    <div class="manual-icon">
+                                        <i class="icon-top __anim"></i>
+                                        <span>Можно с животными</span>
+                                    </div>
+                                    <div class="manual-icon">
+                                        <i class="icon-top __anim-here"></i>
+                                        <span>Есть животное</span>
+                                    </div>
+                                    <div class="manual-icon">
+                                        <i class="icon-top __tv"></i>
+                                        <span>Телевизор</span>
+                                    </div>
+                                    <div class="manual-icon">
+                                        <i class="icon-top __iron"></i>
+                                        <span>Утюг</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /object-media -->
+
+                        <!-- object-dsct- -->
+                        <article class="object-dsct clearfix">
+                            <p class="article-text">his is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. </p>
+                            <p class="article-text">Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                            <p class="article-text">Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. </p>
+                            <p class="article-text">Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi</p>
+                            <p class="article-text">Suspendisse in orci enim.</p>
+                        </article>
+                        <!-- /object-dsct -->
+
+                   </div>
+                </div>
+            </section>
+            <!-- /content-wrapper -->
+        </div>
+        <!-- /wrapper -->
+
+       <!--  <a href="#" class="btn--main-form __btn-green">Найти</a> -->
+
+	</body>
+
+</html>
