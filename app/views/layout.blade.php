@@ -9,20 +9,20 @@
 
 		<title></title>
 
-		<link rel="stylesheet" media="all" href="style/reset.css">
-        <link rel="stylesheet" media="all" href="js/plugins/select2-3.4.5/select2.css">
+		<link rel="stylesheet" media="all" href="/style/reset.css">
+        <link rel="stylesheet" media="all" href="/js/plugins/select2-3.4.5/select2.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-		<link rel="stylesheet" media="all" href="style/style.css">
+		<link rel="stylesheet" media="all" href="/style/style.css">
 
 
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="js/plugins/select2-3.4.5/select2.min.js"></script>
+        <script src="/js/plugins/select2-3.4.5/select2.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
-        <script src="js/plugins/select2-3.4.5/select2.min.js"></script>
+        <script src="/js/plugins/select2-3.4.5/select2.min.js"></script>
 
 
-		<script src="js/main.js"></script>
+		<script src="/js/main.js"></script>
 
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,8 +65,8 @@
                 <menu class="header-menu">
                     <ul>
                         <?php if(Auth::check()): ?>
-                        <li><a href="#"><span><?= Auth::user()->last_name . " ". Auth::user()->first_name ?></span></a></li>
-                            <li><img src="i/photo.jpg" alt="Photo-1"></li>
+                        <li><a href="<?= action('ProfileController@getShow')?>"><span><?= Auth::user()->last_name . " ". Auth::user()->first_name ?></span></a></li>
+                            <li><img src="/i/photo.jpg" alt="Photo-1"></li>
                             <li><a href="#"><span>Моё жильё</span></a></li>
                             <li class="__empty-cell"></li>
                             <li class="__empty-cell"><a href="#"><span>Заявки</span></a></li> 

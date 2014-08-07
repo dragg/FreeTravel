@@ -2,11 +2,6 @@
 
 class LogController extends BaseController {
 
-	public function showWelcome()
-	{
-		return View::make('hello');
-	}
-        
         public function postSignin(){
             $email = Input::get('email');
             $password = Input::get('password');
@@ -32,18 +27,25 @@ class LogController extends BaseController {
         }
      
         public function postSignup(){
-    
+            $response = false;
             $email = Input::get('email');
             $user = DB::table('users')->where('email', $email)->first();
-            if (isset($user)) 
+            if (!isset($user))
             {
-                //fail
-                return Response::json([0, 'Fail']);
+                $password = Input::get('password');
+                $repeat_password = Input::get('repeat_password');
+                if($password === $repeat_password)
+                {
+                    $first_name = Input::get('first_name');
+                    $last_name = Input::get('last_name');
+                    DB::table('users')->insert(['email' => $email, 
+                        'first_name' => $first_name, 'last_name' => $last_name,
+                        'password' => Hash::make($password)]);
+                    $response = true;
+                }
             }
-            else
-            {
-                return Response::json([1, 'Success']);
-            }
+            
+            return Response::json([$response, $response === true ? 'Success' : 'Fail']);
         }
 
         public function getLogout(){

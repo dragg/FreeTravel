@@ -19,8 +19,7 @@ $(document).ready(function(){
     });
     //function enter()
 
-    function close_popup_window()
-    {
+    function close_popup_window(){
         $('.popup-wrapper-bg').attr('hidden', 'hidden');
     }
 
@@ -51,7 +50,7 @@ $(document).ready(function(){
     });
     
     $('#link_signup').click(function(){
-        $.post('/signup', {
+        $.post('/log/signup', {
             first_name: $('#user-first_name').val(),
             last_name: $('#user-last_name').val(),
             email: $('#signup-user-email').val(),
@@ -71,5 +70,43 @@ $(document).ready(function(){
         }, 'json');
        
         return false; 
+    });
+    
+    
+    var main = true;
+    $('.request-housing').click(function(){
+        $('.request-housing').removeClass('__active');
+        $(this).addClass('__active');
+        
+        if (main) {
+            $('#mainProfile').hide();
+            $('#passwordProfile').show();
+        }
+        else {
+            $('#passwordProfile').hide();    
+            $('#mainProfile').show();
+        }
+        main = !main;
+        
+    });
+    
+    $('#save').click(function(){
+        $.post('/profile/save',
+        {
+            actionMain: main,
+            first_name: $('#first_name').val(),
+            last_name: $('#last_name').val(),
+            email: $('#email').val(),
+            oldPassword: $('#oldPassword').val(),
+            newPassword: $('#newPassword').val(),
+            repeatPassword: $('#repeatPassword').val()
+        },
+        function(res){
+            if (res[0] === true) {
+                alert('Всё гуд!');
+            }
+        }, 'json');
+        
+        return false;
     });
 });
