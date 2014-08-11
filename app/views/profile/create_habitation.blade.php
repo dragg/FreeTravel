@@ -2,25 +2,29 @@
 
 @section('content')
 
-
+<?php $option = 0; ?>
 <section class="content-wrapper">
     <div class="content __bg-white">
         <div class="search clearfix">
             <div class="search-date">
-                <form action="">
+                
+                <form action="<?php echo action('HabitationController@postSaveHabitation') ?>" method="POST">
                     <div class="search-line">
+                        
                         <div class="search-inp-wr">
-                            <input class="input-text" type="text" id="" placeholder="Название">
+                            <input class="input-text" type="text" name="name" placeholder="Название">
                         </div>
+                        
+                        
                         <div class="search-select-wr">
                             <div class="transform-select-wr">
-                                <select name="" id="" class="transform-select">
+                                <select name="city" id="" class="transform-select">
                                     
-                                    <?php for ($i = 0; $i < count($cities); $i++): ?>
+                                    <?php foreach ($cities as $city): ?>
                             
-                                    <option value="<?= $cities[$i]->id?>"><?= $cities[$i]->name?></option>
+                                    <option value="<?= $city->id?>"><?= $city->name?></option>
 
-                                    <?php endfor; ?>
+                                    <?php endforeach; ?>
                                     
                                 </select>
                             </div>
@@ -30,7 +34,7 @@
                     <div class="search-line">
                         <div class="search-select-wr">
                             <div class="transform-select-wr">
-                                <select name="" id="" class="transform-select">
+                                <select name="sleeper" id="" class="transform-select">
                                     <option value="">Спальных мест</option>
                                     <option value="">Спальных мест</option>
                                 </select>
@@ -38,58 +42,48 @@
                         </div>
 
                         <div class="search-inp-wr">
-                            <input class="input-text" type="text" id="" placeholder="Адрес">
+                            <input class="input-text" type="text" name="address" id="" placeholder="Адрес">
                         </div>
                     </div>
+                    
                     <div class="search-check-wr clearfix">
                         <div class="search-check-column">
                             <h6 class="search-check-title">Удобства:</h6>
-                            <?php for ($i = 0; $i < count($amenities); $i++): ?>
+                            
+                            <?php foreach ($amenities as $amenity): ?>
                             
                             <div class="search-checkbox-wr">
-                                <input id="searchCheck-inet" type="checkbox">
-                                <label for="searchCheck-inet"><?= $amenities[$i]->name?></label>
+                                <input id="searchCheck-inet" name="amentities[]" value="<?= $amenity->id?>" type="checkbox">
+                                <label for="searchCheck-inet"> <?= $amenity->name;?></label>
                             </div>
                             
-                            <?php endfor; ?>
-                            
-                            <!--
-                            <?php //foreach ($amenity as $amenities): ?>
-                            
-                            <div class="search-checkbox-wr">
-                                <input id="searchCheck-inet" type="checkbox">
-                                <label for="searchCheck-inet">
-                            <?php //echo $amenity->name;?>
-                            </label>
-                            </div>
-                            
-                            <?php //endforeach; ?>
-                            -->
+                            <?php endforeach; ?>
+                           
                         </div>
                         <div class="search-check-column">
                             <h6 class="search-check-title">Ограничения:</h6>
                             
-                            <?php for ($i = 0; $i < count($restrictions); $i++): ?>
+                            <?php foreach ($restrictions as $restriction): ?>
                             
                             <div class="search-checkbox-wr">
-                                <input id="searchCheck-animal" type="checkbox">
-                                <label for="searchCheck-animal"><?= $restrictions[$i]->name?></label>
+                                <input id="searchCheck-animal" name="restriction[]" value="<?= $restriction->id ?>" type="checkbox">
+                                <label for="searchCheck-animal"><?= $restriction->name?></label>
                             </div>
                             
-                            <?php endfor; ?>
+                            <?php endforeach; ?>
                             
                         </div>
                     </div>
 
                     <div class="search-textarea">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Описание"></textarea>
+                        <textarea name="description" id="" cols="30" rows="10" placeholder="Описание"></textarea>
                     </div>
 
                     <div class="popup-btns-bar">
-                        <a href="#" class="btn--popup-2btn __btn-green">Сохранить</a>
+                        <a id="saveHabitation" href="#" class="btn--popup-2btn __btn-green">Сохранить</a>
                         <a href="#" class="btn--popup-2btn __btn-red">Отмена</a>
                     </div>
-
+                    
                 </form>
             </div>
             <div class="search-load-photo">

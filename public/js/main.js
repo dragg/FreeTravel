@@ -124,4 +124,9 @@ $(document).ready(function(){
     $('#cancel').click(function(){
         refresh_page();
     });
+    
+    $('#saveHabitation').click(function(){
+       $('form').submit();
+       return ;
+    });
 });
