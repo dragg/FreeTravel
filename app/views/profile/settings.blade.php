@@ -38,7 +38,7 @@
 
                             <div class="profile-btns-bar">
                                 <a href="#" class="btn--profile __btn-green" id="save">Сохранить</a>
-                                <a href="#" class="btn--profile __btn-red">Отмена</a>
+                                <a href="#" class="btn--profile __btn-red" id="cancel">Отмена</a>
                             </div>
                         </div>
                         <!-- /profile-form -->

@@ -67,7 +67,7 @@
                         <?php if(Auth::check()): ?>
                         <li><a href="<?= action('ProfileController@getShow')?>"><span><?= Auth::user()->last_name . " ". Auth::user()->first_name ?></span></a></li>
                             <li><img src="/i/photo.jpg" alt="Photo-1"></li>
-                            <li><a href="#"><span>Моё жильё</span></a></li>
+                            <li><a href="<?= action('ProfileController@getMyHabitation')?>"><span>Моё жильё</span></a></li>
                             <li class="__empty-cell"></li>
                             <li class="__empty-cell"><a href="#"><span>Заявки</span></a></li> 
                             <li class="__empty-cell"><a href="/log/logout"><span>Выход</span></a></li> 

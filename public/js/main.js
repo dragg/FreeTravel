@@ -1,4 +1,9 @@
 $(document).ready(function(){
+    
+    function refresh_page() {
+        location.reload();
+    }
+    
     $('a#signin').click(function(){
         $('div#signin').removeAttr('hidden');
 
@@ -17,7 +22,7 @@ $(document).ready(function(){
 
         return false;
     });
-    //function enter()
+   
 
     function close_popup_window(){
         $('.popup-wrapper-bg').attr('hidden', 'hidden');
@@ -38,7 +43,7 @@ $(document).ready(function(){
            if(res[0] === true)
            {
                close_popup_window();
-               location.reload();
+               refresh_page();
            }
            else
            {
@@ -102,11 +107,21 @@ $(document).ready(function(){
             repeatPassword: $('#repeatPassword').val()
         },
         function(res){
+            console.log(res);
             if (res[0] === true) {
                 alert('Всё гуд!');
+                refresh_page();
+            }
+            else if(res[0] === false)
+            {
+                alert(res[2]);
             }
         }, 'json');
         
         return false;
+    });
+            
+    $('#cancel').click(function(){
+        refresh_page();
     });
 });
