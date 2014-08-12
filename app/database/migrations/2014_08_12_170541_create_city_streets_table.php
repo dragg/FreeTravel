@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStreetsTable extends Migration {
+class CreateCityStreetsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,13 @@ class CreateStreetsTable extends Migration {
 	 */
 	public function up()
 	{
-            Schema::create('streets', function($table){
+            Schema::create('city_streets', function($table){
                 /* @var $table Blueprint */ 
                 $table->increments('id');
-                $table->string('title', 64)->unique();
+                $table->integer('city_id', false, true);
+                $table->integer('street_id', false, true);
                 $table->timestamps();
-            });
+            });//
 	}
 
 	/**
@@ -27,7 +28,7 @@ class CreateStreetsTable extends Migration {
 	 */
 	public function down()
 	{
-            Schema::drop('streets');
+            Schema::drop('city_streets');
 	}
 
 }
