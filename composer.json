@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
                 "barryvdh/laravel-ide-helper": "1.*",
-                "guzzlehttp/guzzle": "~4.0"
+                "guzzlehttp/guzzle": "~4.0",
+                "blueimp/jquery-file-upload": "9.7.0"
 	},
 	"autoload": {
 		"classmap": [

@@ -35,7 +35,8 @@
                                     <input class="input-text" type="text" id="repeatPassword" placeholder="Повторите пароль">
                                 </div>
                             </div>
-
+                            
+                            
                             <div class="profile-btns-bar">
                                 <a href="#" class="btn--profile __btn-green" id="save">Сохранить</a>
                                 <a href="#" class="btn--profile __btn-red" id="cancel">Отмена</a>
@@ -46,14 +47,14 @@
                         <div class="profile-load-photo">
                             <div class="profile-load-img">
                                 <div class="profile-load-img-empty">нет фото</div>
-                                <img src="/i/statham.jpg" alt="" hidden>
+                                <img src="/avatars/3.jpg" alt="" hidden>
                                 <div class="search-load-controls-wr" hidden>
                                     <a href="#" class="page-conrol __close" ></a>
                                 </div>
                             </div>
                            <div class="input-filesuctom" style="display: block;">
                               <a class="btn--profile-load __btn-green">Загрузить</a>
-                              <input type="file" id="fileupload" name="f_File" multiple="">
+                              <input type="file" id="fileupload" name="avatarFile" multiple="">
                             </div>
                         </div>
                     </div>

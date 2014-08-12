@@ -23,7 +23,9 @@
 
 
 		<script src="/js/main.js"></script>
-
+                
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
             <link rel="stylesheet" media="all" href="style/ie/lt-ie9.css">
@@ -83,7 +85,8 @@
 
         </div>
         <!-- /wrapper -->
-
+        <?php if(!Auth::check()): ?>
+        
         <!-- popup login -->
         <div id="signin" class="popup-wrapper-bg" hidden>
             <div class="popup">
@@ -184,6 +187,9 @@
             </div>
         </div>
         <!-- /popup thank -->
+        
+        <?php endif; ?>
+        
 
 	</body>
 </html>
