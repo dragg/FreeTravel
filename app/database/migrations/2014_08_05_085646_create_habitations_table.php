@@ -20,6 +20,7 @@ class CreateHabitationsTable extends Migration {
                 $table->string('title');                                    
                 $table->string('address');
                 $table->integer('city_id', false, true);
+                $table->string('description');
                 $table->tinyInteger('places', false, true)->default(1);
                 $table->tinyInteger('deleted', false, true)->default(0);
 

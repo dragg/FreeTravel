@@ -68,7 +68,19 @@ class ProfileController extends BaseController
     }
     
     public function getMyHabitation() {
-        return View::make('profile.my_habitation');
+        $user = DB::table('users')->where('email', Auth::user()['email'])->first();
+        
+        $res = DB::table('habitations')->where('user_id', $user->id)
+                ->join('cities', 'habitations.city_id', '=', 'cities.id')
+                ->select('habitations.title', 'habitations.id', 'habitations.address', 'cities.name as city' )
+                ->get();
+        
+//        var_dump($res);die();
+        
+        
+        return View::make('profile.my_habitation', [
+            'isEmpty' => count($res) === 0 ? TRUE : FALSE, 
+            'habitations' => $res]);
     }
     
     public function getCreateHabitation() {

@@ -35,8 +35,9 @@
                         <div class="search-select-wr">
                             <div class="transform-select-wr">
                                 <select name="sleeper" id="" class="transform-select">
-                                    <option value="">Спальных мест</option>
-                                    <option value="">Спальных мест</option>
+                                    <?php for($i = 1; $i < 10; $i++) : ?>
+                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                    <?php endfor ?>
                                 </select>
                             </div>
                         </div>
@@ -66,7 +67,7 @@
                             <?php foreach ($restrictions as $restriction): ?>
                             
                             <div class="search-checkbox-wr">
-                                <input id="searchCheck-animal" name="restriction[]" value="<?= $restriction->id ?>" type="checkbox">
+                                <input id="searchCheck-animal" name="restrictions[]" value="<?= $restriction->id ?>" type="checkbox">
                                 <label for="searchCheck-animal"><?= $restriction->name?></label>
                             </div>
                             
