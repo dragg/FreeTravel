@@ -28,7 +28,7 @@ class UploadController extends BaseController{
             $uploadSuccess = $file->move($destinationPath, $filename);
 
             if( $uploadSuccess ) {
-                return Response::json('success', 200);
+                return Response::json(['success', $filename]);
             } else {
                 return Response::json('error', 400);
             }

@@ -46,32 +46,29 @@
 
                         <div class="profile-load-photo">
                             <div class="profile-load-img">
-                                <div class="profile-load-img-empty">нет фото</div>
-                                <img src="/avatars/3.jpg" alt="" hidden>
+                                <img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" id="avatar">
                                 <div class="search-load-controls-wr" hidden>
                                     <a href="#" class="page-conrol __close" ></a>
                                 </div>
+                                <div class="search-load-controls-wr">
+                                    <a href="#" class="page-conrol __close"></a>
+                                </div>
                             </div>
                            <div class="input-filesuctom" style="display: block;">
-                              <a class="btn--profile-load __btn-green">Загрузить</a>
-                              <input type="file" id="fileupload" name="avatarFile" multiple="">
+                               <form id="uploadAvatar" action="{{action('UploadController@postUploadAvatar')}}" method="post" enctype="multipart/form-data">
+                                            <input type="file" size="60" name="avatarFile" id="fileupload">
+                                            <a id="upload" class="btn--profile-load __btn-green">Загрузить</a>
+                                        </form>
+                              
+                              
                             </div>
                             <section>
-                                    <div class="content">
-                                        <form id="myForm" action="{{action('UploadController@postUploadAvatar')}}" method="post" enctype="multipart/form-data">
-                                            <input type="file" size="60" name="avatarFile">
-                                            <input type="submit" value="Ajax File Upload">
-                                        </form>
-
-                                        <div id="progress">
-                                               <div id="bar"></div>
-                                               <div id="percent">0%</div >
-                                        </div>
-                                        <br/>
-
-                                        <div id="message"></div>
+                                <div class="content" style="width: 400px">
+                                    <div id="progress">
+                                           <div id="percent" style="display: none">0%</div>
                                     </div>
-                                </section>
+                                </div>
+                            </section>
                         </div>
                     </div>
                     <!-- /profile -->

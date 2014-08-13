@@ -80,19 +80,20 @@ $(document).ready(function(){
     
     var main = true;
     $('.request-housing').click(function(){
-        $('.request-housing').removeClass('__active');
-        $(this).addClass('__active');
-        
-        if (main) {
-            $('#mainProfile').hide();
-            $('#passwordProfile').show();
+        if(!$(this).hasClass('__active')) {
+            $('.request-housing').removeClass('__active');
+            $(this).addClass('__active');
+
+            if (main) {
+                $('#mainProfile').hide();
+                $('#passwordProfile').show();
+            }
+            else {
+                $('#passwordProfile').hide();    
+                $('#mainProfile').show();
+            }
+            main = !main;
         }
-        else {
-            $('#passwordProfile').hide();    
-            $('#mainProfile').show();
-        }
-        main = !main;
-        
     });
     
     $('#save').click(function(){
@@ -177,33 +178,51 @@ $(document).ready(function(){
         },
         uploadProgress: function(event, position, total, percentComplete) 
         {
-            $("#bar").width(percentComplete+'%');
+           //$("#bar").width(percentComplete+'%');
             $("#percent").html(percentComplete+'%');
 
         },
-        success: function() 
+        success: function(response) 
         {
-            $("#bar").width('100%');
+            //$("#bar").width('100%');
             $("#percent").html('100%');
-            
+            $('#avatar').attr('src', '/avatars/'+response[1]+'?'+Math.random());
+            $('#headerAvatar').attr('src', $('#avatar').attr('src')+'?'+Math.random());
         },
         complete: function(response) 
         {
-            
-            $("#message").html("<font color='green'>"+response.responseText+"</font>");
-            console.log(response);
+            $("#percent").html('Фотография успешно загружена.').hide(10000);
+            $('.search-load-controls-wr').show();
+            //$("#message").html("<font color='green'>"+response.responseText+"</font>");
         },
         error: function()
         {
-            $("#message").html("<font color='red'> ERROR: unable to upload files</font>");
+            $("#percent").html('Не удалось загрузить фотографию.');
+            //$("#message").html("<font color='red'> ERROR: unable to upload files</font>");
             
         }
 
-        }; 
+    }; 
  
-    $("#myForm").ajaxForm(options);
+    $("#uploadAvatar").ajaxForm(options);
     
     $('#upload').click(function(){
-       $('input:file').click();
+        $('#fileupload').click();
+       
+    });
+    
+    $('#fileupload').on('change', function() {
+        if($('#fileupload').val() != "") {
+            $('#percent').show();
+            $('form#uploadAvatar').submit();
+        }
+    });
+    
+    $('#percent').click(function(){
+       $(this).hide();
+    });
+    
+    $('#deleteAvatar').click(function(){
+       //to send post 
     });
 });
