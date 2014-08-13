@@ -27,4 +27,18 @@ class HabitationController extends BaseController {
         
         return Redirect::action('ProfileController@getMyHabitation');
     }
+    
+    public function postDeleteHabitation() {
+        $response = FALSE;
+        
+        $id = Input::get('id');
+        $habitation = DB::table('habitations')->where('id', $id)->first();
+        
+        if (isset($habitation)) {
+            DB::table('habitations')->where('id', $id)->update(['deleted' => 1]);
+            $response = TRUE;
+        }
+        
+        return Response::json($response);
+    }
 }

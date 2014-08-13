@@ -60,3 +60,4 @@ Route::controller('requests', 'RequestController');
 Route::controller('profile', 'ProfileController');
 Route::controller('log', 'LogController');
 Route::controller('habitation', 'HabitationController');
+Route::controller('upload', 'UploadController');

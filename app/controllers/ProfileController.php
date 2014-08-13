@@ -70,7 +70,9 @@ class ProfileController extends BaseController
     public function getMyHabitation() {
         $user = DB::table('users')->where('email', Auth::user()['email'])->first();
         
-        $res = DB::table('habitations')->where('user_id', $user->id)
+        $res = DB::table('habitations')
+                ->where('deleted', 0)
+                ->where('user_id', $user->id)
                 ->join('cities', 'habitations.city_id', '=', 'cities.id')
                 ->select('habitations.title', 'habitations.id', 'habitations.address', 'cities.name as city' )
                 ->get();

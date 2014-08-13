@@ -38,7 +38,7 @@
                 <div class="quest-block __active clearfix">
                     <div class="page-controls-wr">
                         <a href="#" class="page-conrol __write"></a>
-                        <a href="#" class="page-conrol __close"></a>
+                        <a id="{{$habitation->id}}" href="#" class="page-conrol __close"></a>
                     </div>
                     <div class="quest-block-img">
                         <img src="/i/object-1.jpg" alt="">
@@ -60,6 +60,12 @@
                 <?php endforeach; ?>
                 
             </div>
+            
+            <div class="profile-default" style="margin-top: 30px">
+                <div class="profile-default-btns-bar">
+                    <a href="<?= action('ProfileController@getCreateHabitation')?>" class="btn--profile-default __btn-green">Добавить</a>
+                </div>
+            </div>
             <!-- /request-cont -->
             <?php endif; ?>
         </div>
@@ -71,7 +77,7 @@
         <h6>Удаление</h6>
         <p>Вы действительно хотите удалить "Уютная квартира на западном"?</p>
         <div class="popup-btns-bar">
-            <a href="#" class="btn--popup-2btn __btn-green">Принять</a>
+            <a id="applyDeleteHabitation" href="#" class="btn--popup-2btn __btn-green">Принять</a>
             <a id="cancelDeleteHabitation" href="#" class="btn--popup-2btn __btn-red">Отказать</a>
         </div>
         <a href="#" class="popup-close"></a>

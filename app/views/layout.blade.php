@@ -24,7 +24,7 @@
 
 		<script src="/js/main.js"></script>
                 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>-->
 <script src="http://malsup.github.com/jquery.form.js"></script>
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,19 +38,20 @@
         <script>
 
             $(document).ready(function(){
+                
                 $('.transform-select').select2({
                     minimumResultsForSearch: -1
                 });
 
-                /*datepicker inicialization */
-                $( ".datapicker" ).datepicker();
-
-                var monthNames = $( ".datapicker" ).datepicker( "option", "monthNames" );
-                $( ".datapicker" ).datepicker( "option", "monthNames", [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ] );
-
-                var dayNamesMin = $( ".datapicker" ).datepicker( "option", "dayNamesMin" );
-                $( ".datapicker" ).datepicker( "option", "dayNamesMin", [ "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" ] );
-                /*/ datepicker inicialization */
+//                /*datepicker inicialization */
+//                $( ".datapicker" ).datepicker();
+//
+//                var monthNames = $( ".datapicker" ).datepicker( "option", "monthNames" );
+//                $( ".datapicker" ).datepicker( "option", "monthNames", [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ] );
+//
+//                var dayNamesMin = $( ".datapicker" ).datepicker( "option", "dayNamesMin" );
+//                $( ".datapicker" ).datepicker( "option", "dayNamesMin", [ "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" ] );
+//                /*/ datepicker inicialization */
 
 
             });

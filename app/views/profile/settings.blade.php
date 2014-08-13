@@ -56,6 +56,22 @@
                               <a class="btn--profile-load __btn-green">Загрузить</a>
                               <input type="file" id="fileupload" name="avatarFile" multiple="">
                             </div>
+                            <section>
+                                    <div class="content">
+                                        <form id="myForm" action="{{action('UploadController@postUploadAvatar')}}" method="post" enctype="multipart/form-data">
+                                            <input type="file" size="60" name="avatarFile">
+                                            <input type="submit" value="Ajax File Upload">
+                                        </form>
+
+                                        <div id="progress">
+                                               <div id="bar"></div>
+                                               <div id="percent">0%</div >
+                                        </div>
+                                        <br/>
+
+                                        <div id="message"></div>
+                                    </div>
+                                </section>
                         </div>
                     </div>
                     <!-- /profile -->

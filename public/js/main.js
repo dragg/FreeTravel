@@ -130,15 +130,40 @@ $(document).ready(function(){
        return ;
     });
     
+    var deleteId = null;
+    
     $('.__close').click(function(){
         $('#deleteHabitation').show();
+        deleteId = $(this).attr('id');
         return false;
     });
     
-    $('#cancelDeleteHabitation').click(function(){
+    function hidePopupDeleteHabitation() {
         $('#deleteHabitation').hide();
+    }
+    
+    $('#cancelDeleteHabitation').click(function(){
+        hidePopupDeleteHabitation();
     });
     
+    $('#applyDeleteHabitation').click(function(){
+       $.post('/habitation/delete-habitation', {
+            id: deleteId
+        },
+        function(res){
+            console.log(res);
+            if(res == true)
+            {
+                hidePopupDeleteHabitation();
+                $('a#' + deleteId).parent().parent().remove();
+            }
+            else
+            {
+                alert('Не удалено!');
+            }
+        }, 'json');
+        
+    });
     //Test
     
      var options = { 
@@ -164,16 +189,21 @@ $(document).ready(function(){
         },
         complete: function(response) 
         {
+            
             $("#message").html("<font color='green'>"+response.responseText+"</font>");
             console.log(response);
         },
         error: function()
         {
             $("#message").html("<font color='red'> ERROR: unable to upload files</font>");
-
+            
         }
 
         }; 
  
     $("#myForm").ajaxForm(options);
+    
+    $('#upload').click(function(){
+       $('input:file').click();
+    });
 });
