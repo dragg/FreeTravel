@@ -135,7 +135,7 @@ $(document).ready(function(){
     
     $('#saveHabitation').click(function(){
        $('form').submit();
-       return ;
+       return false;
     });
     
     var deleteId = null;

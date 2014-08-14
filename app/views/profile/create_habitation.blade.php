@@ -9,6 +9,7 @@
             <div class="search-date">
                 
                 <form action="<?php echo action('HabitationController@postSaveHabitation') ?>" method="POST">
+                    <input type="text" name="id" value="<?= isset($habitation)? $habitation->id : ''?>" hidden />
                     <div class="search-line">
                         
                         <div class="search-inp-wr">

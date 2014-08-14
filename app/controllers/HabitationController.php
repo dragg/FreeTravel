@@ -5,6 +5,8 @@ class HabitationController extends BaseController {
     
     public function postSaveHabitation() {
         
+        var_dump(Input::get('id')); die();
+        
         $user = DB::table('users')->where('email', Auth::user()['email'])->first();
               
         $habitation_id = DB::table('habitations')->insertGetId(['user_id' => $user->id,
