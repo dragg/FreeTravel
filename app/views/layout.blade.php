@@ -69,7 +69,7 @@
                     <ul>
                         <?php if(Auth::check()): ?>
                         <li><a href="{{ action('ProfileController@getShow') }}" style="margin-right: 10px"><span>{{ Auth::user()->last_name . " ". Auth::user()->first_name }}</span></a></li>
-                        <li><div class="profile-load-img" style="max-width: 100px; max-height: 60px"><img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" alt="Photo-1" style="margin-left: 0px" id="headerAvatar"></div></li>
+                        <li><div class="profile-load-img" style="max-width: 100px; max-height: 60px"><img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" alt="Photo-1" style="margin-left: 0px;max-height: 60px;" id="headerAvatar"></div></li>
                             <li><a href="{{ action('ProfileController@getMyHabitation')}}"><span>Моё жильё</span></a></li>
                             <li class="__empty-cell"></li>
                             <li class="__empty-cell"><a href="#"><span>Заявки</span></a></li> 

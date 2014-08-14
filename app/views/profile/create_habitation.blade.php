@@ -12,7 +12,7 @@
                     <div class="search-line">
                         
                         <div class="search-inp-wr">
-                            <input class="input-text" type="text" name="name" placeholder="Название">
+                            <input value="<?= isset($habitation)? $habitation->title : ''?>" class="input-text" type="text" name="name" placeholder="Название">
                         </div>
                         
                         
@@ -22,7 +22,14 @@
                                     
                                     <?php foreach ($cities as $city): ?>
                             
-                                    <option value="<?= $city->id?>"><?= $city->name?></option>
+                                    <option value="<?= $city->id?>" 
+                                        <?php if(isset($habitation)){
+                                            if ($city->id == $habitation->city_id) {
+                                                echo 'selected="selected"';
+                                            }
+                                        } ?>
+                                        ><?= $city->name?> 
+                                        </option>
 
                                     <?php endforeach; ?>
                                     
@@ -36,14 +43,20 @@
                             <div class="transform-select-wr">
                                 <select name="sleeper" id="" class="transform-select">
                                     <?php for($i = 1; $i < 10; $i++) : ?>
-                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                    <option value="<?= $i ?>"
+                                            <?php if(isset($habitation)){
+                                                if ($i == $habitation->places) {
+                                                    echo 'selected="selected"';
+                                                }
+                                            } ?>
+                                            ><?= $i ?></option>
                                     <?php endfor ?>
                                 </select>
                             </div>
                         </div>
 
                         <div class="search-inp-wr">
-                            <input class="input-text" type="text" name="address" id="" placeholder="Адрес">
+                            <input value="<?= isset($habitation)? $habitation->address : ''?>" class="input-text" type="text" name="address" id="" placeholder="Адрес">
                         </div>
                     </div>
                     
@@ -77,7 +90,7 @@
                     </div>
 
                     <div class="search-textarea">
-                        <textarea name="description" id="" cols="30" rows="10" placeholder="Описание"></textarea>
+                        <textarea name="description" id="" cols="30" rows="10" placeholder="Описание"><?= isset($habitation)? $habitation->description : ''?></textarea>
                     </div>
 
                     <div class="popup-btns-bar">

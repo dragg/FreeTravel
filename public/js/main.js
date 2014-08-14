@@ -87,10 +87,17 @@ $(document).ready(function(){
             if (main) {
                 $('#mainProfile').hide();
                 $('#passwordProfile').show();
+                
+                
+                $('#my_habitation').hide();
+                $('#request').show();
             }
             else {
                 $('#passwordProfile').hide();    
                 $('#mainProfile').show();
+                
+                $('#request').hide();    
+                $('#my_habitation').show();
             }
             main = !main;
         }
@@ -157,6 +164,12 @@ $(document).ready(function(){
             {
                 hidePopupDeleteHabitation();
                 $('a#' + deleteId).parent().parent().remove();
+                if($('.habitation').length == 0) {
+                    $('#my_habitation').hide();
+                    $('.request-head').hide();
+                    $('.profile-default').show();
+                }
+                
             }
             else
             {
@@ -165,9 +178,9 @@ $(document).ready(function(){
         }, 'json');
         
     });
-    //Test
     
-     var options = { 
+    
+    var options = { 
         beforeSend: function() 
         {
             $("#progress").show();
@@ -191,6 +204,7 @@ $(document).ready(function(){
         },
         complete: function(response) 
         {
+            $('#deleteAvatar').parent().show();
             $("#percent").html('Фотография успешно загружена.').hide(10000);
             $('.search-load-controls-wr').show();
             //$("#message").html("<font color='green'>"+response.responseText+"</font>");
@@ -223,6 +237,24 @@ $(document).ready(function(){
     });
     
     $('#deleteAvatar').click(function(){
-       //to send post 
+        $('#deleteAvatar').parent().hide();
+        $.post('/profile/delete-avatar', {},
+        function(res){
+            console.log(res);
+            if(res[0] === 1) {
+                $('#avatar').attr('src', '/avatars/'+res[1]+'?'+Math.random());
+                $('#headerAvatar').attr('src', $('#avatar').attr('src')+'?'+Math.random());
+                $("#percent").html('Фотография успешно удалена.').hide(5000);
+            } else {
+                $('#deleteAvatar').parent().show();
+                $("#percent").html('Не удалось удалить фотографию.').hide(5000);
+            }
+        },'json');
     });
+    
+//    $('.__write').click(function(){
+//        $('#deleteHabitation').show();
+//        deleteId = $(this).attr('id');
+//        return false;
+//    });
 });

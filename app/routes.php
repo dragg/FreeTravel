@@ -33,29 +33,6 @@ Route::get('/test', function(){
     return View::make('test.test');
 });
 
-//Route::post('/upload', function(){
-//    
-//    $user = DB::table('users')->where('email', Auth::user()['email'])
-//                ->first();
-//        
-//        
-//        
-//        $file = Input::file('myfile');
-//        $destinationPath = 'public/avatars/';
-//        $extension = explode('.', $file->getClientOriginalName());
-//        $extension = $extension[count($extension) - 1];
-//        $filename = $user->id . "." . $extension;
-//        $uploadSuccess = $file->move($destinationPath, $filename);
-//
-//        if( $uploadSuccess ) {
-//            return Response::json('success', 200); // or do a redirect with some message that file was uploaded
-//        } else {
-//            return Response::json('error', 400);
-//        }
-//    
-//    return Response::json([Input::file('myfile')->getClientOriginalName()]);
-//});
-
 Route::controller('requests', 'RequestController');
 Route::controller('profile', 'ProfileController');
 Route::controller('log', 'LogController');

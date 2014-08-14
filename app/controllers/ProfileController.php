@@ -44,9 +44,7 @@ class ProfileController extends BaseController
             }
             else {
                 $user = DB::table('users')->where('email', Auth::user()['email'])->first();
-                
-                 //return Response::json(($user->password));
-                
+                                
                 if (!isset($user)) {
                     $error = 'Error of authentication!';
                 }
@@ -93,5 +91,17 @@ class ProfileController extends BaseController
         return View::make('profile.create_habitation', 
             ['amenities' => $amenities, 'restrictions' => $restrictions,
                 'cities' => $cities]);
+    }
+    
+    public function postDeleteAvatar() {
+        $response = 0;
+        
+        $path = public_path() . '/avatars/' . Auth::user()->id . '.jpg';
+        if(file_exists($path)) {
+            unlink($path);
+            $response = 1;
+        }
+        
+        return Response::json([$response, 'none.jpg']);
     }
 }

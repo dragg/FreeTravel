@@ -41,4 +41,30 @@ class HabitationController extends BaseController {
         
         return Response::json($response);
     }
+    
+    public function getCreateHabitation() {
+        
+        
+        
+        $amenities = DB::table('amenities')->get();
+        $restrictions = DB::table('restrictions')->get();
+        $cities = DB::table('cities')->get();
+        
+        $response = ['amenities' => $amenities, 'restrictions' => $restrictions,
+                'cities' => $cities];
+        
+        $id = Input::get('id');
+        
+        if(isset($id)) {
+            $habitation = DB::table('habitations')
+                ->where('id', $id)
+                ->first();
+            
+            $response['habitation'] = $habitation;
+            
+            //var_dump($response);die();
+        }
+        
+        return View::make('profile.create_habitation', $response);
+    }
 }

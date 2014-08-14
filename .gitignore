@@ -1,6 +1,5 @@
 /bootstrap/compiled.php
 /vendor
-/public/avatars
 /app/views/test
 composer.phar
 composer.lock

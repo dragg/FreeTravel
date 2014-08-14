@@ -50,15 +50,15 @@
                                 <div class="search-load-controls-wr" hidden>
                                     <a href="#" class="page-conrol __close" ></a>
                                 </div>
-                                <div class="search-load-controls-wr">
-                                    <a href="#" class="page-conrol __close"></a>
+                                <div class="search-load-controls-wr" style="display: <?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? 'block' : 'none' ?>">
+                                    <a id="deleteAvatar" href="#" class="page-conrol __close"></a>
                                 </div>
                             </div>
                            <div class="input-filesuctom" style="display: block;">
-                               <form id="uploadAvatar" action="{{action('UploadController@postUploadAvatar')}}" method="post" enctype="multipart/form-data">
-                                            <input type="file" size="60" name="avatarFile" id="fileupload">
-                                            <a id="upload" class="btn--profile-load __btn-green">Загрузить</a>
-                                        </form>
+                                <form id="uploadAvatar" action="{{action('UploadController@postUploadAvatar')}}" method="post" enctype="multipart/form-data">
+                                    <input type="file" size="60" name="avatarFile" id="fileupload">
+                                    <a id="upload" class="btn--profile-load __btn-green">Загрузить</a>
+                                </form>
                               
                               
                             </div>
