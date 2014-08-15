@@ -45,7 +45,7 @@
                         <img src="/i/object-1.jpg" alt="">
                     </div>
                     <div class="quest-block-body">
-                        <h4>{{$habitation->title}}</h4>
+                        <h4><a href="{{ action('HabitationController@getShowHabitation', $habitation->id)}}">{{$habitation->title}}</a></h4>
                         <div class="quest-block-name">
                             <p class="text-after-icon">
                                 <span class="icon-small-wr">

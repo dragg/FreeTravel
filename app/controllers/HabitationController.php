@@ -2,7 +2,26 @@
 
 class HabitationController extends BaseController {
     
-    
+    private function getHabitation($habitation_id) {
+        $habitation = DB::table('habitations')
+                ->where('id', $habitation_id)
+                ->first();
+        
+        $selectAmenities = DB::table('habitation_amenities')
+                    ->where('habitation_id', $habitation_id)
+                    ->get();
+            
+        $selectRestrictions = DB::table('habitation_restrictions')
+                ->where('habitation_id', $habitation_id)
+                ->get();
+        
+        $response['habitation'] = $habitation;
+        $response['sAm'] = $selectAmenities;
+        $response['sRe'] = $selectRestrictions;
+        
+        return $response;
+    }
+
     public function postSaveHabitation() {
         $habitation_id = Input::get('id');
         if(isset($habitation_id)) {
@@ -78,24 +97,58 @@ class HabitationController extends BaseController {
         $id = Input::get('id');
         
         if(isset($id)) {
-            $habitation = DB::table('habitations')
-                ->where('id', $id)
-                ->first();
+//            $habitation = DB::table('habitations')
+//                ->where('id', $id)
+//                ->first();
+//            
+//            $selectAmenities = DB::table('habitation_amenities')
+//                    ->where('habitation_id', $id)
+//                    ->get();
+//            
+//            $selectRestrictions = DB::table('habitation_restrictions')
+//                    ->where('habitation_id', $id)
+//                    ->get();
+//            
+            $res = $this->getHabitation($id);
+            $response['habitation'] = $res['habitation'];
+            $response['sAm'] = $res['sAm'];
+            $response['sRe'] = $res['sRe'];
             
-            $selectAmenities = DB::table('habitation_amenities')
-                    ->where('habitation_id', $id)
-                    ->get();
+            //var_dump($response);die();
+            //array_merge($response, $res);
             
-            $selectRestrictions = DB::table('habitation_restrictions')
-                    ->where('habitation_id', $id)
-                    ->get();
-            
-            
-            $response['habitation'] = $habitation;
-            $response['sAm'] = $selectAmenities;
-            $response['sRe'] = $selectRestrictions;
         }
         
         return View::make('profile.create_habitation', $response);
+    }
+    
+    public function getShowHabitation($habitation_id) {
+        $params = [];
+        
+        $habitation = DB::table('habitations')
+                ->where('habitations.id', $habitation_id)
+                ->join('cities', 'habitations.city_id', '=', 'cities.id')
+                ->select('habitations.id', 'title', 'address', 'description', 'places', 'cities.name as city', 'places')
+                ->first();
+        
+        $amenities = DB::table('habitation_amenities')
+                ->where('habitation_id', $habitation_id)
+                ->join('amenities', 'amenities.id', '=', 'habitation_amenities.amenity_id')
+                ->select('name')
+                ->get();
+        
+        $restrictions = DB::table('habitation_restrictions')
+                ->where('habitation_id', $habitation_id)
+                ->join('restrictions', 'restrictions.id', '=', 'habitation_restrictions.restriction_id')
+                ->select('name')
+                ->get();
+        
+        $params['habitation'] = $habitation;
+        $params['amenities'] = $amenities;
+        $params['restrictions'] = $restrictions;
+        
+        //var_dump($params); die();
+        
+        return View::make('habitation.show_habitation', $params);
     }
 }
