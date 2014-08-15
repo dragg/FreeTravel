@@ -4,27 +4,50 @@ class HabitationController extends BaseController {
     
     
     public function postSaveHabitation() {
-        
-        var_dump(Input::get('id')); die();
-        
-        $user = DB::table('users')->where('email', Auth::user()['email'])->first();
-              
-        $habitation_id = DB::table('habitations')->insertGetId(['user_id' => $user->id,
-            'title' => Input::get('name'), 'address' => Input::get('address'),
-            'places' => Input::get('sleeper'), 'city_id' => Input::get('city'),
-            'description' => Input::get('description')]);
+        $habitation_id = Input::get('id');
+        if(isset($habitation_id)) {
+            DB::table('habitations')
+                    ->where('id', $habitation_id)
+                    ->update(['title' => Input::get('name'),
+                              'address' => Input::get('address'),
+                              'places' => Input::get('sleeper'),
+                              'city_id' => Input::get('city'),
+                              'description' => Input::get('description')]);
+            
                 
-        foreach (Input::get('amentities') as $amenity) {
-            DB::table('habitation_amenities')->insert([
-                'habitation_id' => $habitation_id,
-                'amenity_id' => $amenity]);
+            DB::table('habitation_amenities')
+                ->where('habitation_id', $habitation_id)
+                ->delete();
+            
+            DB::table('habitation_restrictions')
+                ->where('habitation_id', $habitation_id)
+                ->delete();
+            
+        } else {
+            $user = DB::table('users')->where('email', Auth::user()['email'])->first();
+              
+            $habitation_id = DB::table('habitations')->insertGetId(['user_id' => $user->id,
+                'title' => Input::get('name'), 'address' => Input::get('address'),
+                'places' => Input::get('sleeper'), 'city_id' => Input::get('city'),
+                'description' => Input::get('description')]);
+        }
+       
+        $amenities = Input::get('amentities');
+        if(isset($amenities)) {
+            foreach ($amenities as $amenity) {
+                DB::table('habitation_amenities')->insert([
+                    'habitation_id' => $habitation_id,
+                    'amenity_id' => $amenity]);
+            }
         }
         
-        
-        foreach (Input::get('restrictions') as $restriction) {
-            DB::table('habitation_restrictions')->insert([
-                'habitation_id' => $habitation_id,
-                'restriction_id' => $restriction]);
+        $restrictions = Input::get('restrictions');
+        if(isset($restrictions)) {
+            foreach ($restrictions as $restriction) {
+                DB::table('habitation_restrictions')->insert([
+                    'habitation_id' => $habitation_id,
+                    'restriction_id' => $restriction]);
+            }
         }
         
         return Redirect::action('ProfileController@getMyHabitation');
@@ -45,9 +68,6 @@ class HabitationController extends BaseController {
     }
     
     public function getCreateHabitation() {
-        
-        
-        
         $amenities = DB::table('amenities')->get();
         $restrictions = DB::table('restrictions')->get();
         $cities = DB::table('cities')->get();
@@ -62,9 +82,18 @@ class HabitationController extends BaseController {
                 ->where('id', $id)
                 ->first();
             
-            $response['habitation'] = $habitation;
+            $selectAmenities = DB::table('habitation_amenities')
+                    ->where('habitation_id', $id)
+                    ->get();
             
-            //var_dump($response);die();
+            $selectRestrictions = DB::table('habitation_restrictions')
+                    ->where('habitation_id', $id)
+                    ->get();
+            
+            
+            $response['habitation'] = $habitation;
+            $response['sAm'] = $selectAmenities;
+            $response['sRe'] = $selectRestrictions;
         }
         
         return View::make('profile.create_habitation', $response);

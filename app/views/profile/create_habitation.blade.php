@@ -68,7 +68,16 @@
                             <?php foreach ($amenities as $amenity): ?>
                             
                             <div class="search-checkbox-wr">
-                                <input id="searchCheck-inet" name="amentities[]" value="<?= $amenity->id?>" type="checkbox">
+                                <input id="searchCheck-inet" name="amentities[]" value="<?= $amenity->id?>" type="checkbox" 
+                                    <?php 
+                                     foreach ($sAm as $a) {
+                                         if ($a->amenity_id === $amenity->id) {
+                                             echo 'checked';
+                                             break;
+                                         }
+                                     }
+                                    ?>
+                                       >
                                 <label for="searchCheck-inet"> <?= $amenity->name;?></label>
                             </div>
                             
@@ -81,7 +90,16 @@
                             <?php foreach ($restrictions as $restriction): ?>
                             
                             <div class="search-checkbox-wr">
-                                <input id="searchCheck-animal" name="restrictions[]" value="<?= $restriction->id ?>" type="checkbox">
+                                <input id="searchCheck-animal" name="restrictions[]" value="<?= $restriction->id ?>" type="checkbox"
+                                    <?php 
+                                     foreach ($sRe as $r) {
+                                         if ($r->restriction_id === $restriction->id) {
+                                             echo 'checked';
+                                             break;
+                                         }
+                                     }
+                                    ?>
+                                       >
                                 <label for="searchCheck-animal"><?= $restriction->name?></label>
                             </div>
                             
