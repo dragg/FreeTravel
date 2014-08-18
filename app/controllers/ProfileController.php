@@ -4,6 +4,7 @@ class ProfileController extends BaseController
 {
     public function getShow() {
         $user = DB::table('users')->where('email', Auth::user()['email'])->where('password', Auth::user()['password'])->first();
+         
         return View::make('profile.settings', ['user' => $user]);
     }
     

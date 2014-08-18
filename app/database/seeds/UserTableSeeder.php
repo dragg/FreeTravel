@@ -11,9 +11,7 @@ class  UserTableSeeder extends Seeder
             'email' => 'user1@inotravel.dev',
             'first_name' => 'user1',
             'last_name' => 'user1',
-            'telephone' => '8 908 519 73 23',
-            'password' => Hash::make('123'),
-            'habitation_owner' => 1,            
+            'password' => Hash::make('123'),          
         ]);
         
         User::create([
@@ -21,8 +19,7 @@ class  UserTableSeeder extends Seeder
             'first_name' => 'user2',
             'last_name' => 'user2',
             'telephone' => '8 908 519 73 23',
-            'password' => Hash::make('123'),
-            'habitation_owner' => 0,            
+            'password' => Hash::make('123'),     
         ]);
         
         User::create([
@@ -30,8 +27,7 @@ class  UserTableSeeder extends Seeder
             'first_name' => 'u',
             'last_name' => 'u',
             'telephone' => '8 908 519 73 23',
-            'password' => Hash::make('u'),
-            'habitation_owner' => 0,            
+            'password' => Hash::make('u'),      
         ]);
     }
     

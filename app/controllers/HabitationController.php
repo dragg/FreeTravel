@@ -3,7 +3,7 @@
 class HabitationController extends BaseController {
     
     public function __construct() {
-        $this->beforeFilter('auth');
+        //$this->beforeFilter('auth');
     }
     
     private function getHabitation($habitation_id) {
@@ -136,7 +136,7 @@ class HabitationController extends BaseController {
         $habitation = DB::table('habitations')
                 ->where('habitations.id', $habitation_id)
                 ->join('cities', 'habitations.city_id', '=', 'cities.id')
-                ->select('habitations.id', 'title', 'address', 'description', 'places', 'cities.name as city', 'places')
+                ->select('habitations.id', 'title', 'address', 'description', 'places', 'cities.name as city', 'places', 'user_id')
                 ->first();
         
         $amenities = DB::table('habitation_amenities')
@@ -155,8 +155,19 @@ class HabitationController extends BaseController {
         $params['amenities'] = $amenities;
         $params['restrictions'] = $restrictions;
         
-        //var_dump($params); die();
+        $owner = false;
+        if(Auth::check() && Auth::user()->id === $habitation->user_id) {
+            $owner = true;
+        }
         
-        return View::make('habitation.show_habitation', $params);
+        return View::make('habitation.show_habitation', $params)
+           ->with('owner', $owner);
+    }
+    
+    public function postSearch() {
+        $habs = Habitation::all();
+        return View::make('habitation.search')
+                ->with('habitations', $habs);
+        
     }
 }

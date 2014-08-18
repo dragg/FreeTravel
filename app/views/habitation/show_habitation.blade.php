@@ -8,13 +8,17 @@
        <div class="object">
 
             <!-- object-head -->
+           
             <div class="object-head clearfix">
                 <h2 class="page-title">{{$habitation->title}}</h2>
-                <div class="page-controls-wr">
-                    <a href="{{ action('HabitationController@getCreateHabitation')  . '?id=' . $habitation->id}}" class="page-conrol __write"></a>
-                    <a id="{{$habitation->id}}" href="#" class="page-conrol __close deleteHab"></a>
-                </div>
+                @if ($owner === true)
+                    <div class="page-controls-wr">
+                        <a href="{{ action('HabitationController@getCreateHabitation')  . '?id=' . $habitation->id}}" class="page-conrol __write"></a>
+                        <a id="{{$habitation->id}}" href="#" class="page-conrol __close deleteHab"></a>
+                    </div>
+                @endif
             </div>
+           
             <!-- /object-head -->
 
             <!-- object-media -->
@@ -22,8 +26,6 @@
                 <div class="object-slider">
                     <div id="thumbs-product" class="thumbs-product flexslider">
                         <ul class="slides">
-                            <li><img src="/i/product-slider/slide-1.jpg"></li>
-                            <li><img src="/i/product-slider/slide-1.jpg"></li>
                             <li><img src="/i/product-slider/slide-1.jpg"></li>
                         </ul>
                     </div>
@@ -104,9 +106,13 @@
                 {{$habitation->description}}
             </article>
             <!-- /object-dsct -->
-
+            @if(Auth::check() && $owner === false)
+                <a class="btn--main-guests __btn-green">Забронировать</a>
+            @endif
        </div>
+        
     </div>
+   
 </section>
 
 

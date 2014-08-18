@@ -2,19 +2,22 @@
 
 
 @section('content')
-<?php var_dump($cities);die(); ?>
     <section class="content-wrapper __main">
         <div class="content">
             <div class="main clearfix">
                 <h1 class="main-title">Найти жильё</h1>
                 <p class="main-subtitle">Ищите жильё сами или сдавайте его другим</p>
                 <div class="main-form __bg-white-transparent">
-                    <form action="">
+                    {{ Form::open(['url' => action('HabitationController@postSearch') , 'method' => 'post']) }}
+                    
+<!--                    <form action="">-->
                         <div class="">
                             <div class="main-select-wr">
                                 <div class="transform-select-wr">
                                     <select name="" id="" class="transform-select">
-                                        
+                                        @foreach ($cities as $city)
+                                            <option value="">{{$city->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -29,16 +32,19 @@
                             <div class="main-inp-wr">
                                 <div class="transform-select-wr">
                                     <select name="" id="" class="transform-select">
-                                        <option value="">Country</option>
-                                        <option value="">Country</option>
+                                        @for ($i = 1; $i < 10; $i++)
+                                            <option value="">{{$i}}</option>
+                                        @endfor
                                     </select>
                                 </div>
                             </div>
 
-                            <a href="/search" class="btn--main-form __btn-green">Найти</a>
+<!--                            <a href="/search" class="btn--main-form __btn-green">Найти</a>-->
+                            {{ Form::submit('Найти', ['class' => 'btn--main-form __btn-green']) }}
 
                         </div>
-                    </form>
+                        {{ Form::close() }}
+<!--                    </form>-->
                 </div>
                 <div class="main-guests __bg-white-transparent">
                     <a href="#" class="btn--main-guests __btn-green">Приму гостей</a>

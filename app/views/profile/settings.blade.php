@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+
            <section class="content-wrapper">
                 <div class="content __bg-white">
                     <!-- profile -->

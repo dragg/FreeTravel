@@ -35,19 +35,18 @@ $(document).ready(function(){
     });
 
     $('#link_signin').click(function(){
-       $.post('/log/signin', {
+       $.post('/user/signin', {
            email: $('#signin-user-email').val(),
            password: $('#signin-user-password').val()
        },
        function(res){
-           if(res[0] === true)
+           console.log(res);
+           if(res[0] === 'Success')
            {
                close_popup_window();
                refresh_page();
-           }
-           else
-           {
-               $('#signin-user-password').val('Неверный пароль').addClass('__incorrect-password');
+           } else {
+               alert(res[1]);
            }
        }, 'json');
 
@@ -55,22 +54,21 @@ $(document).ready(function(){
     });
     
     $('#link_signup').click(function(){
-        $.post('/log/signup', {
+        $.post('/user/signup', {
             first_name: $('#user-first_name').val(),
             last_name: $('#user-last_name').val(),
             email: $('#signup-user-email').val(),
             password: $('#signup-user-password').val(),
-            repeat_password: $('#user-repeat-password').val()
+            password_confirmation: $('#user-repeat-password').val()
         },
         function(res){
-            if(res[0] === true)
+            console.log(res);
+            if(res[0] === 'Success')
             {
                 close_popup_window();
                 $('#thank').removeAttr('hidden');
-            }
-            else
-            {
-                $('#signup-user-email').val('Такой пользователь существует').addClass('__incorrect-password');
+            } else {
+                alert(res[1]);
             }
         }, 'json');
        

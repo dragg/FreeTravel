@@ -33,6 +33,6 @@ Route::get('/show/{id}', function(){
 
 Route::controller('requests', 'RequestController');
 Route::controller('profile', 'ProfileController');
-Route::controller('log', 'LogController');
+Route::controller('user', 'UserController');
 Route::controller('habitation', 'HabitationController');
 Route::controller('upload', 'UploadController');
