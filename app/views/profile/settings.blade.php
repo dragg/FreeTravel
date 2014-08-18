@@ -20,6 +20,9 @@
                                     <input class="input-text" value="<?= $user->last_name ?>" type="text" id="last_name" placeholder="Фамилия">
                                 </div>
                                 <div class="profile-inp-wr">
+                                    <input class="input-text" value="<?= $user->telephone ?>" type="text" id="telephone" placeholder="Телефон">
+                                </div>
+                                <div class="profile-inp-wr">
                                     <input class="input-text" value="<?= $user->email ?>" type="text" id="email" placeholder="E-mail">
                                 </div>
                             </div>

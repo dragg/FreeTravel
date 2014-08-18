@@ -2,18 +2,18 @@
 
 @section('content')
 
-<?php $option = 0; ?>
+<?php  $option = 0; ?>
 <section class="content-wrapper">
     <div class="content __bg-white">
         <div class="search clearfix">
             <div class="search-date">
                 
-                <form action="<?php echo action('HabitationController@postSaveHabitation') ?>" method="POST">
+                <form action="<?= action('HabitationController@postSaveHabitation') ?>" method="POST">
                     <input type="text" name="id" value="<?= isset($habitation)? $habitation->id : ''?>" hidden />
                     <div class="search-line">
                         
                         <div class="search-inp-wr">
-                            <input value="<?= isset($habitation)? $habitation->title : ''?>" class="input-text" type="text" name="name" placeholder="Название">
+                            <input value="<?php isset($habitation)? $habitation->title : ''?>" class="input-text" type="text" name="name" placeholder="Название">
                         </div>
                         
                         
@@ -69,7 +69,7 @@
                             
                             <div class="search-checkbox-wr">
                                 <input id="searchCheck-inet" name="amentities[]" value="<?= $amenity->id?>" type="checkbox" 
-                                    <?php 
+                                    <?php if(isset($sAm))
                                      foreach ($sAm as $a) {
                                          if ($a->amenity_id === $amenity->id) {
                                              echo 'checked';
@@ -91,7 +91,7 @@
                             
                             <div class="search-checkbox-wr">
                                 <input id="searchCheck-animal" name="restrictions[]" value="<?= $restriction->id ?>" type="checkbox"
-                                    <?php 
+                                    <?php if(isset($sRe))
                                      foreach ($sRe as $r) {
                                          if ($r->restriction_id === $restriction->id) {
                                              echo 'checked';

@@ -12,7 +12,7 @@ class ProfileController extends BaseController
         $error = "";
         if(Input::get('actionMain') === "true") { //change personal data
             $userData = [Input::get('first_name'), Input::get('last_name'),
-                Input::get('email')];
+                Input::get('email'), Input::get('telephone')];
             
             if(Auth::user()['email'] !== $userData[2]) {
                 $user = DB::table('users')->where('email', 
@@ -21,7 +21,8 @@ class ProfileController extends BaseController
                 if (!isset($user)) {
                     DB::table('users')->where('email', Auth::user()['email'])
                             ->update(['first_name' => $userData[0],
-                                'last_name' => $userData[1], 'email' => $userData[2]]);
+                                'last_name' => $userData[1], 'email' => $userData[2],
+                                'telephone' => $userData[3]]);
                     $response = true;
                 }
                 else {
@@ -33,7 +34,7 @@ class ProfileController extends BaseController
             else {
                 DB::table('users')->where('email', Auth::user()['email'])
                     ->update(['first_name' => $userData[0],
-                        'last_name' => $userData[1]]);
+                        'last_name' => $userData[1], 'telephone' => $userData[3]]);
                 
                 $response = true;
             }
@@ -84,6 +85,7 @@ class ProfileController extends BaseController
     }
     
     public function getCreateHabitation() {
+        
         $amenities = DB::table('amenities')->get();
         $restrictions = DB::table('restrictions')->get();
         $cities = DB::table('cities')->get();

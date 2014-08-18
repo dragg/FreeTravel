@@ -31,7 +31,7 @@
                     <div class="object-contact">
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>{{$habitation->city . " " . $habitation->address }}</p>
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{Auth::user()->first_name . " " . Auth::user()->last_name}}</p>
-                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __tel"></i></span>+7 909 418 1234</p>
+                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __tel"></i></span>{{Auth::user()->telephone}}</p>
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>{{Auth::user()->email}}</p>
                     </div>
                     <div class="object-manual clearfix">

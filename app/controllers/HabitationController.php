@@ -23,8 +23,10 @@ class HabitationController extends BaseController {
     }
 
     public function postSaveHabitation() {
+        
         $habitation_id = Input::get('id');
-        if(isset($habitation_id)) {
+        
+        if(isset($habitation_id) && $habitation_id != '') {
             DB::table('habitations')
                     ->where('id', $habitation_id)
                     ->update(['title' => Input::get('name'),
@@ -43,8 +45,9 @@ class HabitationController extends BaseController {
                 ->delete();
             
         } else {
+            
             $user = DB::table('users')->where('email', Auth::user()['email'])->first();
-              
+            
             $habitation_id = DB::table('habitations')->insertGetId(['user_id' => $user->id,
                 'title' => Input::get('name'), 'address' => Input::get('address'),
                 'places' => Input::get('sleeper'), 'city_id' => Input::get('city'),
@@ -87,6 +90,7 @@ class HabitationController extends BaseController {
     }
     
     public function getCreateHabitation() {
+        
         $amenities = DB::table('amenities')->get();
         $restrictions = DB::table('restrictions')->get();
         $cities = DB::table('cities')->get();

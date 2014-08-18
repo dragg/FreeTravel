@@ -109,6 +109,7 @@ $(document).ready(function(){
             actionMain: main,
             first_name: $('#first_name').val(),
             last_name: $('#last_name').val(),
+            telephone: $('#telephone').val(),
             email: $('#email').val(),
             oldPassword: $('#oldPassword').val(),
             newPassword: $('#newPassword').val(),
