@@ -39,7 +39,7 @@
                 <div class="quest-block __active clearfix habitation">
                     <div class="page-controls-wr">
                         <a href="{{ action('HabitationController@getCreateHabitation')  . '?id=' . $habitation->id}} " class="page-conrol __write"></a>
-                        <a id="{{$habitation->id}}" href="#" class="page-conrol __close"></a>
+                        <a id="{{$habitation->id}}" href="#" class="page-conrol __close delete"></a>
                     </div>
                     <div class="quest-block-img">
                         <img src="/i/object-1.jpg" alt="">
@@ -159,16 +159,6 @@
     </div>
 </section>
 
-<div class="popup-wrapper-bg" style="display: none" id="deleteHabitation">
-    <div class="popup">
-        <h6>Удаление</h6>
-        <p>Вы действительно хотите удалить "Уютная квартира на западном"?</p>
-        <div class="popup-btns-bar">
-            <a id="applyDeleteHabitation" href="#" class="btn--popup-2btn __btn-green">Принять</a>
-            <a id="cancelDeleteHabitation" href="#" class="btn--popup-2btn __btn-red">Отказать</a>
-        </div>
-        <a href="#" class="popup-close"></a>
-    </div>
-</div>
+@include('habitation.popupDeleteHabitation')
 
 @stop

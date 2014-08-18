@@ -2,7 +2,7 @@
 
 
 @section('content')
-
+<?php var_dump($cities);die(); ?>
     <section class="content-wrapper __main">
         <div class="content">
             <div class="main clearfix">
@@ -14,8 +14,7 @@
                             <div class="main-select-wr">
                                 <div class="transform-select-wr">
                                     <select name="" id="" class="transform-select">
-                                        <option value="">State</option>
-                                        <option value="">State</option>
+                                        
                                     </select>
                                 </div>
                             </div>

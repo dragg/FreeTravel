@@ -13,7 +13,7 @@
                     <div class="search-line">
                         
                         <div class="search-inp-wr">
-                            <input value="<?php isset($habitation)? $habitation->title : ''?>" class="input-text" type="text" name="name" placeholder="Название">
+                            <input value="<?= isset($habitation)? $habitation->title : ''?>" class="input-text" type="text" name="name" placeholder="Название">
                         </div>
                         
                         
@@ -113,7 +113,7 @@
                     </div>
 
                     <div class="popup-btns-bar">
-                        <a id="saveHabitation" href="#" class="btn--popup-2btn __btn-green">Сохранить</a>
+                        {{ Form::submit('Сохранить', ['class' => "btn--popup-2btn __btn-green"]); }}
                         <a href="#" class="btn--popup-2btn __btn-red">Отмена</a>
                     </div>
                     

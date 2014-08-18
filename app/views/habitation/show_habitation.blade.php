@@ -1,5 +1,6 @@
 @extends('layout')
 
+
 @section('content')
 
 <section class="content-wrapper">
@@ -10,8 +11,8 @@
             <div class="object-head clearfix">
                 <h2 class="page-title">{{$habitation->title}}</h2>
                 <div class="page-controls-wr">
-                    <a href="#" class="page-conrol __write"></a>
-                    <a href="#" class="page-conrol __close"></a>
+                    <a href="{{ action('HabitationController@getCreateHabitation')  . '?id=' . $habitation->id}}" class="page-conrol __write"></a>
+                    <a id="{{$habitation->id}}" href="#" class="page-conrol __close deleteHab"></a>
                 </div>
             </div>
             <!-- /object-head -->
@@ -107,4 +108,8 @@
        </div>
     </div>
 </section>
+
+
+@include('habitation.popupDeleteHabitation')
+
 @stop

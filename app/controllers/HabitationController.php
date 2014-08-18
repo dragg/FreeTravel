@@ -2,6 +2,10 @@
 
 class HabitationController extends BaseController {
     
+    public function __construct() {
+        $this->beforeFilter('auth');
+    }
+    
     private function getHabitation($habitation_id) {
         $habitation = DB::table('habitations')
                 ->where('id', $habitation_id)

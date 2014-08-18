@@ -15,7 +15,9 @@
 
 Route::get('/', function()
 {
-	return View::make('home');
+    $cities = DB::table('cities')->get();
+    //var_dump($cities);die();
+    return View::make('home')->with('cities', $cities);
 });
 
 
@@ -27,10 +29,6 @@ Route::get('/search', function(){
 
 Route::get('/show/{id}', function(){
     
-});
-
-Route::get('/test', function(){
-    return View::make('test.test');
 });
 
 Route::controller('requests', 'RequestController');

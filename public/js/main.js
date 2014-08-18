@@ -141,9 +141,18 @@ $(document).ready(function(){
     
     var deleteId = null;
     
-    $('.__close').click(function(){
+    $('.delete').click(function(){
         $('#deleteHabitation').show();
         deleteId = $(this).attr('id');
+        return false;
+    });
+    
+    var deleteHab = false;
+    
+    $('.deleteHab').click(function(){
+        $('#deleteHabitation').show();
+        deleteId = $(this).attr('id');
+        deleteHab = true;
         return false;
     });
     
@@ -163,12 +172,16 @@ $(document).ready(function(){
             console.log(res);
             if(res == true)
             {
-                hidePopupDeleteHabitation();
-                $('a#' + deleteId).parent().parent().remove();
-                if($('.habitation').length == 0) {
-                    $('#my_habitation').hide();
-                    $('.request-head').hide();
-                    $('.profile-default').show();
+                if(deleteHab == true)
+                    window.location.replace("/profile/my-habitation");
+                else {
+                    hidePopupDeleteHabitation();
+                    $('a#' + deleteId).parent().parent().remove();
+                    if($('.habitation').length == 0) {
+                        $('#my_habitation').hide();
+                        $('.request-head').hide();
+                        $('.profile-default').show();
+                    }
                 }
                 
             }
@@ -177,7 +190,7 @@ $(document).ready(function(){
                 alert('Не удалено!');
             }
         }, 'json');
-        
+        return false;
     });
     
     
