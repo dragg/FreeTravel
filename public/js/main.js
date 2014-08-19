@@ -264,9 +264,6 @@ $(document).ready(function(){
         },'json');
     });
     
-//    $('.__write').click(function(){
-//        $('#deleteHabitation').show();
-//        deleteId = $(this).attr('id');
-//        return false;
-//    });
+    //$('#reservation').click()
+    
 });

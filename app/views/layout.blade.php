@@ -42,16 +42,15 @@
                 $('.transform-select').select2({
                     minimumResultsForSearch: -1
                 });
+                
+                /*datepicker inicialization */
+                $( ".datapicker" ).datepicker({ dateFormat: "dd-mm-yy" });
+                var monthNames = $( ".datapicker" ).datepicker( "option", "monthNames" );
+                $( ".datapicker" ).datepicker( "option", "monthNames", [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ] );
 
-//                /*datepicker inicialization */
-//                $( ".datapicker" ).datepicker();
-//
-//                var monthNames = $( ".datapicker" ).datepicker( "option", "monthNames" );
-//                $( ".datapicker" ).datepicker( "option", "monthNames", [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ] );
-//
-//                var dayNamesMin = $( ".datapicker" ).datepicker( "option", "dayNamesMin" );
-//                $( ".datapicker" ).datepicker( "option", "dayNamesMin", [ "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" ] );
-//                /*/ datepicker inicialization */
+                var dayNamesMin = $( ".datapicker" ).datepicker( "option", "dayNamesMin" );
+                $( ".datapicker" ).datepicker( "option", "dayNamesMin", [ "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" ] );
+                /*/ datepicker inicialization */
 
 
             });

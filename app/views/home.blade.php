@@ -14,26 +14,26 @@
                         <div class="">
                             <div class="main-select-wr">
                                 <div class="transform-select-wr">
-                                    <select name="" id="" class="transform-select">
+                                    <select name="city" id="" class="transform-select">
                                         @foreach ($cities as $city)
-                                            <option value="">{{$city->name}}</option>
+                                            <option value="{{ $city->id }}">{{$city->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="main-inp-wr">
-                                <input class="input-text datapicker" type="text" id="datepicker-1" placeholder="Прибытие">
+                                <input name="dateFrom" class="input-text datapicker" type="text" id="datepicker-1" placeholder="Прибытие">
                             </div>
                             <div class="main-inp-wr">
-                                <input class="input-text datapicker" type="text" id="datepicker-2" placeholder="Прибытие">
+                                <input name="dateTo" class="input-text datapicker" type="text" id="datepicker-2" placeholder="Прибытие">
                             </div>
 
                             <div class="main-inp-wr">
                                 <div class="transform-select-wr">
-                                    <select name="" id="" class="transform-select">
+                                    <select name="count" id="" class="transform-select">
                                         @for ($i = 1; $i < 10; $i++)
-                                            <option value="">{{$i}}</option>
+                                            <option value="{{$i}}">{{$i}}</option>
                                         @endfor
                                     </select>
                                 </div>
@@ -49,6 +49,12 @@
                 <div class="main-guests __bg-white-transparent">
                     <a href="#" class="btn--main-guests __btn-green">Приму гостей</a>
                 </div>
+                @if(Session::has('error'))
+                    <div class="alert alert-warning">
+                        {{Session::get('error')}}
+                    </div>
+                    
+                @endif
                 <div class="main-social-links">
                     <a href="#" class="main-social-link __fa"></a>
                     <a href="#" class="main-social-link __tw"></a>

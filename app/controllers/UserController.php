@@ -12,7 +12,7 @@ class UserController extends BaseController {
     
     protected $rulesSignin = [
         'email' => 'required|email|exists:users',
-        'password' => 'required|min:6'
+        'password' => 'required|min:3'
     ];
     
     public function postSignin(){

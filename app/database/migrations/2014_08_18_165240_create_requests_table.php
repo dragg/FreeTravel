@@ -20,6 +20,7 @@ class CreateRequestsTable extends Migration {
                 $table->integer('count');
                 $table->date('from');
                 $table->date('to');
+                $table->integer('accept')->default(0);
                 $table->timestamps();
             });
 	}

@@ -130,7 +130,8 @@ class HabitationController extends BaseController {
         return View::make('profile.create_habitation', $response);
     }
     
-    public function getShowHabitation($habitation_id) {
+    public function getShowHabitation($habitation_id, $count = 0, $dateFrom = '', $dateTo = '') {
+        var_dump($count);die();
         $params = [];
         
         $habitation = DB::table('habitations')
@@ -160,13 +161,35 @@ class HabitationController extends BaseController {
             $owner = true;
         }
         
+        $user = User::find($habitation->user_id);
+        
         return View::make('habitation.show_habitation', $params)
-           ->with('owner', $owner);
+           ->with('IsOwner', $owner)
+           ->with('owner', $user);
     }
     
+    protected $rulesSearch = [
+        '_token' => 'required',
+        'city' => 'required',
+        'dateFrom' => 'required|date_format:d-m-Y|after:today',
+        'dateTo' => 'required|date_format:d-m-Y|after:dateFrom|after:today',
+        'count' => 'required|digits:1'
+    ];
+
+
     public function postSearch() {
-        $habs = Habitation::all();
+        $validator = Validator::make(Input::all(), $this->rulesSearch);
+        $habs = [];
+        if($validator->fails()) {
+            return Redirect::to("/")
+                    ->with('error', $validator->messages()->first());
+        } else {
+            $habs = Habitation::where('city_id', Input::get('city'))
+                    ->where('places', '>=', Input::get('count'))->get();
+        }
         return View::make('habitation.search')
+                ->with('searchData', Input::all())
+                ->with('cities', City::all())
                 ->with('habitations', $habs);
         
     }
