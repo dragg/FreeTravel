@@ -102,16 +102,12 @@
             <!-- /object-media -->
 
             <!-- object-dsct- -->
-            <article class="object-dsct clearfix">
+            <article class="object-dsct clearfix" style="padding: 26px 0 80px;">
                 {{$habitation->description}}
             </article>
             <!-- /object-dsct -->
             @if(Auth::check() && $IsOwner === false)
-                {{ Form::open(['url' => action('RequestController@postReservation'), 'method' => 'post', 'id' => 'reservation']) }}
-                <!--<a class="btn--main-guests __btn-green">Забронировать</a>-->
-                    {{ Form::hidden('habitation_id', $habitation->id) }}
-                    {{ Form::submit('Забронировать', ['class' => 'btn--main-guests __btn-green']) }}
-                {{ Form::close() }}
+            <a class="btn--main-guests __btn-green" id="reservation" style="float:right; margin-right: 50px">Забронировать</a>
             @endif
        </div>
         
@@ -119,6 +115,44 @@
    
 </section>
 
+<div class="popup-wrapper-bg" style="display: none" id="reservationPopup">
+    <div class="popup" style="width: 600px">
+        <h6>Бронирование</h6>
+        <div class="main-form" style="padding: 0; margin: 10px 0 30px">
+            {{ Form::open(['url' => action('RequestController@postReservation') , 'method' => 'post']) }}
+                <div>
+                    {{ Form::hidden('id', $habitation->id) }}
+
+                    <div class="main-inp-wr">
+                        <input value="{{ isset($reservation) ? $reservation['dateFrom'] : '' }}" name="dateFrom" class="input-text datapicker" type="text" id="datepicker-1" placeholder="Прибытие">
+                    </div>
+
+                    <div class="main-inp-wr">
+                        <input value="{{ isset($reservation) ?  $reservation['dateTo'] : '' }}" name="dateTo" class="input-text datapicker" type="text" id="datepicker-1" placeholder="Отъезд">
+                    </div>
+
+                    <div class="main-inp-wr">
+                        <div class="transform-select-wr">
+                            <select name="count" id="" class="transform-select">
+                                @for ($i = 1; $i <= $habitation->places; $i++)
+                                    <option value="{{$i}}"
+                                            @if(isset($reservation))
+                                                {{ ($i == $reservation['count']) ? 'selected="selected"' : '' }}
+                                            @endif
+                                            >{{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    {{ Form::submit('Забронировать', ['class' => 'btn--main-form __btn-green', 'style' => 'margin-top: 20px']) }}
+                </div>
+            {{ Form::close() }}
+        </div>
+        <a href="#" class="popup-close"></a>
+    </div>
+</div>
 
 @include('habitation.popupDeleteHabitation')
 

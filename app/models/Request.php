@@ -11,6 +11,11 @@
  *
  * @author Николай
  */
-class Request extends Eloquent{
+class Request extends Eloquent {
+    
     protected $table = 'requests';
+    
+    protected $guarded =  ['id'];
+    
+    protected $fillable = ['habitation_id', 'user_id', 'count', 'from', 'to', 'accept'];
 }

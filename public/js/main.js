@@ -16,7 +16,10 @@ $(document).ready(function(){
         return false;
     });
     
-   
+    $('#reservation').click(function(){
+       $('#reservationPopup').show();
+    });
+    
     $('#ok_thank').click(function(){
         close_popup_window();
 

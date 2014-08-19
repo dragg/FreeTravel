@@ -130,9 +130,20 @@ class HabitationController extends BaseController {
         return View::make('profile.create_habitation', $response);
     }
     
-    public function getShowHabitation($habitation_id, $count = 0, $dateFrom = '', $dateTo = '') {
-        var_dump($count);die();
+    public function getShowHabitation($habitation_id, $dateFrom = '', $dateTo = '',  $count = 0) {
         $params = [];
+        if (!($dateFrom === '' || $dateTo === '' || $count === 0)) {
+            //to valid
+            //----
+            
+            $params['reservation'] = [
+                'id' => $habitation_id, 
+                'dateFrom' => $dateFrom,
+                'dateTo' => $dateTo,
+                'count' => $count];
+        }
+        
+        
         
         $habitation = DB::table('habitations')
                 ->where('habitations.id', $habitation_id)

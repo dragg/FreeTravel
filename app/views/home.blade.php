@@ -26,7 +26,7 @@
                                 <input name="dateFrom" class="input-text datapicker" type="text" id="datepicker-1" placeholder="Прибытие">
                             </div>
                             <div class="main-inp-wr">
-                                <input name="dateTo" class="input-text datapicker" type="text" id="datepicker-2" placeholder="Прибытие">
+                                <input name="dateTo" class="input-text datapicker" type="text" id="datepicker-2" placeholder="Отъезд">
                             </div>
 
                             <div class="main-inp-wr">
