@@ -21,6 +21,7 @@ class CreateRequestsTable extends Migration {
                 $table->date('from');
                 $table->date('to');
                 $table->integer('accept')->default(0);
+                $table->tinyInteger('deleted', false, true)->default(0);
                 $table->timestamps();
             });
 	}

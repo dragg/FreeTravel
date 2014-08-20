@@ -5,6 +5,14 @@
 <section class="content-wrapper">
     <div class="content">
         <div class="main __choosen clearfix">
+            
+                @if(isset($error))
+                    <div class="alert alert-warning">
+                        {{$error}}
+                    </div>
+                    
+                @endif
+               
             <div class="main-form">
                 {{ Form::open(['url' => action('HabitationController@postSearch') , 'method' => 'post']) }}
                     
@@ -48,26 +56,28 @@
                         {{ Form::close() }}
 
             <div class="request-head-info clearfix">
-                <p>У Вас <span>4</span> заявки</p>
+
             </div>
 
            
             <div class="choosen-object">
                 <div class="choosen-object-line clearfix">
-                    @foreach ($habitations as $habitation)
-                    <div class="choosen-object-block">
-                        <h6><a href="{{ action('HabitationController@getShowHabitation', [$habitation->id, $searchData['dateFrom'], $searchData['dateTo'], $searchData['count']])}}">{{$habitation->title}}</a></h6>
-                        <div class="choosen-object-block-img">
-                            <img src="/i/flat-1.jpg" alt="">
-                            <div class="choosen-object-block-info">
-                                <div class="object-contact">
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>Таганрог, ул. Калинина, д. 16, кв. 24</p>
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
+                    @if(isset($habitations))
+                        @foreach ($habitations as $habitation)
+                        <div class="choosen-object-block">
+                            <h6><a href="{{ action('HabitationController@getShowHabitation', [$habitation->id, $searchData['dateFrom'], $searchData['dateTo'], $searchData['count']])}}">{{$habitation->title}}</a></h6>
+                            <div class="choosen-object-block-img">
+                                <img src="/i/flat-1.jpg" alt="">
+                                <div class="choosen-object-block-info">
+                                    <div class="object-contact">
+                                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>Таганрог, ул. Калинина, д. 16, кв. 24</p>
+                                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
             

@@ -71,7 +71,7 @@
                         <li><div class="profile-load-img" style="max-width: 100px; max-height: 60px"><img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" alt="Photo-1" style="margin-left: 0px;max-height: 60px;" id="headerAvatar"></div></li>
                             <li><a href="{{ action('ProfileController@getMyHabitation')}}"><span>Моё жильё</span></a></li>
                             <li class="__empty-cell"></li>
-                            <li class="__empty-cell"><a href="#"><span>Заявки</span></a></li> 
+                            <li class="__empty-cell"><a href="{{ action('RequestController@getMyRequests')}}"><span>Заявки</span></a></li> 
                             <li class="__empty-cell"><a href="/user/logout"><span>Выход</span></a></li> 
                         <?php else: ?>
                             <li><a id="signup" href="#"><span>Регистрация</span></a></li>
@@ -88,7 +88,7 @@
         <?php if(!Auth::check()): ?>
         
         <!-- popup login -->
-        <div id="signin" class="popup-wrapper-bg" hidden>
+        <div id="signin" class="popup-wrapper-bg" style="display: none">
             <div class="popup">
                 <h6>Вход в систему</h6>
 
@@ -110,7 +110,7 @@
         <!-- /popup login -->
 
         <!-- popup  entry details -->
-        <div id="" class="popup-wrapper-bg" hidden>
+        <div id="" class="popup-wrapper-bg" style="display: none">
             <div class="popup __pop-entry">
                 <h6>Вход в систему</h6>
 
@@ -143,7 +143,7 @@
         <!-- /popup  entry details -->
 
          <!-- popup signup -->
-        <div id="signup" class="popup-wrapper-bg" hidden>
+        <div id="signup" class="popup-wrapper-bg" style="display: none">
             <div class="popup">
                 <h6>Регистрация</h6>
 

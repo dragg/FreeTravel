@@ -12,10 +12,11 @@ class RequestController extends BaseController {
     public function postReservation() {
         $validator = Validator::make(Input::all(), $this->rulesRequest);
         
+        
         if ($validator->fails()) {
             var_dump($validator->messages()->first()); die();
         } else {
-            $request = new Request;
+            $request = new HabitationRequest;
             
             $request->habitation_id = (int)(Input::get('id'));
             $request->user_id = Auth::user()->id;
@@ -23,14 +24,15 @@ class RequestController extends BaseController {
             $request->from = date('Y-m-d', strtotime(Input::get('dateFrom')));
             $request->to = date('Y-m-d', strtotime(Input::get('dateTo')));
             
-           
-            
-            $request->save();
-             var_dump($request); die();
-            
+            $request->save();            
         }
         
         
         return Response::json(Input::all());
+    }
+    
+    public function getMyRequests() {
+        $requests = HabitationRequest::active()->currentUser()->get();
+        return View::make('request.my_requests', ['requests' => $requests]);
     }
 }

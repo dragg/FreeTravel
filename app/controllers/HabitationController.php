@@ -191,17 +191,23 @@ class HabitationController extends BaseController {
     public function postSearch() {
         $validator = Validator::make(Input::all(), $this->rulesSearch);
         $habs = [];
+        $response = [];
+        
         if($validator->fails()) {
-            return Redirect::to("/")
-                    ->with('error', $validator->messages()->first());
+            $response['error'] = $validator->messages()->first();
         } else {
-            $habs = Habitation::where('city_id', Input::get('city'))
-                    ->where('places', '>=', Input::get('count'))->get();
+            $habitations = Habitation::active()
+                    ->city(Input::get('city'))
+                    ->places(Input::get('count'))
+                    ->get();
+            
+            $response['habitations'] =  $habitations;
         }
-        return View::make('habitation.search')
-                ->with('searchData', Input::all())
-                ->with('cities', City::all())
-                ->with('habitations', $habs);
+        
+        $response['searchData'] = Input::all();
+        $response['cities'] = City::all();
+        
+        return View::make('habitation.search', $response);
         
     }
 }

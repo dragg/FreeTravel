@@ -5,13 +5,13 @@ $(document).ready(function(){
     }
     
     $('a#signin').click(function(){
-        $('div#signin').removeAttr('hidden');
+        $('div#signin').show();
 
         return false;
     });
     
     $('a#signup').click(function(){
-        $('div#signup').removeAttr('hidden');
+        $('div#signup').show();
 
         return false;
     });
@@ -28,7 +28,7 @@ $(document).ready(function(){
    
 
     function close_popup_window(){
-        $('.popup-wrapper-bg').attr('hidden', 'hidden');
+        $('.popup-wrapper-bg').hide();
     }
 
     $('.popup-close').click(function(){
@@ -69,7 +69,7 @@ $(document).ready(function(){
             if(res[0] === 'Success')
             {
                 close_popup_window();
-                $('#thank').removeAttr('hidden');
+                $('#thank').show();
             } else {
                 alert(res[1]);
             }

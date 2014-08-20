@@ -119,19 +119,48 @@
                     
                 </form>
             </div>
+            
             <div class="search-load-photo">
                 <div class="search-load-img">
+                    <img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" id="avatar">
+                    <div class="search-load-controls-wr" hidden>
+                        <a href="#" class="page-conrol __close" ></a>
+                    </div>
+                    <div class="search-load-controls-wr" style="display: <?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? 'block' : 'none' ?>">
+                        <a id="deleteAvatar" href="#" class="page-conrol __close"></a>
+                    </div>
+                </div>
+               <div class="input-filesuctom" style="display: block;">
+                    <form id="uploadAvatar" action="{{action('UploadController@postUploadAvatar')}}" method="post" enctype="multipart/form-data">
+                        <input type="file" size="60" name="avatarFile" id="fileupload">
+                        {{ Form::hidden('id', isset($habitation) ? $habitation->id : '') }}
+                        <a id="upload" class="btn--profile-load __btn-green">Загрузить</a>
+                    </form>
+
+
+                </div>
+<!--                <section>
+                    <div class="content" style="width: 400px">
+                        <div id="progress">
+                               <div id="percent" style="display: none">0%</div>
+                        </div>
+                    </div>
+                </section>-->
+            </div>
+            
+<!--            <div class="search-load-photo">
+                <div class="search-load-img">
                     <div class="search-load-img-empty">нет фото</div>
-                    <!-- <img src="i/photo-search.jpg" alt="">
+                     <img src="i/photo-search.jpg" alt="">
                     <div class="search-load-controls-wr">
                         <a href="#" class="page-conrol __close"></a>
-                    </div> -->
+                    </div> 
                 </div>
                <div class="input-filesuctom" style="display:none;">
                   <a class="btn--search-load __btn-green">Загрузить</a>
                   <input type="file" id="fileupload" name="f_File" multiple="">
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </section>

@@ -49,12 +49,7 @@
                 <div class="main-guests __bg-white-transparent">
                     <a href="#" class="btn--main-guests __btn-green">Приму гостей</a>
                 </div>
-                @if(Session::has('error'))
-                    <div class="alert alert-warning">
-                        {{Session::get('error')}}
-                    </div>
-                    
-                @endif
+                
                 <div class="main-social-links">
                     <a href="#" class="main-social-link __fa"></a>
                     <a href="#" class="main-social-link __tw"></a>
