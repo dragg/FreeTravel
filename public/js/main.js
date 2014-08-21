@@ -266,7 +266,60 @@ $(document).ready(function(){
             }
         },'json');
     });
+
+    $('form#accept').submit(function(e){
+        e.preventDefault();
+
+        var method = $(this).attr('method');
+        var action = $(this).attr('action');
+        var data = $(this).serialize();
+
+        $.ajax({
+            type: method,
+            url: action,
+            data: data,
+            success: function(data, textStatus, jqXHR){
+                if(data[0] === 'Success') {
+                    $('.quest-block-btns').hide();
+                    $('.quest-block-response').show();
+                } else if(data[0] === 'Fail') {
+                    alert(data[1]);
+                }
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                alert('Ошибка соединения!');
+            }
+        });
+    });
     
-    //$('#reservation').click()
+    $('form#refuse').submit(function(e){
+        e.preventDefault();
+        console.log($(this).children('input:hidden[name="id"]').attr('id'));
+        
+//        var method = $(this).attr('method');
+//        var action = $(this).attr('action');
+//        var data = $(this).serialize();
+//
+//        $.ajax({
+//            type: method,
+//            url: action,
+//            data: data,
+//            success: function(data, textStatus, jqXHR){
+//                if(data[0] === 'Success') {
+//                    
+//                    $('.quest-block-btns').hide();
+//                    $('.quest-block-response').show();
+//                } else if(data[0] === 'Fail') {
+//                    alert(data[1]);
+//                }
+//            },
+//            error: function(jqXHR, textStatus, errorThrown) 
+//            {
+//                alert('Ошибка соединения!');
+//            }
+//        });
+    });
     
 });

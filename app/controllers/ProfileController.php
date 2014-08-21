@@ -81,28 +81,34 @@ class ProfileController extends BaseController
         $response['habitations'] = $res;
         $response['isEmpty'] = count($res) === 0 ? TRUE : FALSE;
         
+
+//        $habitations = Habitation::active()
+//                ->currentUser()->get();
+
+        $requests = HabitationRequest::active()
+                ->forCurrentUser()
+                ->get();
+        $response['requests'] = $requests;
+
+//        $allRequests = [];
+//        foreach ($habitations as $habitation) {
+//            $requests = $habitation->requests()->get();
+//			dd;
+//            //var_dump($requests);die();
+//           $allRequests = array_merge_recursive($allRequests, (array)$requests);
+//           //var_dump($allRequests);
+//			//die();
+//           foreach ($allRequests as $request) {
+//                //var_dump($request[]['from']);
+//				var_dump($request);
+//            }
+//        }
         
-        $habitations = Habitation::active()
-                ->currentUser()->get();
-        
-        $allRequests = [];
-        foreach ($habitations as $habitation) {
-            $requests = $habitation->requests()->get();
-//            var_dump($requests);die();
-           $allRequests = array_merge_recursive($allRequests, (array)$requests);
-           var_dump($allRequests);
-        die();
-           foreach ($allRequests as $request) {
-                var_dump($request[]['from']);
-            }
-        }
-        
-        $response['requests'] = $allRequests;
         
         //var_dump($allRequests);
-        die();
+        //die();
         
-        return View::make('profile.my_habitation', $requests);
+        return View::make('profile.my_habitation', $response);
     }
     
     public function getCreateHabitation() {

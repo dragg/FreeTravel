@@ -73,25 +73,50 @@
             <div class="request-cont" id="request" style="display: none">
 
                 @if(isset($requests))
-                <!-- quest-block -->
-                <div class="quest-block __active clearfix">
-                    <div class="quest-block-img">
-                        <img src="/i/object-1.jpg" alt="">
-                    </div>
-                    <div class="quest-block-body">
-                        <h4>Уютная картира на Западном</h4>
-                        <div class="quest-block-name">
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>23.11.2014 — 28.11.2014</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>email@gmail.com</p>
+                    @foreach($requests as $request)
+                        
+                    
+                        <!-- quest-block -->
+                        <div class="quest-block __active clearfix">
+                            <div class="quest-block-img">
+                                <img src="/i/object-1.jpg" alt="">
+                            </div>
+                            <div class="quest-block-body">
+                                <h4>{{ $request->habitation->title }}</h4>
+                                <div class="quest-block-name">
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{ $request->user->first_name . " " . $request->user->first_name }}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>{{ $request->from . " - " . $request->to}}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>{{ $request->user->email }}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>{{ $request->count }}</p>
+                                </div>
+                                @if($request->accept === 0)
+                                <div class="quest-block-btns" id="{{$request->id}}">
+                                    {{ Form::open(['url' => action('RequestController@postAccept'), 'method' => 'post', 'id' => 'accept']) }}
+                                    {{ Form::hidden('id', $request->id)}}
+                                    {{ Form::submit('Принять', ['class' => 'btn--quest-block __btn-green']) }}
+                                    {{ Form::close() }}
+                                    
+                                    {{ Form::open(['url' => action('RequestController@postRefuse'), 'method' => 'post', 'id' => 'refuse']) }}
+                                    {{ Form::hidden('id', $request->id)}}
+                                    {{ Form::submit('Отказать', ['class' => 'btn--quest-block __btn-red']) }}
+                                    {{ Form::close() }}
+                                </div>
+                                @endif
+                                <div class="quest-block-response" style="display: {{$request->accept === 0 ? 'none' : '' }} ">
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
+                                        @if($request->accept === 0)
+                                            Заявка на рассмотрении
+                                        @elseif($request->accept === -1)
+                                            Заявка отклонена
+                                        @elseif($request->accept === 1)
+                                            Заявка одобрена
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="quest-block-btns">
-                            <a href="#" class="btn--quest-block __btn-green">Принять</a>
-                            <a href="#" class="btn--quest-block __btn-red">Отказать</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /quest-block -->
+                        <!-- /quest-block -->
+                    @endforeach
                 @endif
 
             </div>

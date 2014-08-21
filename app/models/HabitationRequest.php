@@ -34,4 +34,8 @@ class HabitationRequest extends Eloquent {
     public function scopeCurrentUser($query) {
         return $query->where('user_id', Auth::user()->id);
     }
+    
+    public function scopeForCurrentUser($query) {
+        return $query->where('habitation_user_id', Auth::user()->id);
+    }
 }

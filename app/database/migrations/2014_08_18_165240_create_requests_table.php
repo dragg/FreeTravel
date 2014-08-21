@@ -16,6 +16,7 @@ class CreateRequestsTable extends Migration {
                 /* @var $table Blueprint */ 
                 $table->increments('id');
                 $table->integer('habitation_id');
+                $table->integer('habitation_user_id');
                 $table->integer('user_id');
                 $table->integer('count');
                 $table->date('from');
