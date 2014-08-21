@@ -27,7 +27,6 @@ class HabitationRequest extends Eloquent {
         return $this->belongsTo('Habitation');
     }
 
-
     public function scopeActive($query) {
         return $query->where('deleted', 0);
     }

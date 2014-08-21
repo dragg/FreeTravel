@@ -68,6 +68,8 @@ class ProfileController extends BaseController
     }
     
     public function getMyHabitation() {
+        $response = [];
+        
         $user = DB::table('users')->where('email', Auth::user()['email'])->first();
         
         $res = DB::table('habitations')
@@ -76,13 +78,31 @@ class ProfileController extends BaseController
                 ->join('cities', 'habitations.city_id', '=', 'cities.id')
                 ->select('habitations.title', 'habitations.id', 'habitations.address', 'cities.name as city' )
                 ->get();
+        $response['habitations'] = $res;
+        $response['isEmpty'] = count($res) === 0 ? TRUE : FALSE;
         
-//        var_dump($res);die();
         
+        $habitations = Habitation::active()
+                ->currentUser()->get();
         
-        return View::make('profile.my_habitation', [
-            'isEmpty' => count($res) === 0 ? TRUE : FALSE, 
-            'habitations' => $res]);
+        $allRequests = [];
+        foreach ($habitations as $habitation) {
+            $requests = $habitation->requests()->get();
+//            var_dump($requests);die();
+           $allRequests = array_merge_recursive($allRequests, (array)$requests);
+           var_dump($allRequests);
+        die();
+           foreach ($allRequests as $request) {
+                var_dump($request[]['from']);
+            }
+        }
+        
+        $response['requests'] = $allRequests;
+        
+        //var_dump($allRequests);
+        die();
+        
+        return View::make('profile.my_habitation', $requests);
     }
     
     public function getCreateHabitation() {

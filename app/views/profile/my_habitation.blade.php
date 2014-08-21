@@ -72,6 +72,7 @@
             <!-- request-cont -->
             <div class="request-cont" id="request" style="display: none">
 
+                @if(isset($requests))
                 <!-- quest-block -->
                 <div class="quest-block __active clearfix">
                     <div class="quest-block-img">
@@ -91,63 +92,7 @@
                     </div>
                 </div>
                 <!-- /quest-block -->
-
-                <!-- quest-block -->
-                <div class="quest-block clearfix">
-                    <div class="quest-block-img">
-                        <img src="/i/object-1.jpg" alt="">
-                    </div>
-                    <div class="quest-block-body">
-                        <h4>Уютная картира на Западном</h4>
-                        <div class="quest-block-name">
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>23.11.2014 — 28.11.2014</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>email@gmail.com</p>
-                        </div>
-                        <div class="quest-block-response">
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>Заявка отклонена</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /quest-block -->
-
-                <!-- quest-block -->
-                <div class="quest-block clearfix">
-                    <div class="quest-block-img">
-                        <img src="/i/object-1.jpg" alt="">
-                    </div>
-                    <div class="quest-block-body">
-                        <h4>Уютная картира на Западном</h4>
-                        <div class="quest-block-name">
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>23.11.2014 — 28.11.2014</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>email@gmail.com</p>
-                        </div>
-                        <div class="quest-block-response">
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>Заявка отклонена</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /quest-block -->
-
-                <!-- quest-block -->
-                <div class="quest-block clearfix">
-                    <div class="quest-block-img">
-                        <img src="/i/object-1.jpg" alt="">
-                    </div>
-                    <div class="quest-block-body">
-                        <h4>Уютная картира на Западном</h4>
-                        <div class="quest-block-name">
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>23.11.2014 — 28.11.2014</p>
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>email@gmail.com</p>
-                        </div>
-                        <div class="quest-block-response">
-                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>Заявка отклонена</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /quest-block -->
+                @endif
 
             </div>
             <!-- /request-cont -->

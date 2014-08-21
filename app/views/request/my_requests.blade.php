@@ -29,11 +29,11 @@
                                 <div class="quest-block-response">
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
                                         @if($r->accept === 0)
-                                            Заявка находится на рассмотрении
+                                            Заявка на рассмотрении
                                         @elseif($r->accept === -1)
                                             Заявка отклонена
                                         @elseif($r->accept === 1)
-                                            Заявка принята
+                                            Заявка одобрена
                                         @endif
                                     </p>
                                 </div>

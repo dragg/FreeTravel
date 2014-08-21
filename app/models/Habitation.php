@@ -13,10 +13,13 @@ class Habitation extends Eloquent
             return $this->belongsTo('User');
         }
         
-        public function habitationRequest() {
+        public function requests() {
             return $this->hasMany('HabitationRequest');
         }
         
+        public function scopeCurrentUser($query) {
+            return $query->where('user_id', Auth::user()->id);
+        }
         
         public function scopeActive($query) {
             return $query->where('deleted', 0);
