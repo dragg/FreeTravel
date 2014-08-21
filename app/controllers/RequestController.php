@@ -10,10 +10,11 @@ class RequestController extends BaseController {
     ];
     
     public function postReservation() {
+        $response = [];
         $validator = Validator::make(Input::all(), $this->rulesRequest);
         
         if ($validator->fails()) {
-            var_dump($validator->messages()->first()); die();
+            $response = ['Fail', $validator->messages()->first()];
         } else {
             $request = new HabitationRequest;
             
@@ -25,9 +26,11 @@ class RequestController extends BaseController {
             $request->to = date('Y-m-d', strtotime(Input::get('dateTo')));
             
             $request->save();            
+            
+            $response = ['Success', ''];
         }
         
-        return Response::json(Input::all());
+        return Response::json($response);
     }
     
     public function getMyRequests() {
@@ -84,6 +87,50 @@ class RequestController extends BaseController {
                     $response = 'Fail';
                     $message = 'You have already made ​​a choice!';
                 }
+            } else {
+                $response = 'Fail';
+                $message = 'Access denied';
+            }
+        }
+        
+        return Response::json([$response, $message]);
+    }
+    
+    public function postRevoke() {
+        $response = 'Success';
+        $message = '';
+        
+        $validator = Validator::make(Input::all(), $this->rulesAccept);
+        if($validator->fails()) {
+            $response = 'Fail';
+            $message = 'This request don\'t exist';
+        } else {
+            $request = HabitationRequest::find(Input::get('id'));
+            if($request->habitation->user_id === Auth::user()->id){
+                $request->accept = 0;
+                $request->save();
+            } else {
+                $response = 'Fail';
+                $message = 'Access denied';
+            }
+        }
+        
+        return Response::json([$response, $message]);
+    }
+    
+    public function postDelete() {
+        $response = 'Success';
+        $message = '';
+        
+        $validator = Validator::make(Input::all(), $this->rulesAccept);
+        if($validator->fails()) {
+            $response = 'Fail';
+            $message = 'This request don\'t exist';
+        } else {
+            $request = HabitationRequest::find(Input::get('id'));
+            if($request->user_id === Auth::user()->id){
+                $request->deleted = 1;
+                $request->save();
             } else {
                 $response = 'Fail';
                 $message = 'Access denied';

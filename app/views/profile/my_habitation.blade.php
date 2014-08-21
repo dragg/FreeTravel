@@ -23,7 +23,11 @@
                     <a href="#" class="request-housing "><em>Заявки на жилье</em> <span>+1</span></a>
                 </div>
                 <div class="request-head-info clearfix">
-                    <p>У Вас <span>2</span> заявки</p>
+                    @if(isset($requests))
+                        <p>У Вас <span>{{ count($requests) }}</span> заявки</p>
+                    @else
+                        <p>У Вас нет заявок</p>
+                    @endif
                 </div>
             </div>
             <!-- /request-head -->
@@ -62,7 +66,7 @@
                 
                 <div class="profile-default" style="margin-top: 30px">
                     <div class="profile-default-btns-bar">
-                        <a href="<?= action('HabitationController@getCreateHabitation')?>" class="btn--profile-default __btn-green">Добавить</a>
+                        <a href="{{ action('HabitationController@getCreateHabitation') }}" class="btn--profile-default __btn-green">Добавить</a>
                     </div>
                 </div>
             </div>
@@ -81,29 +85,33 @@
                             <div class="quest-block-img">
                                 <img src="/i/object-1.jpg" alt="">
                             </div>
-                            <div class="quest-block-body">
-                                <h4>{{ $request->habitation->title }}</h4>
+                            <div class="page-controls-wr" style="display: {{ ($request->accept === 0 ? 'none' : 'block') }}">
+                                <a href="{{ action('RequestController@postRevoke')}}" data-id="{{$request->id}}" class="page-conrol __write edit_request"></a>
+                            </div>
+                            <div class="quest-block-body" style="width: 400px">
+                                <h4><a href="{{action('HabitationController@getShowHabitation', $request->habitation_id)}}">{{ $request->habitation->title }}</a></h4>
                                 <div class="quest-block-name">
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{ $request->user->first_name . " " . $request->user->first_name }}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>{{ $request->from . " - " . $request->to}}</p>
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>{{ $request->user->email }}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>{{ $request->user->email }}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>{{ $request->count }}</p>
                                 </div>
-                                @if($request->accept === 0)
-                                <div class="quest-block-btns" id="{{$request->id}}">
-                                    {{ Form::open(['url' => action('RequestController@postAccept'), 'method' => 'post', 'id' => 'accept']) }}
+                                
+                                <div class="quest-block-btns" style="display: {{ ($request->accept === 0 ? 'block' : 'none') }}" id="{{'buttonRequest' . $request->id}}">
+                                    {{ Form::open(['url' => action('RequestController@postAccept'), 'method' => 'post', 'id' => 'accept', 'class' => $request->id, 'style' => 'float: left']) }}
                                     {{ Form::hidden('id', $request->id)}}
-                                    {{ Form::submit('Принять', ['class' => 'btn--quest-block __btn-green']) }}
+                                    {{ Form::submit('Принять', ['class' => 'btn--quest-block __btn-green', 'style' => 'margin-left: 0']) }}
                                     {{ Form::close() }}
                                     
-                                    {{ Form::open(['url' => action('RequestController@postRefuse'), 'method' => 'post', 'id' => 'refuse']) }}
+                                    {{ Form::open(['url' => action('RequestController@postRefuse'), 'method' => 'post', 'id' => 'refuse', 'class' => $request->id]) }}
                                     {{ Form::hidden('id', $request->id)}}
                                     {{ Form::submit('Отказать', ['class' => 'btn--quest-block __btn-red']) }}
                                     {{ Form::close() }}
                                 </div>
-                                @endif
-                                <div class="quest-block-response" style="display: {{$request->accept === 0 ? 'none' : '' }} ">
+                                
+                                <div class="quest-block-response" style="display: {{ ($request->accept === 0 ? 'none' : 'block') }}" id="{{'request' . $request->id}}">
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
+                                        <span class="text">
                                         @if($request->accept === 0)
                                             Заявка на рассмотрении
                                         @elseif($request->accept === -1)
@@ -111,6 +119,7 @@
                                         @elseif($request->accept === 1)
                                             Заявка одобрена
                                         @endif
+                                        </span>
                                     </p>
                                 </div>
                             </div>

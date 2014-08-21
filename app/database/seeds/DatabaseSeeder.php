@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
                 $this->call('CitiesTableSeeder');
                 $this->call('StreetsTableSeeder');
                 $this->call('CityStreetsTableSeeder');
+                $this->call('HabitationsTableSeeder');
 	}
 
 }

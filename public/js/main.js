@@ -267,12 +267,14 @@ $(document).ready(function(){
         },'json');
     });
 
-    $('form#accept').submit(function(e){
+
+    $('form#reservation').submit(function(e){
         e.preventDefault();
 
         var method = $(this).attr('method');
         var action = $(this).attr('action');
         var data = $(this).serialize();
+        var thisForm = $(this);
 
         $.ajax({
             type: method,
@@ -280,8 +282,37 @@ $(document).ready(function(){
             data: data,
             success: function(data, textStatus, jqXHR){
                 if(data[0] === 'Success') {
-                    $('.quest-block-btns').hide();
-                    $('.quest-block-response').show();
+                    $('a#myRequests')[0].click();
+                } else if(data[0] === 'Fail') {
+                    alert(data[1]);
+                }
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                alert('Ошибка соединения!');
+            }
+        });
+    });
+
+    $('form#accept').submit(function(e){
+        e.preventDefault();
+
+        var method = $(this).attr('method');
+        var action = $(this).attr('action');
+        var data = $(this).serialize();
+        var thisForm = $(this);
+
+        $.ajax({
+            type: method,
+            url: action,
+            data: data,
+            success: function(data, textStatus, jqXHR){
+                if(data[0] === 'Success') {
+                    thisForm.parent().hide();
+                    $('#request' + thisForm.attr('class')).show();
+                    $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка одобрена");
+                    thisForm.parent().parent().siblings('.page-controls-wr').show();
                 } else if(data[0] === 'Fail') {
                     alert(data[1]);
                 }
@@ -296,30 +327,80 @@ $(document).ready(function(){
     
     $('form#refuse').submit(function(e){
         e.preventDefault();
-        console.log($(this).children('input:hidden[name="id"]').attr('id'));
         
-//        var method = $(this).attr('method');
-//        var action = $(this).attr('action');
-//        var data = $(this).serialize();
-//
-//        $.ajax({
-//            type: method,
-//            url: action,
-//            data: data,
-//            success: function(data, textStatus, jqXHR){
-//                if(data[0] === 'Success') {
-//                    
-//                    $('.quest-block-btns').hide();
-//                    $('.quest-block-response').show();
-//                } else if(data[0] === 'Fail') {
-//                    alert(data[1]);
-//                }
-//            },
-//            error: function(jqXHR, textStatus, errorThrown) 
-//            {
-//                alert('Ошибка соединения!');
-//            }
-//        });
+        var method = $(this).attr('method');
+        var action = $(this).attr('action');
+        var data = $(this).serialize();
+        var thisForm = $(this);
+
+        $.ajax({
+            type: method,
+            url: action,
+            data: data,
+            success: function(data, textStatus, jqXHR){
+                if(data[0] === 'Success') {
+                    thisForm.parent().hide();
+                    $('#request' + thisForm.attr('class')).show();
+                    $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка отклонена");
+                    thisForm.parent().parent().siblings('.page-controls-wr').show();
+                } else if(data[0] === 'Fail') {
+                    alert(data[1]);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                alert('Ошибка соединения!');
+            }
+        });
+    });
+    
+    $('.edit_request').click(function(){
+        
+        var thisEdit = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('href'),
+            data: {id : $(this).attr('data-id')},
+            success: function(data, textStatus, jqXHR){
+                if(data[0] === 'Success') {
+                    thisEdit.parent().hide();
+                    $('#request' + thisEdit.attr('data-id')).hide();
+                    $('#buttonRequest' + thisEdit.attr('data-id')).show();
+                } else if(data[0] === 'Fail') {
+                    alert(data[1]);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                alert('Ошибка соединения!');
+            }
+        });
+        
+        return false;
+    });
+    
+    $('.deleteRequest').click(function(){
+        var thisDelete = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('href'),
+            data: {id : $(this).attr('data-id')},
+            success: function(data, textStatus, jqXHR){
+                if(data[0] === 'Success') {
+                    thisDelete.parent().parent().hide();
+                } else if(data[0] === 'Fail') {
+                    alert(data[1]);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                alert('Ошибка соединения!');
+            }
+        });
+        
+        return false;
     });
     
 });

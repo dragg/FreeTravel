@@ -32,7 +32,7 @@
                 
                 <div class="object-info">
                     <div class="object-contact">
-                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>{{$habitation->city . " " . $habitation->address }}</p>
+                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>{{$habitation->city . " " . $habitation->address }}</p>  
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{$owner->first_name . " " . $owner->last_name}}</p>
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __tel"></i></span>{{$owner->telephone}}</p>
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>{{$owner->email}}</p>
@@ -42,60 +42,63 @@
                             <i class="icon-top __bed"></i>
                             <span>{{$habitation->places}} спальных места</span>
                         </div>
+                 
+                        @if(isset($amenities))
+                            @foreach($amenities as $amenity)
+                                @if($amenity->name === "Интернет")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __inet"></i>
+                                        <span>{{$amenity->name}}</span>
+                                    </div>
+                                @elseif($amenity->name === "Wi-Fi")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __inet"></i>
+                                        <span>{{$amenity->name}}</span>
+                                    </div>
+                                @elseif($amenity->name === "Стиральная машина")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __washm"></i>
+                                        <span>{{$amenity->name}}</span>
+                                    </div>
+                                @elseif($amenity->name === "Кабельное ТВ")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __tv"></i>
+                                        <span>{{$amenity->name}}</span>
+                                    </div>
+                                @elseif($amenity->name === "Утюг")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __iron"></i>
+                                        <span>{{$amenity->name}}</span>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
                         
-                        @foreach($amenities as $amenity)
-                            @if($amenity->name === "Интернет")
-                                <div class="manual-icon">
-                                    <i class="icon-top __inet"></i>
-                                    <span>{{$amenity->name}}</span>
-                                </div>
-                            @elseif($amenity->name === "Wi-Fi")
-                                <div class="manual-icon">
-                                    <i class="icon-top __inet"></i>
-                                    <span>{{$amenity->name}}</span>
-                                </div>
-                            @elseif($amenity->name === "Стиральная машина")
-                                <div class="manual-icon">
-                                    <i class="icon-top __washm"></i>
-                                    <span>{{$amenity->name}}</span>
-                                </div>
-                            @elseif($amenity->name === "Кабельное ТВ")
-                                <div class="manual-icon">
-                                    <i class="icon-top __tv"></i>
-                                    <span>{{$amenity->name}}</span>
-                                </div>
-                            @elseif($amenity->name === "Утюг")
-                                <div class="manual-icon">
-                                    <i class="icon-top __iron"></i>
-                                    <span>{{$amenity->name}}</span>
-                                </div>
-                            @endif
-                        @endforeach
-                        
-                        @foreach($restrictions as $restriction)
-                            @if($restriction->name === "Есть животные")
-                                <div class="manual-icon">
-                                    <i class="icon-top __inet"></i>
-                                    <span>{{$restriction->name}}</span>
-                                </div>
-                            @elseif($restriction->name === "Есть комнатные растения")
-                                <div class="manual-icon">
-                                    <i class="icon-top __inet"></i>
-                                    <span>{{$restriction->name}}</span>
-                                </div>
-                            @elseif($restriction->name === "Нельзя курить")
-                                <div class="manual-icon">
-                                    <i class="icon-top __washm"></i>
-                                    <span>{{$restriction->name}}</span>
-                                </div>
-                            @elseif($restriction->name === "Нельзя пить")
-                                <div class="manual-icon">
-                                    <i class="icon-top __tv"></i>
-                                    <span>{{$restriction->name}}</span>
-                                </div>
-                            @endif
-                        @endforeach
-                        
+                        @if(isset($restrictions))
+                            @foreach($restrictions as $restriction)
+                                @if($restriction->name === "Есть животные")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __inet"></i>
+                                        <span>{{$restriction->name}}</span>
+                                    </div>
+                                @elseif($restriction->name === "Есть комнатные растения")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __inet"></i>
+                                        <span>{{$restriction->name}}</span>
+                                    </div>
+                                @elseif($restriction->name === "Нельзя курить")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __washm"></i>
+                                        <span>{{$restriction->name}}</span>
+                                    </div>
+                                @elseif($restriction->name === "Нельзя пить")
+                                    <div class="manual-icon">
+                                        <i class="icon-top __tv"></i>
+                                        <span>{{$restriction->name}}</span>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -119,7 +122,7 @@
     <div class="popup" style="width: 600px">
         <h6>Бронирование</h6>
         <div class="main-form" style="padding: 0; margin: 10px 0 30px">
-            {{ Form::open(['url' => action('RequestController@postReservation') , 'method' => 'post']) }}
+            {{ Form::open(['url' => action('RequestController@postReservation') , 'method' => 'post', 'id' => 'reservation']) }}
                 <div>
                     {{ Form::hidden('id', $habitation->id) }}
 
@@ -128,7 +131,7 @@
                     </div>
 
                     <div class="main-inp-wr">
-                        <input value="{{ isset($reservation) ?  $reservation['dateTo'] : '' }}" name="dateTo" class="input-text datapicker" type="text" id="datepicker-1" placeholder="Отъезд">
+                        <input value="{{ isset($reservation) ?  $reservation['dateTo'] : '' }}" name="dateTo" class="input-text datapicker" type="text" id="datepicker-2" placeholder="Отъезд">
                     </div>
 
                     <div class="main-inp-wr">
