@@ -67,8 +67,12 @@ class ProfileController extends BaseController
         return Response::json([$response, Input::get('actionMain'), $error]);
     }
     
-    public function getMyHabitation() {
+    public function getMyHabitation($request = false) {
         $response = [];
+        
+        if($request !== FALSE) {
+            $response['showRequest'] = true;;
+        }
         
         $user = DB::table('users')->where('email', Auth::user()['email'])->first();
         
@@ -78,6 +82,10 @@ class ProfileController extends BaseController
                 ->join('cities', 'habitations.city_id', '=', 'cities.id')
                 ->select('habitations.title', 'habitations.id', 'habitations.address', 'cities.name as city' )
                 ->get();
+        
+        $res = Habitation::active()
+                ->currentUser()->get();
+        
         $response['habitations'] = $res;
         $response['isEmpty'] = count($res) === 0 ? TRUE : FALSE;
         

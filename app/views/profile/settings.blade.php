@@ -10,8 +10,8 @@
                         <!-- profile-form -->
                         <div class="profile-form">
                             <div class="request-head-links">
-                                <a href="#" class="request-housing __active"><em>Личные данные</em></a>
-                                <a href="#" class="request-housing"><em>Смена пароля</em></a>
+                                <a href="#" class="request-profile __active"><em>Личные данные</em></a>
+                                <a href="#" class="request-profile"><em>Смена пароля</em></a>
                             </div>
                             <div class="profile-line" id="mainProfile">
                                 <div class="profile-inp-wr">

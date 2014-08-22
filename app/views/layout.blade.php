@@ -2,7 +2,6 @@
 <!--[if IE 7]>         <html class="lt-ie9 lt-ie8" lang="en">		 <![endif]-->
 <!--[if IE 8]>         <html class="lt-ie9" lang="en">				 <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="ru">							 <!--<![endif]-->
-
 	<head>
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +69,10 @@
                         <li><a href="{{ action('ProfileController@getShow') }}" style="margin-right: 10px"><span>{{ Auth::user()->last_name . " ". Auth::user()->first_name }}</span></a></li>
                         <li><div class="profile-load-img" style="max-width: 100px; max-height: 60px"><img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" alt="Photo-1" style="margin-left: 0px;max-height: 60px;" id="headerAvatar"></div></li>
                             <li><a href="{{ action('ProfileController@getMyHabitation')}}"><span>Моё жильё</span></a></li>
+                            @if($countRequests !== 0)
                             <li class="__empty-cell"></li>
+                            <li class="__my-housing"><a href="{{action('ProfileController@getMyHabitation', ['request' => true])}}"><span>+{{ $countRequests }}</span></a></li>
+                            @endif
                             <li class="__empty-cell"><a href="{{ action('RequestController@getMyRequests')}}" id="myRequests"><span>Заявки</span></a></li> 
                             <li class="__empty-cell"><a href="/user/logout"><span>Выход</span></a></li> 
                         <?php else: ?>

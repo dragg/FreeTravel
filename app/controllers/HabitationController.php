@@ -151,6 +151,8 @@ class HabitationController extends BaseController {
                 ->select('habitations.id', 'title', 'address', 'description', 'places', 'cities.name as city', 'places', 'user_id')
                 ->first();
         
+        $habitation = Habitation::find($habitation_id);
+        
         $amenities = DB::table('habitation_amenities')
                 ->where('habitation_id', $habitation_id)
                 ->join('amenities', 'amenities.id', '=', 'habitation_amenities.amenity_id')

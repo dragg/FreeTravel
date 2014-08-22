@@ -20,7 +20,7 @@
                                 <a data-id="{{$request->id}}" href="{{ action('RequestController@postDelete') }}" class="page-conrol __close deleteRequest"></a>
                             </div>
                             <div class="quest-block-img">
-                                <img src="/i/object-1.jpg" alt="">
+                                <img src="{{ $request->habitation->getPathPic() }}" alt="">
                             </div>
                             <div class="quest-block-body">
                                 <h4><a href="{{action('HabitationController@getShowHabitation', $request->habitation_id)}}">{{ $request->habitation['title'] }}</a></h4>

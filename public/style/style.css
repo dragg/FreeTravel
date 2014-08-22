@@ -401,7 +401,7 @@ textarea {
 
 }
 .header-menu li a {
-    margin-left: 33px;
+    margin-left: 17px;
     font-size: 18px;
     color: #2c2c2c;
     display: inline-block;
@@ -694,6 +694,7 @@ textarea {
 /* ==============================
     request
 ============================== */
+
 .request {
     padding-bottom: 70px;
 }
@@ -732,6 +733,34 @@ textarea {
 .request-housing.__active em {
     border-bottom: 1px dashed #fff;
 }
+
+.request-profile {
+    margin-left: 6px;
+    color: #2c2c2c;
+    padding: 3px 8px 7px 8px;
+    font-size: 18px;
+    border-radius: 6px;
+}
+.request-profile:first-child { margin-left: 0; }
+.request-profile span {
+    background: #75c000;
+    color: #fff;
+    padding: 0 3px;
+    margin-left: 4px;
+}
+.request-profile em {
+    font-style: normal;
+    border-bottom: 1px dashed #2c2c2c;
+}
+.request-profile.__active {
+    font-size: 18px;
+    color: #fff;
+    background: #75c000;
+}
+.request-profile.__active em {
+    border-bottom: 1px dashed #fff;
+}
+
 .request-head-info {
     margin: 22px 0 15px;
 }
@@ -767,6 +796,8 @@ textarea {
 .quest-block.__active { background: #fff; }
 
 .quest-block-img {
+    max-height: 200px;
+    max-width: 210px;
     float: left;
 }
 .quest-block-body {
@@ -1145,6 +1176,7 @@ textarea {
     border-bottom: 1px solid #828282;
 }
 .choosen-object-block-img {
+    background-color: aliceblue;
     position: relative;
     height: 198px;
 }

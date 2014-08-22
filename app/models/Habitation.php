@@ -32,5 +32,9 @@ class Habitation extends Eloquent
         public function scopePlaces($query, $count) {
             return $query->where('places', '>=', $count);
         }
+        
+        public function getPathPic() {
+            return (file_exists('public/habitationsPic/' . $this->id . '.jpg') ? '/habitationsPic/' . $this->id : '/habitationsPic/none').'.jpg';
+        }
     
 }

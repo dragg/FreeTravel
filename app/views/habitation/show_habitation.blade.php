@@ -23,9 +23,9 @@
             <!-- object-media -->
             <div class="object-media clearfix">
                 <div class="object-slider">
-                    <div id="thumbs-product" class="thumbs-product flexslider">
+                    <div id="thumbs-product" class="thumbs-product flexslider quest-block-img search-load-img" style="max-height: 320px; max-width: 380px; width: 400px">
                         <ul class="slides">
-                            <li><img src="/i/product-slider/slide-1.jpg"></li>
+                            <li><img src="{{ $habitation->getPathPic() }}"></li>
                         </ul>
                     </div>
                 </div>

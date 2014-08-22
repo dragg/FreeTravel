@@ -79,26 +79,38 @@ $(document).ready(function(){
     });
     
     
-    var main = true;
+    var mainH = ($('#my_habitation').attr('data-active') === 'true' ? true : false);
     $('.request-housing').click(function(){
         if(!$(this).hasClass('__active')) {
             $('.request-housing').removeClass('__active');
             $(this).addClass('__active');
 
+            if (mainH) {
+                $('#my_habitation').hide();
+                $('#request').show();
+            }
+            else {                
+                $('#request').hide();    
+                $('#my_habitation').show();
+            }
+            mainH = !mainH;
+        }
+    });
+    
+    
+    var main = true;
+    $('.request-profile').click(function(){
+        if(!$(this).hasClass('__active')) {
+            $('.request-profile').removeClass('__active');
+            $(this).addClass('__active');
+
             if (main) {
                 $('#mainProfile').hide();
                 $('#passwordProfile').show();
-                
-                
-                $('#my_habitation').hide();
-                $('#request').show();
             }
             else {
                 $('#passwordProfile').hide();    
                 $('#mainProfile').show();
-                
-                $('#request').hide();    
-                $('#my_habitation').show();
             }
             main = !main;
         }
@@ -402,5 +414,60 @@ $(document).ready(function(){
         
         return false;
     });
+    
+    
+     var optionsHabPic = { 
+        beforeSend: function() 
+        {
+            $("#progress").show();
+            //clear everything
+            $("#bar").width('0%');
+            $("#message").html("");
+            $("#percent").html("0%");
+        },
+        uploadProgress: function(event, position, total, percentComplete) 
+        {
+           //$("#bar").width(percentComplete+'%');
+            $("#percent").html(percentComplete+'%');
+
+        },
+        success: function(response) 
+        {
+            //$("#bar").width('100%');
+            $("#percent").html('100%');
+            $('#avatar').attr('src', '/habitationsPic/'+response[1]+'?'+Math.random());
+        },
+        complete: function(response) 
+        {
+            $('#deleteAvatar').parent().show();
+            $("#percent").html('Фотография успешно загружена.').hide(10000);
+            $('.search-load-controls-wr').show();
+            //$("#message").html("<font color='green'>"+response.responseText+"</font>");
+        },
+        error: function()
+        {
+            $("#percent").html('Не удалось загрузить фотографию.');
+            //$("#message").html("<font color='red'> ERROR: unable to upload files</font>");
+            
+        }
+
+    }; 
+ 
+    $("#uploadHabPic").ajaxForm(optionsHabPic);
+    
+    $('#uploadButtonHabPic').click(function(){
+        $('#fileupload').click();
+       
+    });
+    
+    $('#fileupload').on('change', function() {
+        if($('#fileupload').val() != "") {
+            $('#percent').show();
+            $('form#uploadHabPic').submit();
+        }
+    });
+    
+    
+    
     
 });

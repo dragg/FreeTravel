@@ -67,7 +67,7 @@
                         <div class="choosen-object-block">
                             <h6><a href="{{ action('HabitationController@getShowHabitation', [$habitation->id, $searchData['dateFrom'], $searchData['dateTo'], $searchData['count']])}}">{{$habitation->title}}</a></h6>
                             <div class="choosen-object-block-img">
-                                <img src="/i/flat-1.jpg" alt="">
+                                <img src="{{$habitation->getPathPic()}}" alt="">
                                 <div class="choosen-object-block-info">
                                     <div class="object-contact">
                                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>Таганрог, ул. Калинина, д. 16, кв. 24</p>

@@ -38,4 +38,8 @@ class HabitationRequest extends Eloquent {
     public function scopeForCurrentUser($query) {
         return $query->where('habitation_user_id', Auth::user()->id);
     }
+    
+    public function scopeUnderConsideration($query) {
+        return $query->where('accept', 0);
+    }
 }

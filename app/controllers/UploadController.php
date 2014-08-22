@@ -37,16 +37,16 @@ class UploadController extends BaseController{
         }
     }
     
-    public function postUploadHabitationFoto() {
+    public function postUploadHabitationPic() {
         
-        if(Input::hasFile('avatarFile')) {
+        if(Input::hasFile('HabitationPic')) {
             
             $id = Input::get('id');
 //            $user = DB::table('users')->where('email', Auth::user()['email'])
 //                    ->first();
 
-            $file = Input::file('fotoFile');
-            $destinationPath = 'public/habitationsFoto/';
+            $file = Input::file('HabitationPic');
+            $destinationPath = 'public/habitationsPic/';
             $explode = explode('.', $file->getClientOriginalName());
             $extension = $explode[count($explode) - 1];
             $filename = $id . "." . $extension;

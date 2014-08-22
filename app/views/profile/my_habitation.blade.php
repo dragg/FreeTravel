@@ -19,8 +19,8 @@
             <!-- request-head -->
             <div class="request-head" style="display: <?= $isEmpty !== TRUE ? 'block' : 'none' ?>">
                 <div class="request-head-links">
-                    <a href="#" class="request-housing __active"><em>Мое жилье</em></a>
-                    <a href="#" class="request-housing "><em>Заявки на жилье</em> <span>+1</span></a>
+                    <a href="#" class="request-housing {{ (isset($showRequest) ? ('') : ('__active'))}}"><em>Мое жилье</em></a>
+                    <a href="#" class="request-housing  {{ (isset($showRequest) ? ('__active') : (''))}} "><em>Заявки на жилье</em> <span>+{{$countRequests}}</span></a>
                 </div>
                 <div class="request-head-info clearfix">
                     @if(isset($requests))
@@ -35,7 +35,7 @@
             <?php if($isEmpty !== TRUE) : ?>
             
             <!-- request-cont -->
-            <div class="request-cont" id="my_habitation">
+            <div class="request-cont" id="my_habitation" style="display: {{ (isset($showRequest) ? ('none') : ('block'))}}" data-active="{{ (isset($showRequest) ? ('false') : ('true'))}}">
                 
                 <?php foreach ($habitations as $habitation): ?>
                 
@@ -45,8 +45,8 @@
                         <a href="{{ action('HabitationController@getCreateHabitation')  . '?id=' . $habitation->id}} " class="page-conrol __write"></a>
                         <a id="{{$habitation->id}}" href="#" class="page-conrol __close delete"></a>
                     </div>
-                    <div class="quest-block-img">
-                        <img src="/i/object-1.jpg" alt="">
+                    <div class="quest-block-img search-load-img">
+                        <img src="{{ $habitation->getPathPic() }}" alt="">
                     </div>
                     <div class="quest-block-body">
                         <h4><a href="{{ action('HabitationController@getShowHabitation', $habitation->id)}}">{{$habitation->title}}</a></h4>
@@ -74,7 +74,7 @@
             
             <?php endif; ?>
             <!-- request-cont -->
-            <div class="request-cont" id="request" style="display: none">
+            <div class="request-cont" id="request" style="display: {{ isset($showRequest) ? 'block' : 'none'}}">
 
                 @if(isset($requests))
                     @foreach($requests as $request)
@@ -83,7 +83,7 @@
                         <!-- quest-block -->
                         <div class="quest-block __active clearfix">
                             <div class="quest-block-img">
-                                <img src="/i/object-1.jpg" alt="">
+                                <img src="<?= file_exists('public/habitationsPic/' . $request->habitation_id . '.jpg') ? '/habitationsPic/' . $request->habitation_id . '.jpg' : '/habitationsPic/none.jpg'?>" alt="">
                             </div>
                             <div class="page-controls-wr" style="display: {{ ($request->accept === 0 ? 'none' : 'block') }}">
                                 <a href="{{ action('RequestController@postRevoke')}}" data-id="{{$request->id}}" class="page-conrol __write edit_request"></a>

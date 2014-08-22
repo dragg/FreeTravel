@@ -122,19 +122,19 @@
             
             <div class="search-load-photo">
                 <div class="search-load-img">
-                    <img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" id="avatar">
+                    <img src="<?= file_exists('public/habitationsPic/' . $habitation->id . '.jpg') ? '/habitationsPic/' . $habitation->id . '.jpg' : '/habitationsPic/none.jpg' ?>" id="avatar">
                     <div class="search-load-controls-wr" hidden>
                         <a href="#" class="page-conrol __close" ></a>
                     </div>
-                    <div class="search-load-controls-wr" style="display: <?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? 'block' : 'none' ?>">
+                    <div class="search-load-controls-wr" style="display: <?= file_exists('public/habitationsPic/' . $habitation->id . '.jpg') ? 'block' : 'none' ?>">
                         <a id="deleteAvatar" href="#" class="page-conrol __close"></a>
                     </div>
                 </div>
                <div class="input-filesuctom" style="display: block;">
-                    <form id="uploadAvatar" action="{{action('UploadController@postUploadAvatar')}}" method="post" enctype="multipart/form-data">
-                        <input type="file" size="60" name="avatarFile" id="fileupload">
+                    <form id="uploadHabPic" action="{{action('UploadController@postUploadHabitationPic')}}" method="post" enctype="multipart/form-data">
+                        <input type="file" size="60" name="HabitationPic" id="fileupload">
                         {{ Form::hidden('id', isset($habitation) ? $habitation->id : '') }}
-                        <a id="upload" class="btn--profile-load __btn-green">Загрузить</a>
+                        <a id="uploadButtonHabPic" class="btn--profile-load __btn-green">Загрузить</a>
                     </form>
 
 

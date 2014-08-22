@@ -13,7 +13,7 @@
 
 App::before(function($request)
 {
-	//
+    View::share('countRequests', HabitationRequest::active()->forCurrentUser()->underConsideration()->count());
 });
 
 
