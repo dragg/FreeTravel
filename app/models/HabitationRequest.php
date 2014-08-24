@@ -42,4 +42,12 @@ class HabitationRequest extends Eloquent {
     public function scopeUnderConsideration($query) {
         return $query->where('accept', 0);
     }
+    
+    public function scopeForHabitation($query, $habitation_id) {
+        return $query->where('habitation_id', $habitation_id);
+    }
+    
+    public function scopeRemove($query) {
+        return $query->update('deleted', 1);
+    }
 }

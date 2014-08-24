@@ -12,8 +12,9 @@
 */
 
 App::before(function($request)
-{
-    View::share('countRequests', HabitationRequest::active()->forCurrentUser()->underConsideration()->count());
+{   
+    View::share('countRequests', Auth::check() ? HabitationRequest::active()->forCurrentUser()->underConsideration()->count() : 0);
+    
 });
 
 

@@ -87,6 +87,14 @@ class HabitationController extends BaseController {
         
         if (isset($habitation)) {
             DB::table('habitations')->where('id', $id)->update(['deleted' => 1]);
+            
+            $requests = HabitationRequest::forHabitation($id)->get();
+            
+            foreach ($requests as $request) {
+                $request->deleted = 1;
+                $request->save();
+            }
+            
             $response = TRUE;
         }
         
