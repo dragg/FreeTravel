@@ -42,9 +42,6 @@ class UploadController extends BaseController{
         if(Input::hasFile('HabitationPic')) {
             
             $id = Input::get('id');
-//            $user = DB::table('users')->where('email', Auth::user()['email'])
-//                    ->first();
-
             $file = Input::file('HabitationPic');
             $destinationPath = 'public/habitationsPic/';
             $explode = explode('.', $file->getClientOriginalName());

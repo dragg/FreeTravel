@@ -26,9 +26,16 @@ class HabitationController extends BaseController {
         return $response;
     }
 
+    private static function saveHabitationPic($str, $id) {
+        if(file_exists('public/habitationsPic/' . $str . '.jpg')) {
+            rename('public/habitationsPic/' . $str . '.jpg', 'public/habitationsPic/' . $id . '.jpg');
+        }
+    }
+    
     public function postSaveHabitation() {
         
         $habitation_id = Input::get('id');
+        $habitation_id = intval($habitation_id);
         
         if(isset($habitation_id) && $habitation_id != '') {
             DB::table('habitations')
@@ -56,6 +63,8 @@ class HabitationController extends BaseController {
                 'title' => Input::get('name'), 'address' => Input::get('address'),
                 'places' => Input::get('sleeper'), 'city_id' => Input::get('city'),
                 'description' => Input::get('description')]);
+            
+           $this->saveHabitationPic(Input::get('id'), $habitation_id);
         }
        
         $amenities = Input::get('amentities');
@@ -77,6 +86,25 @@ class HabitationController extends BaseController {
         }
         
         return Redirect::action('ProfileController@getMyHabitation');
+    }
+    
+    public function postDeleteHabitationPic() {
+        $response = ['Success', '', 'none.jpg'];
+        if (Habitation::find(Input::get('id'))->user_id === Auth::user()->id) {
+            $path = public_path() . '/habitationsPic/' . Input::get('id') . '.jpg';
+            if(file_exists($path)) {
+                unlink($path);
+            } else {
+                $response[0] = 'Fail';
+                $response[1] = 'File was deleted!';
+            }
+        } else {
+            $response[0] = 'Fail';
+            $response[1] = 'Access denied';
+        }
+        
+        
+        return Response::json($response);
     }
     
     public function postDeleteHabitation() {
@@ -111,7 +139,7 @@ class HabitationController extends BaseController {
                 'cities' => $cities];
         
         $id = Input::get('id');
-        
+        $response['habitation'] = new Habitation;
         if(isset($id)) {
 //            $habitation = DB::table('habitations')
 //                ->where('id', $id)
@@ -134,6 +162,7 @@ class HabitationController extends BaseController {
             //array_merge($response, $res);
             
         }
+        
         
         return View::make('profile.create_habitation', $response);
     }

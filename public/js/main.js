@@ -433,22 +433,15 @@ $(document).ready(function(){
         },
         success: function(response) 
         {
-            //$("#bar").width('100%');
-            $("#percent").html('100%');
-            $('#avatar').attr('src', '/habitationsPic/'+response[1]+'?'+Math.random());
+            $('#habPic').attr('src', '/habitationsPic/'+response[1]+'?'+Math.random());
         },
         complete: function(response) 
         {
             $('#deleteAvatar').parent().show();
-            $("#percent").html('Фотография успешно загружена.').hide(10000);
             $('.search-load-controls-wr').show();
-            //$("#message").html("<font color='green'>"+response.responseText+"</font>");
         },
         error: function()
-        {
-            $("#percent").html('Не удалось загрузить фотографию.');
-            //$("#message").html("<font color='red'> ERROR: unable to upload files</font>");
-            
+        {   
         }
 
     }; 
@@ -468,6 +461,20 @@ $(document).ready(function(){
     });
     
     
-    
+    $('#deleteHabitationPic').click(function(){
+        $('#deleteAvatar').parent().hide();
+        $.post('/habitation/delete-habitation-pic', {
+            id: $('#uploadHabPic > input[name=\'id\'').val()
+        },
+        function(res){
+            console.log(res);
+            if(res[0] === 'Success') {
+                $('#deleteHabitationPic').parent().hide();
+                $('#habPic').attr('src', '/habitationsPic/'+res[2]+'?'+Math.random());
+            } else {
+                alert(res[1]);
+            }
+        },'json');
+    });
     
 });

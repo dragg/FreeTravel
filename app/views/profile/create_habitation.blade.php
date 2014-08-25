@@ -3,13 +3,19 @@
 @section('content')
 
 <?php  $option = 0; ?>
+<?php   
+    $id_random = 0;
+    if(!isset($habitation->id)) {
+        $id_random = 'i' . str_random(39);
+    }
+?>
 <section class="content-wrapper">
     <div class="content __bg-white">
         <div class="search clearfix">
             <div class="search-date">
                 
                 <form action="<?= action('HabitationController@postSaveHabitation') ?>" method="POST">
-                    <input type="text" name="id" value="<?= isset($habitation)? $habitation->id : ''?>" hidden />
+                    
                     <div class="search-line">
                         
                         <div class="search-inp-wr">
@@ -116,51 +122,37 @@
                         {{ Form::submit('Сохранить', ['class' => "btn--popup-2btn __btn-green"]); }}
                         <a href="#" class="btn--popup-2btn __btn-red">Отмена</a>
                     </div>
-                    
+                    @if(!isset($habitation->id))
+                        {{ Form::hidden('id', $id_random) }}
+                    @else
+                        <input type="text" name="id" value="<?= isset($habitation)? $habitation->id : ''?>" hidden />
+                    @endif
                 </form>
             </div>
-            
+            @if(isset($habitation))
             <div class="search-load-photo">
                 <div class="search-load-img">
-                    <img src="<?= file_exists('public/habitationsPic/' . $habitation->id . '.jpg') ? '/habitationsPic/' . $habitation->id . '.jpg' : '/habitationsPic/none.jpg' ?>" id="avatar">
+                    @if(isset($habitation->id))
+                        <img src="<?= file_exists('public/habitationsPic/' . $habitation->id . '.jpg') ? '/habitationsPic/' . $habitation->id . '.jpg' : '/habitationsPic/none.jpg' ?>" id="habPic">
+                    @else
+                        <img src="/habitationsPic/none.jpg" id="habPic">
+                    @endif
                     <div class="search-load-controls-wr" hidden>
                         <a href="#" class="page-conrol __close" ></a>
                     </div>
                     <div class="search-load-controls-wr" style="display: <?= file_exists('public/habitationsPic/' . $habitation->id . '.jpg') ? 'block' : 'none' ?>">
-                        <a id="deleteAvatar" href="#" class="page-conrol __close"></a>
+                        <a id="deleteHabitationPic" href="#" class="page-conrol __close"></a>
                     </div>
                 </div>
                <div class="input-filesuctom" style="display: block;">
                     <form id="uploadHabPic" action="{{action('UploadController@postUploadHabitationPic')}}" method="post" enctype="multipart/form-data">
                         <input type="file" size="60" name="HabitationPic" id="fileupload">
-                        {{ Form::hidden('id', isset($habitation) ? $habitation->id : '') }}
+                        {{ Form::hidden('id', isset($habitation->id) ? $habitation->id : $id_random) }}
                         <a id="uploadButtonHabPic" class="btn--profile-load __btn-green">Загрузить</a>
                     </form>
-
-
                 </div>
-<!--                <section>
-                    <div class="content" style="width: 400px">
-                        <div id="progress">
-                               <div id="percent" style="display: none">0%</div>
-                        </div>
-                    </div>
-                </section>-->
             </div>
-            
-<!--            <div class="search-load-photo">
-                <div class="search-load-img">
-                    <div class="search-load-img-empty">нет фото</div>
-                     <img src="i/photo-search.jpg" alt="">
-                    <div class="search-load-controls-wr">
-                        <a href="#" class="page-conrol __close"></a>
-                    </div> 
-                </div>
-               <div class="input-filesuctom" style="display:none;">
-                  <a class="btn--search-load __btn-green">Загрузить</a>
-                  <input type="file" id="fileupload" name="f_File" multiple="">
-                </div>
-            </div>-->
+            @endif
         </div>
     </div>
 </section>
