@@ -17,6 +17,10 @@ class Habitation extends Eloquent
             return $this->hasMany('HabitationRequest');
         }
         
+        public function city() {
+            return $this->belongsTo('City');
+        }
+
         public function amenities() {
             return $this->belongsToMany('Amenity', 'habitation_amenities');
         }

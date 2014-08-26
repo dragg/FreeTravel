@@ -49,7 +49,7 @@ class HabitationController extends BaseController {
                 
             DB::table('habitation_amenities')
                 ->where('habitation_id', $habitation_id)
-                ->delete();
+                ->delete();;
             
             DB::table('habitation_restrictions')
                 ->where('habitation_id', $habitation_id)
@@ -131,40 +131,26 @@ class HabitationController extends BaseController {
     
     public function getCreateHabitation() {
         
-        $amenities = DB::table('amenities')->get();
-        $restrictions = DB::table('restrictions')->get();
-        $cities = DB::table('cities')->get();
-        
-        $response = ['amenities' => $amenities, 'restrictions' => $restrictions,
-                'cities' => $cities];
-        
         $id = Input::get('id');
-        $response['habitation'] = new Habitation;
+        $response = [];
         if(isset($id)) {
-//            $habitation = DB::table('habitations')
-//                ->where('id', $id)
-//                ->first();
-//            
-//            $selectAmenities = DB::table('habitation_amenities')
-//                    ->where('habitation_id', $id)
-//                    ->get();
-//            
-//            $selectRestrictions = DB::table('habitation_restrictions')
-//                    ->where('habitation_id', $id)
-//                    ->get();
-//            
-            $res = $this->getHabitation($id);
-            $response['habitation'] = $res['habitation'];
-            $response['sAm'] = $res['sAm'];
-            $response['sRe'] = $res['sRe'];
             
-            //var_dump($response);die();
-            //array_merge($response, $res);
+            if (Habitation::find($id)->user->id === Auth::user()->id) {
+                $response['habitation'] = Habitation::find($id);
+            } else {
+                //access denied
+                return Redirect::action('ProfileController@getMyHabitation');
+            }
             
+        } else {
+            $response['habitation'] = new Habitation;
         }
         
+        $response['amenities'] = DB::table('amenities')->get();
+        $response['restrictions'] = DB::table('restrictions')->get();
+        $response['cities'] = DB::table('cities')->get();
         
-        return View::make('profile.create_habitation', $response);
+        return View::make('habitation.create_habitation', $response);
     }
     
     public function getShowHabitation($habitation_id, $dateFrom = '', $dateTo = '',  $count = 0) {

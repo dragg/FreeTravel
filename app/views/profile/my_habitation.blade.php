@@ -9,7 +9,7 @@
             <div class="profile-default" style="display: <?= $isEmpty === TRUE ? 'block' : 'none' ?>">
                 <p>Вы ещё не создали ни одного профиля жилья</p>
                 <div class="profile-default-btns-bar">
-                    <a href="<?= action('ProfileController@getCreateHabitation')?>" class="btn--profile-default __btn-green">Создать</a>
+                    <a href="<?= action('HabitationController@getCreateHabitation')?>" class="btn--profile-default __btn-green">Создать</a>
                 </div>
             </div>
             <!-- /request-cont -->
@@ -53,7 +53,7 @@
                                 <span class="icon-small-wr">
                                     <i class="icon-small __location"></i>
                                 </span>
-                                {{ $habitation->city . " " . $habitation->address }}
+                                {{ $habitation->city->name . " " . $habitation->address }}
                             </p>
                         </div>
                     </div>

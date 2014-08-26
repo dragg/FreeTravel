@@ -15,16 +15,16 @@
                             </div>
                             <div class="profile-line" id="mainProfile">
                                 <div class="profile-inp-wr">
-                                    <input class="input-text" value="<?= $user->first_name ?>" type="text" id="first_name" placeholder="Имя">
+                                    <input class="input-text" value="<?= Auth::user()->first_name ?>" type="text" id="first_name" placeholder="Имя">
                                 </div>
                                 <div class="profile-inp-wr">
-                                    <input class="input-text" value="<?= $user->last_name ?>" type="text" id="last_name" placeholder="Фамилия">
+                                    <input class="input-text" value="<?= Auth::user()->last_name ?>" type="text" id="last_name" placeholder="Фамилия">
                                 </div>
                                 <div class="profile-inp-wr">
-                                    <input class="input-text" value="<?= $user->telephone ?>" type="text" id="telephone" placeholder="Телефон">
+                                    <input class="input-text" value="<?= Auth::user()->telephone ?>" type="text" id="telephone" placeholder="Телефон">
                                 </div>
                                 <div class="profile-inp-wr">
-                                    <input class="input-text" value="<?= $user->email ?>" type="text" id="email" placeholder="E-mail">
+                                    <input class="input-text" value="<?= Auth::user()->email ?>" type="text" id="email" placeholder="E-mail">
                                 </div>
                             </div>
                             

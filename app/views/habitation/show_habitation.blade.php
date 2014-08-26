@@ -34,7 +34,7 @@
                 
                 <div class="object-info">
                     <div class="object-contact">
-                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>{{$habitation->city . " " . $habitation->address }}</p>  
+                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>{{$habitation->city->name . " " . $habitation->address }}</p>  
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{$owner->first_name . " " . $owner->last_name}}</p>
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __tel"></i></span>{{$owner->telephone}}</p>
                         <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>{{$owner->email}}</p>
@@ -44,9 +44,6 @@
                             <i class="icon-top __bed"></i>
                             <span>{{$habitation->places}} спальных места</span>
                         </div>
-                 
-                        
-
                             @foreach($habitation->amenities as $amenity)
                                 @if($amenity->name === "Интернет")
                                     <div class="manual-icon">
@@ -110,11 +107,10 @@
                 {{$habitation->description}}
             </article>
             <!-- /object-dsct -->
-            {{--
-            @if(Auth::check() && $IsOwner === false)
-                --}}
-            <a class="btn--main-guests __btn-green" id="reservation" style="float:right; margin-right: 50px">Забронировать</a>
-            {{-- @endif --}}
+            
+            @if(Auth::check() && $IsOwner === false || !Auth::check())
+                <a class="btn--main-guests __btn-green" id="reservation" style="float:right; margin-right: 50px">Забронировать</a>
+            @endif
        </div>
         
     </div>
@@ -159,6 +155,7 @@
         <a href="#" class="popup-close"></a>
     </div>
 </div>
+
 
 @include('habitation.popupDeleteHabitation')
 

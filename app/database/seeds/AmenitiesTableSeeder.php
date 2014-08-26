@@ -2,30 +2,26 @@
 
 class  AmenitiesTableSeeder extends Seeder
 {
+    protected $amenities = [
+            'Интернет',
+            'Wi-Fi',
+            'Кабельное ТВ',
+            'Стиральная машина',
+            'Утюг',
+        ];
     
     public function run()
     {
-        DB::table('amenities')->delete();
+        DB::table('amenities')->truncate();
         
-        Amenity::create([
-            'name' => 'Интернет',       
-        ]);
-        
-        Amenity::create([
-            'name' => 'Wi-Fi',     
-        ]);
-        
-        Amenity::create([
-            'name' => 'Кабельное ТВ',       
-        ]);
-        
-        Amenity::create([
-            'name' => 'Стиральная машина',     
-        ]);
-        
-        Amenity::create([
-            'name' => 'Утюг',       
-        ]);
+        foreach ($this->amenities as $amenity) {
+            Amenity::create([
+                'name' => $amenity,
+            ]);
+        }
     }
     
+    public function count() {
+        return count($this->amenities);
+    }
 }

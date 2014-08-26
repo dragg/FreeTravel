@@ -7,9 +7,7 @@ class ProfileController extends BaseController
     }
     
     public function getShow() {
-        $user = DB::table('users')->where('email', Auth::user()['email'])->where('password', Auth::user()['password'])->first();
-         
-        return View::make('profile.settings', ['user' => $user]);
+        return View::make('profile.settings');
     }
     
     public function postSave() {
@@ -75,7 +73,7 @@ class ProfileController extends BaseController
         $response = [];
         
         if($request !== FALSE) {
-            $response['showRequest'] = true;;
+            $response['showRequest'] = true;
         }
         
         $user = DB::table('users')->where('email', Auth::user()['email'])->first();
@@ -92,46 +90,14 @@ class ProfileController extends BaseController
         
         $response['habitations'] = $res;
         $response['isEmpty'] = count($res) === 0 ? TRUE : FALSE;
-        
-
-//        $habitations = Habitation::active()
-//                ->currentUser()->get();
 
         $requests = HabitationRequest::active()
                 ->forCurrentUser()
                 ->get();
         $response['requests'] = $requests;
 
-//        $allRequests = [];
-//        foreach ($habitations as $habitation) {
-//            $requests = $habitation->requests()->get();
-//			dd;
-//            //var_dump($requests);die();
-//           $allRequests = array_merge_recursive($allRequests, (array)$requests);
-//           //var_dump($allRequests);
-//			//die();
-//           foreach ($allRequests as $request) {
-//                //var_dump($request[]['from']);
-//				var_dump($request);
-//            }
-//        }
-        
-        
-        //var_dump($allRequests);
-        //die();
         
         return View::make('profile.my_habitation', $response);
-    }
-    
-    public function getCreateHabitation() {
-        
-        $amenities = DB::table('amenities')->get();
-        $restrictions = DB::table('restrictions')->get();
-        $cities = DB::table('cities')->get();
-        
-        return View::make('profile.create_habitation', 
-            ['amenities' => $amenities, 'restrictions' => $restrictions,
-                'cities' => $cities]);
     }
     
     public function postDeleteAvatar() {

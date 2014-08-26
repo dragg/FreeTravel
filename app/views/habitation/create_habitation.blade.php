@@ -9,6 +9,7 @@
         $id_random = 'i' . str_random(39);
     }
 ?>
+
 <section class="content-wrapper">
     <div class="content __bg-white">
         <div class="search clearfix">
@@ -72,12 +73,11 @@
                             <h6 class="search-check-title">Удобства:</h6>
                             
                             <?php foreach ($amenities as $amenity): ?>
-                            
                             <div class="search-checkbox-wr">
                                 <input id="searchCheck-inet" name="amentities[]" value="<?= $amenity->id?>" type="checkbox" 
-                                    <?php if(isset($sAm))
-                                     foreach ($sAm as $a) {
-                                         if ($a->amenity_id === $amenity->id) {
+                                    <?php 
+                                     foreach ($habitation->amenities as $a) {
+                                         if ($a->id === $amenity->id) {
                                              echo 'checked';
                                              break;
                                          }
@@ -97,9 +97,9 @@
                             
                             <div class="search-checkbox-wr">
                                 <input id="searchCheck-animal" name="restrictions[]" value="<?= $restriction->id ?>" type="checkbox"
-                                    <?php if(isset($sRe))
-                                     foreach ($sRe as $r) {
-                                         if ($r->restriction_id === $restriction->id) {
+                                    <?php 
+                                     foreach ($habitation->restrictions as $r) {
+                                         if ($r->id === $restriction->id) {
                                              echo 'checked';
                                              break;
                                          }
@@ -120,7 +120,7 @@
 
                     <div class="popup-btns-bar">
                         {{ Form::submit('Сохранить', ['class' => "btn--popup-2btn __btn-green"]); }}
-                        <a href="#" class="btn--popup-2btn __btn-red">Отмена</a>
+                        <a href="{{ action('ProfileController@getMyHabitation') }}" class="btn--popup-2btn __btn-red">Отмена</a>
                     </div>
                     @if(!isset($habitation->id))
                         {{ Form::hidden('id', $id_random) }}

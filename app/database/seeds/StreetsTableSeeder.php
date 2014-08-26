@@ -2,28 +2,28 @@
 
 class StreetsTableSeeder extends Seeder {
     
+    protected $streets = [
+            'Дзержинского',
+            'Москатова',
+            'Ленина',
+            'Большая Садовая',
+            'Ефимова',
+            'Грозного'
+        ];
+
+
     public function run() {
         
         DB::table('streets')->delete();
         
-        Street::create([
-            'title' => 'Дзержинского'
-        ]);
-        
-        Street::create([
-            'title' => 'Москатова'
-        ]);
-        
-        Street::create([
-            'title' => 'Ленина'
-        ]);
-        
-        Street::create([
-            'title' => 'Большая Садовая'
-        ]);
-        
-        Street::create([
-            'title' => 'Ефимова'
-        ]);
+        foreach ($this->streets as $street) {
+            Street::create([
+                'title' => $street
+            ]);
+        }
+    }
+    
+    public function count() {
+        return count($this->streets);
     }
 }
