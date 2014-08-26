@@ -47,7 +47,8 @@ $(document).ready(function(){
            if(res[0] === 'Success')
            {
                close_popup_window();
-               refresh_page();
+               window.location.replace(res[2]);
+               //refresh_page();
            } else {
                alert(res[1]);
            }
@@ -282,29 +283,32 @@ $(document).ready(function(){
 
     $('form#reservation').submit(function(e){
         e.preventDefault();
+        if($('#signin') === 0) {
+            var method = $(this).attr('method');
+            var action = $(this).attr('action');
+            var data = $(this).serialize();
+            var thisForm = $(this);
 
-        var method = $(this).attr('method');
-        var action = $(this).attr('action');
-        var data = $(this).serialize();
-        var thisForm = $(this);
+            $.ajax({
+                type: method,
+                url: action,
+                data: data,
+                success: function(data, textStatus, jqXHR){
+                    if(data[0] === 'Success') {
+                        $('a#myRequests')[0].click();
+                    } else if(data[0] === 'Fail') {
+                        alert(data[1]);
+                    }
 
-        $.ajax({
-            type: method,
-            url: action,
-            data: data,
-            success: function(data, textStatus, jqXHR){
-                if(data[0] === 'Success') {
-                    $('a#myRequests')[0].click();
-                } else if(data[0] === 'Fail') {
-                    alert(data[1]);
+                },
+                error: function(jqXHR, textStatus, errorThrown) 
+                {
+                    alert('Ошибка запроса!');
                 }
-                
-            },
-            error: function(jqXHR, textStatus, errorThrown) 
-            {
-                alert('Ошибка соединения!');
-            }
-        });
+            });
+        } else {
+           $('#signin').click();
+        }
     });
 
     $('form#accept').submit(function(e){

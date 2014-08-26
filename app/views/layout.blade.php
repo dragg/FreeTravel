@@ -57,7 +57,6 @@
         </script>
 
 	</head>
-
 	<body>
         <!-- wrapper -->
         <div class="wrapper">
@@ -65,20 +64,22 @@
                 <a href="/" class="logo"><h1><span>Ino</span>Travel</h1></a>
                 <menu class="header-menu">
                     <ul>
-                        <?php if(Auth::check()): ?>
-                        <li><a href="{{ action('ProfileController@getShow') }}" style="margin-right: 10px"><span>{{ Auth::user()->last_name . " ". Auth::user()->first_name }}</span></a></li>
-                        <li><div class="profile-load-img" style="max-width: 100px; max-height: 60px"><img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" alt="Photo-1" style="margin-left: 0px;max-height: 60px;" id="headerAvatar"></div></li>
+                        @if(Auth::check())
+                            <li><a href="{{ action('ProfileController@getShow') }}" style="margin-right: 10px"><span>{{ Auth::user()->last_name . " ". Auth::user()->first_name }}</span></a></li>
+                            <li><div class="profile-load-img" style="max-width: 100px; max-height: 60px"><img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" alt="Photo-1" style="margin-left: 0px;max-height: 60px;" id="headerAvatar"></div></li>
                             <li><a href="{{ action('ProfileController@getMyHabitation')}}"><span>Моё жильё</span></a></li>
+                            
                             @if($countRequests !== 0)
-                            <li class="__empty-cell"></li>
-                            <li class="__my-housing"><a href="{{action('ProfileController@getMyHabitation', ['request' => true])}}"><span>+{{ $countRequests }}</span></a></li>
+                                <li class="__empty-cell"></li>
+                                <li class="__my-housing"><a href="{{action('ProfileController@getMyHabitation', ['request' => true])}}"><span>+{{ $countRequests }}</span></a></li>
                             @endif
+                            
                             <li class="__empty-cell"><a href="{{ action('RequestController@getMyRequests')}}" id="myRequests"><span>Заявки</span></a></li> 
                             <li class="__empty-cell"><a href="/user/logout"><span>Выход</span></a></li> 
-                        <?php else: ?>
+                        @else
                             <li><a id="signup" href="#"><span>Регистрация</span></a></li>
                             <li><a id="signin" href="#"><span>Вход</span></a></li>
-                        <?php endif; ?>
+                        @endif
                     </ul>
                 </menu>
             </header>
@@ -90,7 +91,7 @@
         <?php if(!Auth::check()): ?>
         
         <!-- popup login -->
-        <div id="signin" class="popup-wrapper-bg" style="display: none">
+        <div id="signin" class="popup-wrapper-bg" style="display: display: {{Session::has('signin') ? 'block' : 'none'}}">
             <div class="popup">
                 <h6>Вход в систему</h6>
 
@@ -121,17 +122,17 @@
                         <input class="input-text" type="text" id="datepicker-1" placeholder="E-mail">
                     </div>
                     <div class="popup-inp-wr">
-                        <input class="input-text __incorrect-password" type="text" id="datepicker-1" placeholder="Пароль">
+                        <input class="input-text __incorrect-password" type="text" id="" placeholder="Пароль">
                     </div>
                 </div>
 
-                <div class="popup-login-service clearfix">
+<!--                <div class="popup-login-service clearfix">
                     <div class="search-checkbox-wr ">
                         <input id="searchCheck-inet" type="checkbox">
                         <label for="searchCheck-inet">Интернет</label>
                     </div>
                     <a href="#" class="popup-link">Забыли пароль?</a>
-                </div>
+                </div>-->
 
                 <div class="popup-btns-bar">
                     <a href="#" class="btn--popup-btn __btn-green">Войти</a>

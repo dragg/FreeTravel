@@ -15,6 +15,10 @@ App::before(function($request)
 {   
     View::share('countRequests', Auth::check() ? HabitationRequest::active()->forCurrentUser()->underConsideration()->count() : 0);
     
+    
+    if(Session::has('intended')) {
+        Redirect::intended('fds');
+    }
 });
 
 
@@ -44,7 +48,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('/')->with('signin', 1);
 		}
 	}
 });

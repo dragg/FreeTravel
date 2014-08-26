@@ -2,6 +2,8 @@
 
 
 @section('content')
+
+
 <section class="content-wrapper">
     <div class="content __bg-white">
        <div class="object">
@@ -109,9 +111,11 @@
                 {{$habitation->description}}
             </article>
             <!-- /object-dsct -->
+            {{--
             @if(Auth::check() && $IsOwner === false)
+                --}}
             <a class="btn--main-guests __btn-green" id="reservation" style="float:right; margin-right: 50px">Забронировать</a>
-            @endif
+            {{-- @endif --}}
        </div>
         
     </div>

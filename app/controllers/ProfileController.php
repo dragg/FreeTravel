@@ -2,6 +2,10 @@
 
 class ProfileController extends BaseController
 {
+    public function __construct() {
+        $this->beforeFilter('auth');
+    }
+    
     public function getShow() {
         $user = DB::table('users')->where('email', Auth::user()['email'])->where('password', Auth::user()['password'])->first();
          

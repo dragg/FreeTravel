@@ -2,6 +2,7 @@
 
 
 @section('content')
+
     <section class="content-wrapper __main">
         <div class="content">
             <div class="main clearfix">

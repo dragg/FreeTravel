@@ -2,6 +2,11 @@
 
 class RequestController extends BaseController {
     
+    public function __construct() {
+        $this->beforeFilter('auth');
+    }
+    
+    
     protected $rulesRequest = [
         'id' => 'required|exists:habitations',
         'dateFrom' => 'required|date_format:d-m-Y|after:today',

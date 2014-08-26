@@ -18,6 +18,7 @@ class UserController extends BaseController {
     public function postSignin(){
         $response = 'Success';
         $message = '';
+        $url = '';
         
         $validator = Validator::make(Input::all(), $this->rulesSignin);
         
@@ -34,7 +35,9 @@ class UserController extends BaseController {
             }
         }
         
-        return Response::json([$response, $message]);
+        $url = Session::get('url')['intended'];
+        
+        return Response::json([$response, $message, $url]);
     }
 
     public function postSignup(){
