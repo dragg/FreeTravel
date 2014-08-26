@@ -39,7 +39,9 @@
 
                             <div class="main-inp-wr">
                                 <div class="transform-select-wr">
+                                    
                                     <select name="count" id="" class="transform-select">
+                                        <option value="">Кол-во гостей</option>
                                         @for ($i = 1; $i < 10; $i++)
                                             <option value="{{$i}}"
                                                     {{ ($i == $searchData['count']) ? 'selected="selected"' : '' }}
@@ -61,24 +63,34 @@
 
            
             <div class="choosen-object">
-                <div class="choosen-object-line clearfix">
+                    <?php $i = 0; ?>
                     @if(isset($habitations))
                         @foreach ($habitations as $habitation)
-                        <div class="choosen-object-block">
-                            <h6><a href="{{ action('HabitationController@getShowHabitation', [$habitation->id, $searchData['dateFrom'], $searchData['dateTo'], $searchData['count']])}}">{{$habitation->title}}</a></h6>
-                            <div class="choosen-object-block-img">
-                                <img src="{{$habitation->getPathPic()}}" alt="">
-                                <div class="choosen-object-block-info">
-                                    <div class="object-contact">
-                                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>Таганрог, ул. Калинина, д. 16, кв. 24</p>
-                                        <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
+                        
+                        @if($i % 4 === 0)
+                            <div class="choosen-object-line clearfix">
+                        @endif
+                        <?php $i++ ?>
+                            <div class="choosen-object-block">
+                                <h6><a href="{{ action('HabitationController@getShowHabitation', [$habitation->id, $searchData['dateFrom'], $searchData['dateTo'], $searchData['count']])}}">{{$habitation->title}}</a></h6>
+                                <div class="choosen-object-block-img">
+                                    <img src="{{$habitation->getPathPic()}}" alt="">
+                                    <div class="choosen-object-block-info">
+                                        <div class="object-contact">
+                                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>Таганрог, ул. Калинина, д. 16, кв. 24</p>
+                                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        
+                        @if($i % 4  === 0)
+                            </div>
+                        @endif
+                        
                         @endforeach
                     @endif
-                </div>
+                
             </div>
             
 

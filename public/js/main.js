@@ -46,9 +46,11 @@ $(document).ready(function(){
            console.log(res);
            if(res[0] === 'Success')
            {
-               close_popup_window();
-               window.location.replace(res[2]);
-               //refresh_page();
+                close_popup_window();
+                if(res[2] != null)
+                    window.location.replace(res[2]);
+                else
+                    refresh_page();
            } else {
                alert(res[1]);
            }
@@ -329,6 +331,22 @@ $(document).ready(function(){
                     $('#request' + thisForm.attr('class')).show();
                     $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка одобрена");
                     thisForm.parent().parent().siblings('.page-controls-wr').show();
+                    
+                    var countRequests = parseInt($('#headCountRequests').text());
+                    countRequests--;
+                    
+                    $('#headCountRequests').text(countRequests);
+                    $('#tabCountRequests').text('+' + countRequests);
+                    $('#noteCountRequests').text(countRequests);
+                    
+                    if(countRequests === 0) {
+                        $('#headCountRequests').parent().parent().hide();
+                        $('#tabCountRequests').hide();
+                        $('#noteCountRequests').parent().hide();
+                    } else {
+                        
+                    }
+                    
                 } else if(data[0] === 'Fail') {
                     alert(data[1]);
                 }
@@ -359,6 +377,22 @@ $(document).ready(function(){
                     $('#request' + thisForm.attr('class')).show();
                     $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка отклонена");
                     thisForm.parent().parent().siblings('.page-controls-wr').show();
+                    
+                    var countRequests = parseInt($('#headCountRequests').text());
+                    countRequests--;
+                    
+                    $('#headCountRequests').text(countRequests);
+                    $('#tabCountRequests').text('+' + countRequests);
+                    $('#noteCountRequests').text(countRequests);
+                    
+                    if(countRequests === 0) {
+                        $('#headCountRequests').parent().parent().hide();
+                        $('#tabCountRequests').hide();
+                        $('#noteCountRequests').parent().hide();
+                    } else {
+                        
+                    }
+                    
                 } else if(data[0] === 'Fail') {
                     alert(data[1]);
                 }
@@ -386,6 +420,25 @@ $(document).ready(function(){
                 } else if(data[0] === 'Fail') {
                     alert(data[1]);
                 }
+                
+                var countRequests = parseInt($('#headCountRequests').text());
+                if(countRequests === 0) {
+                    countRequests++;
+                    $('#headCountRequests').text(countRequests);
+                    $('#tabCountRequests').text('+' + countRequests);
+                    $('#noteCountRequests').text(countRequests);
+                    
+                    $('#headCountRequests').parent().parent().show();
+                    $('#tabCountRequests').show();
+                    $('#noteCountRequests').parent().show();
+                } else {
+                    countRequests++;
+                    $('#headCountRequests').text(countRequests);
+                    $('#tabCountRequests').text('+' + countRequests);
+                    $('#noteCountRequests').text(countRequests);
+                }
+                
+                
             },
             error: function(jqXHR, textStatus, errorThrown) 
             {

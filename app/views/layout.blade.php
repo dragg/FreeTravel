@@ -69,10 +69,10 @@
                             <li><div class="profile-load-img" style="max-width: 100px; max-height: 60px"><img src="<?= file_exists('public/avatars/' . Auth::user()->id . '.jpg') ? '/avatars/' . Auth::user()->id . '.jpg' : '/avatars/none.jpg' ?>" alt="Photo-1" style="margin-left: 0px;max-height: 60px;" id="headerAvatar"></div></li>
                             <li><a href="{{ action('ProfileController@getMyHabitation')}}"><span>Моё жильё</span></a></li>
                             
-                            @if($countRequests !== 0)
+                            
                                 <li class="__empty-cell"></li>
-                                <li class="__my-housing"><a href="{{action('ProfileController@getMyHabitation', ['request' => true])}}"><span>+{{ $countRequests }}</span></a></li>
-                            @endif
+                                <li class="__my-housing" style="display: {{$countRequests === 0 ? 'none' : 'auto'}}"><a href="{{action('ProfileController@getMyHabitation', ['request' => true])}}">+<span id="headCountRequests">{{ $countRequests }}</span></a></li>
+                            
                             
                             <li class="__empty-cell"><a href="{{ action('RequestController@getMyRequests')}}" id="myRequests"><span>Заявки</span></a></li> 
                             <li class="__empty-cell"><a href="/user/logout"><span>Выход</span></a></li> 
@@ -91,7 +91,7 @@
         <?php if(!Auth::check()): ?>
         
         <!-- popup login -->
-        <div id="signin" class="popup-wrapper-bg" style="display: display: {{Session::has('signin') ? 'block' : 'none'}}">
+        <div id="signin" class="popup-wrapper-bg" style="display: {{Session::has('signin') ? 'block' : 'none'}}">
             <div class="popup">
                 <h6>Вход в систему</h6>
 

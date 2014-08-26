@@ -20,14 +20,12 @@
             <div class="request-head" style="display: <?= $isEmpty !== TRUE ? 'block' : 'none' ?>">
                 <div class="request-head-links">
                     <a href="#" class="request-housing {{ (isset($showRequest) ? ('') : ('__active'))}}"><em>Мое жилье</em></a>
-                    <a href="#" class="request-housing  {{ (isset($showRequest) ? ('__active') : (''))}} "><em>Заявки на жилье</em> <span>+{{$countRequests}}</span></a>
+                    <a href="#" class="request-housing  {{ (isset($showRequest) ? ('__active') : (''))}} "><em>Заявки на жилье</em> <span id="tabCountRequests" style="display: {{$countRequests === 0 ? 'none' : 'block'}}">+{{$countRequests}}</span></a>
                 </div>
                 <div class="request-head-info clearfix">
-                    @if(isset($requests))
-                        <p>У Вас <span>{{ count($requests) }}</span> заявки</p>
-                    @else
-                        <p>У Вас нет заявок</p>
-                    @endif
+
+                <p style="display: {{$countRequests === 0 ? 'none' : 'block'}}">У Вас <span id="noteCountRequests">{{ count($requests) }}</span> заявки</p>
+
                 </div>
             </div>
             <!-- /request-head -->

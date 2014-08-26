@@ -37,6 +37,7 @@ class UserController extends BaseController {
         
         $url = Session::get('url')['intended'];
         
+        
         return Response::json([$response, $message, $url]);
     }
 

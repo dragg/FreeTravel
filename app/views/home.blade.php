@@ -33,6 +33,7 @@
                             <div class="main-inp-wr">
                                 <div class="transform-select-wr">
                                     <select name="count" id="" class="transform-select">
+                                        <option value="">Кол-во гостей</option>
                                         @for ($i = 1; $i < 10; $i++)
                                             <option value="{{$i}}">{{$i}}</option>
                                         @endfor
