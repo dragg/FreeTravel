@@ -17,6 +17,14 @@ class Habitation extends Eloquent
             return $this->hasMany('HabitationRequest');
         }
         
+        public function amenities() {
+            return $this->belongsToMany('Amenity', 'habitation_amenities');
+        }
+        
+        public function restrictions() {
+            return $this->belongsToMany('Restriction', 'habitation_restrictions');
+        }
+        
         public function scopeCurrentUser($query) {
             return $query->where('user_id', Auth::user()->id);
         }

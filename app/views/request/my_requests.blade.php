@@ -25,12 +25,10 @@
                             <div class="quest-block-body">
                                 <h4><a href="{{action('HabitationController@getShowHabitation', $request->habitation_id)}}">{{ $request->habitation['title'] }}</a></h4>
                                 <div class="quest-block-name">
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{ $request->habitation->user['first_name'] . ' ' . $request->habitation->user['last_name'] }}</p>
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>{{ $request->from . ' - ' . $request->to}}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{ $request->habitation->user->getFullName() }}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>{{ $request->getPeriod()}}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>{{ $request->habitation->user['email'] }}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>{{ $request->count }}</p>
-                                </div>
-                                <div class="quest-block-response">
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
                                         @if($request->accept === 0)
                                             Заявка на рассмотрении

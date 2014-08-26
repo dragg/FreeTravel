@@ -180,31 +180,10 @@ class HabitationController extends BaseController {
                 'count' => $count];
         }
         
-        
-        
-        $habitation = DB::table('habitations')
-                ->where('habitations.id', $habitation_id)
-                ->join('cities', 'habitations.city_id', '=', 'cities.id')
-                ->select('habitations.id', 'title', 'address', 'description', 'places', 'cities.name as city', 'places', 'user_id')
-                ->first();
-        
         $habitation = Habitation::find($habitation_id);
         
-        $amenities = DB::table('habitation_amenities')
-                ->where('habitation_id', $habitation_id)
-                ->join('amenities', 'amenities.id', '=', 'habitation_amenities.amenity_id')
-                ->select('name')
-                ->get();
-        
-        $restrictions = DB::table('habitation_restrictions')
-                ->where('habitation_id', $habitation_id)
-                ->join('restrictions', 'restrictions.id', '=', 'habitation_restrictions.restriction_id')
-                ->select('name')
-                ->get();
         
         $params['habitation'] = $habitation;
-        $params['amenities'] = $amenities;
-        $params['restrictions'] = $restrictions;
         
         $owner = false;
         if(Auth::check() && Auth::user()->id === $habitation->user_id) {

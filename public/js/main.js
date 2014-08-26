@@ -285,7 +285,7 @@ $(document).ready(function(){
 
     $('form#reservation').submit(function(e){
         e.preventDefault();
-        if($('#signin') === 0) {
+        //if($('#signin') === 0) {
             var method = $(this).attr('method');
             var action = $(this).attr('action');
             var data = $(this).serialize();
@@ -296,6 +296,7 @@ $(document).ready(function(){
                 url: action,
                 data: data,
                 success: function(data, textStatus, jqXHR){
+                    console.log(data);
                     if(data[0] === 'Success') {
                         $('a#myRequests')[0].click();
                     } else if(data[0] === 'Fail') {
@@ -308,9 +309,9 @@ $(document).ready(function(){
                     alert('Ошибка запроса!');
                 }
             });
-        } else {
-           $('#signin').click();
-        }
+//        } else {
+//           $('#signin').click();
+//        }
     });
 
     $('form#accept').submit(function(e){

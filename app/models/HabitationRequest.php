@@ -50,4 +50,16 @@ class HabitationRequest extends Eloquent {
     public function scopeRemove($query) {
         return $query->update('deleted', 1);
     }
+    
+    public function getDateFrom() {
+        return date('d-m-Y', strtotime($this->from));
+    }
+    
+    public function getDateTo() {
+        return date('d-m-Y', strtotime($this->to));
+    }
+    
+    public function getPeriod() {
+        return $this->getDateFrom() . ' - ' . $this->getDateTo();
+    }
 }

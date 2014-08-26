@@ -20,7 +20,7 @@
             <div class="request-head" style="display: <?= $isEmpty !== TRUE ? 'block' : 'none' ?>">
                 <div class="request-head-links">
                     <a href="#" class="request-housing {{ (isset($showRequest) ? ('') : ('__active'))}}"><em>Мое жилье</em></a>
-                    <a href="#" class="request-housing  {{ (isset($showRequest) ? ('__active') : (''))}} "><em>Заявки на жилье</em> <span id="tabCountRequests" style="display: {{$countRequests === 0 ? 'none' : 'block'}}">+{{$countRequests}}</span></a>
+                    <a href="#" class="request-housing  {{ (isset($showRequest) ? ('__active') : (''))}} "><em>Заявки на жилье</em> <span id="tabCountRequests" style="display: {{$countRequests === 0 ? 'none' : 'auto'}}">+{{$countRequests}}</span></a>
                 </div>
                 <div class="request-head-info clearfix">
 
@@ -76,8 +76,6 @@
 
                 @if(isset($requests))
                     @foreach($requests as $request)
-                        
-                    
                         <!-- quest-block -->
                         <div class="quest-block __active clearfix">
                             <div class="quest-block-img">
@@ -89,10 +87,21 @@
                             <div class="quest-block-body" style="width: 400px">
                                 <h4><a href="{{action('HabitationController@getShowHabitation', $request->habitation_id)}}">{{ $request->habitation->title }}</a></h4>
                                 <div class="quest-block-name">
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{ $request->user->first_name . " " . $request->user->first_name }}</p>
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>{{ $request->from . " - " . $request->to}}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{ $request->user->getFullName() }}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>{{ $request->getPeriod()}}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>{{ $request->user->email }}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>{{ $request->count }}</p>
+                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
+                                        <span class="text">
+                                        @if($request->accept === 0)
+                                            Заявка на рассмотрении
+                                        @elseif($request->accept === -1)
+                                            Заявка отклонена
+                                        @elseif($request->accept === 1)
+                                            Заявка одобрена
+                                        @endif
+                                        </span>
+                                    </p>
                                 </div>
                                 
                                 <div class="quest-block-btns" style="display: {{ ($request->accept === 0 ? 'block' : 'none') }}" id="{{'buttonRequest' . $request->id}}">
@@ -107,19 +116,7 @@
                                     {{ Form::close() }}
                                 </div>
                                 
-                                <div class="quest-block-response" style="display: {{ ($request->accept === 0 ? 'none' : 'block') }}" id="{{'request' . $request->id}}">
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
-                                        <span class="text">
-                                        @if($request->accept === 0)
-                                            Заявка на рассмотрении
-                                        @elseif($request->accept === -1)
-                                            Заявка отклонена
-                                        @elseif($request->accept === 1)
-                                            Заявка одобрена
-                                        @endif
-                                        </span>
-                                    </p>
-                                </div>
+                                
                             </div>
                         </div>
                         <!-- /quest-block -->

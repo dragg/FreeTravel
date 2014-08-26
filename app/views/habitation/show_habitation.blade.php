@@ -45,8 +45,9 @@
                             <span>{{$habitation->places}} спальных места</span>
                         </div>
                  
-                        @if(isset($amenities))
-                            @foreach($amenities as $amenity)
+                        
+
+                            @foreach($habitation->amenities as $amenity)
                                 @if($amenity->name === "Интернет")
                                     <div class="manual-icon">
                                         <i class="icon-top __inet"></i>
@@ -74,10 +75,9 @@
                                     </div>
                                 @endif
                             @endforeach
-                        @endif
                         
-                        @if(isset($restrictions))
-                            @foreach($restrictions as $restriction)
+                        
+                            @foreach($habitation->restrictions as $restriction)
                                 @if($restriction->name === "Есть животные")
                                     <div class="manual-icon">
                                         <i class="icon-top __inet"></i>
@@ -100,7 +100,6 @@
                                     </div>
                                 @endif
                             @endforeach
-                        @endif
                     </div>
                 </div>
             </div>
