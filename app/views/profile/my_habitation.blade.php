@@ -25,7 +25,10 @@
                 <div class="request-head-info clearfix">
 
                 <p style="display: {{$countRequests === 0 ? 'none' : 'block'}}">У Вас <span id="noteCountRequests">{{ count($requests) }}</span> заявки</p>
-
+                <div class="request-head-check " style="display: {{ (isset($showRequest) ? ('auto') : ('none'))}}">
+                        <input id="requestHeadCheck" type="checkbox">
+                        <label for="requestHeadCheck">Не показывать завершенные</label>
+                    </div>
                 </div>
             </div>
             <!-- /request-head -->
@@ -77,7 +80,7 @@
                 @if(isset($requests))
                     @foreach($requests as $request)
                         <!-- quest-block -->
-                        <div class="quest-block __active clearfix">
+                        <div class="quest-block {{$request->accept === 0 ?  '__active' : '' }} clearfix">
                             <div class="quest-block-img">
                                 <img src="<?= file_exists('public/habitationsPic/' . $request->habitation_id . '.jpg') ? '/habitationsPic/' . $request->habitation_id . '.jpg' : '/habitationsPic/none.jpg'?>" alt="">
                             </div>
@@ -91,17 +94,17 @@
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __date"></i></span>{{ $request->getPeriod()}}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __email"></i></span>{{ $request->user->email }}</p>
                                     <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __persons"></i></span>{{ $request->count }}</p>
-                                    <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
+                                    
+                                    <p class="text-after-icon answerRequest" style="display: {{$request->accept === 0 ? 'none' : ' auto' }}"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
                                         <span class="text">
-                                        @if($request->accept === 0)
-                                            Заявка на рассмотрении
-                                        @elseif($request->accept === -1)
+                                        @if($request->accept === -1)
                                             Заявка отклонена
                                         @elseif($request->accept === 1)
                                             Заявка одобрена
                                         @endif
                                         </span>
                                     </p>
+                                    
                                 </div>
                                 
                                 <div class="quest-block-btns" style="display: {{ ($request->accept === 0 ? 'block' : 'none') }}" id="{{'buttonRequest' . $request->id}}">

@@ -90,10 +90,12 @@ $(document).ready(function(){
 
             if (mainH) {
                 $('#my_habitation').hide();
+                $('.request-head-check').show();
                 $('#request').show();
             }
             else {                
                 $('#request').hide();    
+                $('.request-head-check').hide();
                 $('#my_habitation').show();
             }
             mainH = !mainH;
@@ -329,9 +331,13 @@ $(document).ready(function(){
             success: function(data, textStatus, jqXHR){
                 if(data[0] === 'Success') {
                     thisForm.parent().hide();
-                    $('#request' + thisForm.attr('class')).show();
-                    $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка одобрена");
+                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').show();
+                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').children('span[class="text"]').text('Заявка одобрена');
+//                    $('#request' + thisForm.attr('class')).show();
+//                    $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка одобрена");
                     thisForm.parent().parent().siblings('.page-controls-wr').show();
+                    thisForm.parent().parent().parent().removeClass('__active');
+                    
                     
                     var countRequests = parseInt($('#headCountRequests').text());
                     countRequests--;
@@ -375,9 +381,12 @@ $(document).ready(function(){
             success: function(data, textStatus, jqXHR){
                 if(data[0] === 'Success') {
                     thisForm.parent().hide();
+                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').show();
+                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').children('span[class="text"]').text('Заявка отклонена');
                     $('#request' + thisForm.attr('class')).show();
                     $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка отклонена");
                     thisForm.parent().parent().siblings('.page-controls-wr').show();
+                    thisForm.parent().parent().parent().removeClass('__active');
                     
                     var countRequests = parseInt($('#headCountRequests').text());
                     countRequests--;
@@ -418,6 +427,8 @@ $(document).ready(function(){
                     thisEdit.parent().hide();
                     $('#request' + thisEdit.attr('data-id')).hide();
                     $('#buttonRequest' + thisEdit.attr('data-id')).show();
+                    thisEdit.parent().parent().children('.quest-block-body').children('.quest-block-name').children('.answerRequest').hide();
+                    thisEdit.parent().parent().addClass('__active');
                 } else if(data[0] === 'Fail') {
                     alert(data[1]);
                 }
@@ -535,15 +546,6 @@ $(document).ready(function(){
         },'json');
     });
     
-    $( "div.overout" )
-    .mouseover(function() {
-      $( "p:first", this ).text( "mouse over" );
-      $( "p:last", this ).text( ++i );
-    })
-    .mouseout(function() {
-      $( "p:first", this ).text( "mouse out" );
-    });
-    
     $('.choosen-object-block')
         .mouseover(function(){
             $(this).find('.choosen-object-block-info').show();
@@ -551,5 +553,15 @@ $(document).ready(function(){
         .mouseout(function() {
             $(this).find('.choosen-object-block-info').hide();
         });
+    
+    var showNotActive = true;
+    $('#requestHeadCheck').change(function(){
+        showNotActive = !showNotActive;
+        
+        if(showNotActive === true)
+            $('.quest-block').not($('.__active')).show();
+        else
+            $('.quest-block').not($('.__active')).hide();
+    });
     
 });
