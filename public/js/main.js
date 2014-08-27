@@ -535,4 +535,21 @@ $(document).ready(function(){
         },'json');
     });
     
+    $( "div.overout" )
+    .mouseover(function() {
+      $( "p:first", this ).text( "mouse over" );
+      $( "p:last", this ).text( ++i );
+    })
+    .mouseout(function() {
+      $( "p:first", this ).text( "mouse out" );
+    });
+    
+    $('.choosen-object-block')
+        .mouseover(function(){
+            $(this).find('.choosen-object-block-info').show();
+        })
+        .mouseout(function() {
+            $(this).find('.choosen-object-block-info').hide();
+        });
+    
 });

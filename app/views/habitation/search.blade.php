@@ -76,9 +76,9 @@
                                 <div class="choosen-object-block-img">
                                     <img src="{{$habitation->getPathPic()}}" alt="">
                                     <div class="choosen-object-block-info">
-                                        <div class="object-contact">
-                                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>Таганрог, ул. Калинина, д. 16, кв. 24</p>
-                                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>Петров Василий</p>
+                                        <div class="object-contact" style="width: 200px">
+                                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __location"></i></span>{{$habitation->city->name . " " . $habitation->address}}</p>
+                                            <p class="text-after-icon"><span class="icon-small-wr"><i class="icon-small __name"></i></span>{{$habitation->user->getFullName()}}</p>
                                         </div>
                                     </div>
                                 </div>
