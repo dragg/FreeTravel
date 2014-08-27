@@ -184,7 +184,6 @@ class HabitationController extends BaseController {
     }
     
     protected $rulesSearch = [
-        '_token' => 'required',
         'city' => 'required',
         'dateFrom' => 'required|date_format:d-m-Y|after:today',
         'dateTo' => 'required|date_format:d-m-Y|after:dateFrom|after:today',
@@ -192,7 +191,7 @@ class HabitationController extends BaseController {
     ];
 
 
-    public function postSearch() {
+    public function getSearch() {
         $validator = Validator::make(Input::all(), $this->rulesSearch);
         $habs = [];
         $response = [];

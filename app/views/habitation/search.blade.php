@@ -14,7 +14,7 @@
                 @endif
                
             <div class="main-form">
-                {{ Form::open(['url' => action('HabitationController@postSearch') , 'method' => 'post']) }}
+                {{ Form::open(['url' => action('HabitationController@getSearch') , 'method' => 'get']) }}
                     
 <!--                    <form action="">-->
                         <div class="">

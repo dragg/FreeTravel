@@ -9,7 +9,7 @@
                 <h1 class="main-title">Найти жильё</h1>
                 <p class="main-subtitle">Ищите жильё сами или сдавайте его другим</p>
                 <div class="main-form __bg-white-transparent">
-                    {{ Form::open(['url' => action('HabitationController@postSearch') , 'method' => 'post']) }}
+                    {{ Form::open(['url' => action('HabitationController@getSearch') , 'method' => 'get']) }}
                     
 <!--                    <form action="">-->
                         <div class="">

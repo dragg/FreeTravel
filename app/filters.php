@@ -16,9 +16,9 @@ App::before(function($request)
     View::share('countRequests', Auth::check() ? HabitationRequest::active()->forCurrentUser()->underConsideration()->count() : 0);
     
     
-    if(Session::has('intended')) {
-        Redirect::intended('');
-    }
+//    if(Session::has('intended')) {
+//        Redirect::intended('');
+//    }
 });
 
 

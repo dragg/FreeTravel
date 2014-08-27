@@ -63,6 +63,6 @@ class UserController extends BaseController {
 
     public function getLogout(){
         Auth::logout();
-        return Redirect::intended('/');
+        return Redirect::back();
     }
 }
