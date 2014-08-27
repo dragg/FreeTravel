@@ -49,7 +49,7 @@
 <!--                    </form>-->
                 </div>
                 <div class="main-guests __bg-white-transparent">
-                    <a href="{{ action('HabitationController@getCreateHabitation') }}" class="btn--main-guests __btn-green">Приму гостей</a>
+                    <a href="{{ action('ProfileController@getCreateHabitation') }}" class="btn--main-guests __btn-green">Приму гостей</a>
                 </div>
                 
                 <div class="main-social-links">

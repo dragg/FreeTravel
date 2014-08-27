@@ -2,7 +2,7 @@
 
 class CitiesTableSeeder extends Seeder
 {
-    protected $cities = [
+    protected static $cities = [
         'Таганрог',
         'Ростов-на-Дону',
         'Ейск',
@@ -14,14 +14,14 @@ class CitiesTableSeeder extends Seeder
     {
         DB::table('cities')->truncate();
         
-        foreach ($this->cities as $city) {
+        foreach (self::$cities as $city) {
             City::create([
                 'name' => $city
             ]);
         }
     }
     
-    public function count() {
-        return count($this->cities);
+    public static function count() {
+        return count(self::$cities);
     }
 }

@@ -3,24 +3,24 @@
 class  UserTableSeeder extends Seeder
 {
     
+    protected static $count = 10;
+
+
     public function run()
     {
-        DB::table('users')->delete();
+        DB::table('users')->truncate();
         
-        User::create([
-            'email' => 'user1@inotravel.dev',
-            'first_name' => 'user1',
-            'last_name' => 'user1',
-            'password' => Hash::make('123'),          
-        ]);
+        $faker = Faker\Factory::create('en_US');
         
-        User::create([
-            'email' => 'user2@inotravel.dev',
-            'first_name' => 'user2',
-            'last_name' => 'user2',
-            'telephone' => '8 908 519 73 23',
-            'password' => Hash::make('123'),     
-        ]);
+        for($i = 1; $i <= 10; $i++) {
+            User::create([
+                'email' => 'user' . $i . '@inotravel.dev',
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
+                'telephone' => $faker->phoneNumber,
+                'password' => Hash::make('123'),          
+            ]);
+        }
         
         User::create([
             'email' => 'u@u.com',
@@ -29,6 +29,10 @@ class  UserTableSeeder extends Seeder
             'telephone' => '8 908 519 73 23',
             'password' => Hash::make('uuuuuu'),      
         ]);
+    }
+    
+    public static function count() {
+        return self::$count + 1;
     }
     
 }

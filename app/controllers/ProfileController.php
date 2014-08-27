@@ -6,6 +6,30 @@ class ProfileController extends BaseController
         $this->beforeFilter('auth');
     }
     
+    public function getCreateHabitation() {
+        
+        $id = Input::get('id');
+        $response = [];
+        if(isset($id)) {
+            
+            if (Habitation::find($id)->user->id === Auth::user()->id) {
+                $response['habitation'] = Habitation::find($id);
+            } else {
+                //access denied
+                return Redirect::action('ProfileController@getMyHabitation');
+            }
+            
+        } else {
+            $response['habitation'] = new Habitation;
+        }
+        
+        $response['amenities'] = DB::table('amenities')->get();
+        $response['restrictions'] = DB::table('restrictions')->get();
+        $response['cities'] = DB::table('cities')->get();
+        
+        return View::make('habitation.create_habitation', $response);
+    }
+    
     public function getShow() {
         return View::make('profile.settings');
     }

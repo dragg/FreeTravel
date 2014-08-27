@@ -17,6 +17,7 @@ class CreateHabitationAmenitiesTable extends Migration {
                 $table->increments('id');
                 $table->integer('habitation_id', false, true);
                 $table->integer('amenity_id', false, true);
+                $table->timestamps();
             });
 	}
 

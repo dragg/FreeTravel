@@ -2,7 +2,7 @@
 
 class  AmenitiesTableSeeder extends Seeder
 {
-    protected $amenities = [
+    protected static $amenities = [
             'Интернет',
             'Wi-Fi',
             'Кабельное ТВ',
@@ -14,14 +14,14 @@ class  AmenitiesTableSeeder extends Seeder
     {
         DB::table('amenities')->truncate();
         
-        foreach ($this->amenities as $amenity) {
+        foreach (self::$amenities as $amenity) {
             Amenity::create([
                 'name' => $amenity,
             ]);
         }
     }
     
-    public function count() {
-        return count($this->amenities);
+    public static function count() {
+        return count(self::$amenities);
     }
 }

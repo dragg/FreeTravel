@@ -16,7 +16,6 @@
 Route::get('/', function()
 {
     $cities = DB::table('cities')->get();
-    //var_dump($cities);die();
     return View::make('home')->with('cities', $cities);
 });
 

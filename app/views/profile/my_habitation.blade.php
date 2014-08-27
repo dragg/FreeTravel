@@ -9,7 +9,7 @@
             <div class="profile-default" style="display: <?= $isEmpty === TRUE ? 'block' : 'none' ?>">
                 <p>Вы ещё не создали ни одного профиля жилья</p>
                 <div class="profile-default-btns-bar">
-                    <a href="<?= action('HabitationController@getCreateHabitation')?>" class="btn--profile-default __btn-green">Создать</a>
+                    <a href="<?= action('ProfileController@getCreateHabitation')?>" class="btn--profile-default __btn-green">Создать</a>
                 </div>
             </div>
             <!-- /request-cont -->
@@ -24,7 +24,7 @@
                 </div>
                 <div class="request-head-info clearfix">
 
-                <p style="display: {{$countRequests === 0 ? 'none' : 'block'}}">У Вас <span id="noteCountRequests">{{ count($requests) }}</span> заявки</p>
+                <p style="display: {{$countRequests === 0 ? 'none' : 'block'}}">У Вас <span id="noteCountRequests">{{ $countRequests }}</span> заявки</p>
                 <div class="request-head-check " style="display: {{ (isset($showRequest) ? ('auto') : ('none'))}}">
                         <input id="requestHeadCheck" type="checkbox">
                         <label for="requestHeadCheck">Не показывать завершенные</label>
@@ -43,7 +43,7 @@
                  <!-- quest-block -->
                 <div class="quest-block __active clearfix habitation">
                     <div class="page-controls-wr">
-                        <a href="{{ action('HabitationController@getCreateHabitation')  . '?id=' . $habitation->id}} " class="page-conrol __write"></a>
+                        <a href="{{ action('ProfileController@getCreateHabitation')  . '?id=' . $habitation->id}} " class="page-conrol __write"></a>
                         <a id="{{$habitation->id}}" href="#" class="page-conrol __close delete"></a>
                     </div>
                     <div class="quest-block-img search-load-img">
@@ -67,7 +67,7 @@
                 
                 <div class="profile-default" style="margin-top: 30px">
                     <div class="profile-default-btns-bar">
-                        <a href="{{ action('HabitationController@getCreateHabitation') }}" class="btn--profile-default __btn-green">Добавить</a>
+                        <a href="{{ action('ProfileController@getCreateHabitation') }}" class="btn--profile-default __btn-green">Добавить</a>
                     </div>
                 </div>
             </div>

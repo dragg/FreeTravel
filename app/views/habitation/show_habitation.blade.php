@@ -14,7 +14,7 @@
                 <h2 class="page-title">{{$habitation->title}}</h2>
                 @if ($IsOwner === true)
                     <div class="page-controls-wr">
-                        <a href="{{ action('HabitationController@getCreateHabitation')  . '?id=' . $habitation->id}}" class="page-conrol __write"></a>
+                        <a href="{{ action('ProfileController@getCreateHabitation')  . '?id=' . $habitation->id}}" class="page-conrol __write"></a>
                         <a id="{{$habitation->id}}" href="#" class="page-conrol __close deleteHab"></a>
                     </div>
                 @endif

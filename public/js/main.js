@@ -68,7 +68,7 @@ $(document).ready(function(){
             password_confirmation: $('#user-repeat-password').val()
         },
         function(res){
-            console.log(res);
+            //console.log(res);
             if(res[0] === 'Success')
             {
                 close_popup_window();
@@ -134,9 +134,9 @@ $(document).ready(function(){
             repeatPassword: $('#repeatPassword').val()
         },
         function(res){
-            console.log(res);
+            //console.log(res);
             if (res[0] === true) {
-                alert('Всё гуд!');
+                //alert('Всё гуд!');
                 refresh_page();
             }
             else if(res[0] === false)

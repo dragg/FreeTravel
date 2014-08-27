@@ -17,22 +17,22 @@ class CityStreetsTableSeeder extends Seeder {
         
         DB::table('city_streets')->delete();
         
-        $cities = DB::table('cities')->get();
-        $streets = DB::table('streets')->get();
-        
-        for($i = 0; $i < 3; $i++) {
-            CityStreet::create([
-                'city_id' => $cities[0]->id,
-                'street_id' => $streets[$i]->id
-            ]);
-        }
-        
-        
-        for($i = 3; $i < 5; $i++) {
-            CityStreet::create([
-                'city_id' => $cities[1]->id,
-                'street_id' => $streets[$i]->id
-            ]);
-        }
+//        $cities = DB::table('cities')->get();
+//        $streets = DB::table('streets')->get();
+//        
+//        for($i = 0; $i < 3; $i++) {
+//            CityStreet::create([
+//                'city_id' => $cities[0]->id,
+//                'street_id' => $streets[$i]->id
+//            ]);
+//        }
+//        
+//        
+//        for($i = 3; $i < 5; $i++) {
+//            CityStreet::create([
+//                'city_id' => $cities[1]->id,
+//                'street_id' => $streets[$i]->id
+//            ]);
+//        }
     }
 }

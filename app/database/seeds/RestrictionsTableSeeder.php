@@ -2,7 +2,7 @@
 
 class RestrictionsTableSeeder extends Seeder 
 {
-    protected $restrictions = [
+    protected static $restrictions = [
         'Есть животные',
         'Есть комнатные растения',
         'Нельзя курить',
@@ -13,14 +13,14 @@ class RestrictionsTableSeeder extends Seeder
     {
         DB::table('restrictions')->truncate();
         
-        foreach ($this->restrictions as $restriction) {
+        foreach (self::$restrictions as $restriction) {
             Restriction::create([
                 'name' => $restriction
             ]);
         }
     }
     
-    public function count() {
-        return count($this->restrictions);
+    public static function count() {
+        return count(self::$restrictions);
     }
 }
