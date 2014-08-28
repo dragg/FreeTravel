@@ -34,7 +34,7 @@ class Habitation extends Eloquent
         }
         
         public function scopeActive($query) {
-            return $query->where('deleted', 0);
+            return $query->where('deleted', 0)->orderBy('id', 'desc');
         }
         
         public function scopeCity($query, $city_id) {

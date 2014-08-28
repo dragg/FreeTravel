@@ -70,5 +70,9 @@
             <!-- /request-cont -->
         </div>
     </div>
+
 </section>
+
+<script src="/js/AutoloadRequests.js"></script>
+
 @stop

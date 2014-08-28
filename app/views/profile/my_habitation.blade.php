@@ -37,7 +37,11 @@
             
             <!-- request-cont -->
             <div class="request-cont" id="my_habitation" style="display: {{ (isset($showRequest) ? ('none') : ('block'))}}" data-active="{{ (isset($showRequest) ? ('false') : ('true'))}}">
-                
+                <div class="profile-default" style="margin-top: -60px;float: right;">
+                    <div class="profile-default-btns-bar">
+                        <a href="{{ action('ProfileController@getCreateHabitation') }}" class="btn--profile-default __btn-green">Добавить</a>
+                    </div>
+                </div>
                 <?php foreach ($habitations as $habitation): ?>
                 
                  <!-- quest-block -->
@@ -65,11 +69,7 @@
                 
                 <?php endforeach; ?>
                 
-                <div class="profile-default" style="margin-top: 30px">
-                    <div class="profile-default-btns-bar">
-                        <a href="{{ action('ProfileController@getCreateHabitation') }}" class="btn--profile-default __btn-green">Добавить</a>
-                    </div>
-                </div>
+                
             </div>
             <!-- /request-cont -->
             
@@ -107,7 +107,7 @@
                                     
                                 </div>
                                 
-                                <div class="quest-block-btns" style="display: {{ ($request->accept === 0 ? 'block' : 'none') }}" id="{{'buttonRequest' . $request->id}}">
+                                <div class="quest-block-btns" style="display: {{ ($request->accept === 0 ? 'block' : 'none') }}" id="{{'buttonRequest' . $request->id }}">
                                     {{ Form::open(['url' => action('RequestController@postAccept'), 'method' => 'post', 'id' => 'accept', 'class' => $request->id, 'style' => 'float: left']) }}
                                     {{ Form::hidden('id', $request->id)}}
                                     {{ Form::submit('Принять', ['class' => 'btn--quest-block __btn-green', 'style' => 'margin-left: 0']) }}
@@ -125,7 +125,44 @@
                         <!-- /quest-block -->
                     @endforeach
                 @endif
+                
+                <!-- quest-block -->
+                <div class="quest-block clearfix" id="example" style="display: auto">
+                    <div class="quest-block-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="page-controls-wr" style="display: auto">
+                        <a href="{{ action('RequestController@postRevoke')}}" data-id="" class="page-conrol __write edit_request"></a>
+                    </div>
+                    <div class="quest-block-body" style="width: 400px">
+                        <h4><a href="{{action('HabitationController@getShowHabitation')}}"></a></h4>
+                        <div class="quest-block-name">
+                            <p class="text-after-icon FullName"><span class="icon-small-wr"><i class="icon-small __name"></i></span><span class="FullName"></span></p>
+                            <p class="text-after-icon Period"><span class="icon-small-wr"><i class="icon-small __date"></i></span><span class="Period"></span></p>
+                            <p class="text-after-icon Email"><span class="icon-small-wr"><i class="icon-small __email"></i></span><span class="Email"></span></p>
+                            <p class="text-after-icon Count"><span class="icon-small-wr"><i class="icon-small __persons"></i></span><span class="Count"></span></p>
+                            <p class="text-after-icon StatusRequest answerRequest"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
+                                <span class="StatusRequest text"></span>
+                            </p>
 
+                        </div>
+
+                        <div class="quest-block-btns" style="display: none" id="buttonRequest">
+                            {{ Form::open(['url' => action('RequestController@postAccept'), 'method' => 'post', 'id' => 'accept', 'class' => $request->id, 'style' => 'float: left']) }}
+                            {{ Form::hidden('id', $request->id)}}
+                            {{ Form::submit('Принять', ['class' => 'btn--quest-block __btn-green', 'style' => 'margin-left: 0']) }}
+                            {{ Form::close() }}
+
+                            {{ Form::open(['url' => action('RequestController@postRefuse'), 'method' => 'post', 'id' => 'refuse', 'class' => $request->id]) }}
+                            {{ Form::hidden('id', $request->id)}}
+                            {{ Form::submit('Отказать', ['class' => 'btn--quest-block __btn-red']) }}
+                            {{ Form::close() }}
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /quest-block -->
             </div>
             <!-- /request-cont -->
             
@@ -137,5 +174,5 @@
 </section>
 
 @include('habitation.popupDeleteHabitation')
-
+<script src="/js/AutoloadMyRequests.js"></script>
 @stop

@@ -102,12 +102,12 @@ class ProfileController extends BaseController
         
         $user = DB::table('users')->where('email', Auth::user()['email'])->first();
         
-        $res = DB::table('habitations')
-                ->where('deleted', 0)
-                ->where('user_id', $user->id)
-                ->join('cities', 'habitations.city_id', '=', 'cities.id')
-                ->select('habitations.title', 'habitations.id', 'habitations.address', 'cities.name as city' )
-                ->get();
+//        $res = DB::table('habitations')
+//                ->where('deleted', 0)
+//                ->where('user_id', $user->id)
+//                ->join('cities', 'habitations.city_id', '=', 'cities.id')
+//                ->select('habitations.title', 'habitations.id', 'habitations.address', 'cities.name as city' )
+//                ->get();
         
         $res = Habitation::active()
                 ->currentUser()->get();
@@ -117,6 +117,7 @@ class ProfileController extends BaseController
 
         $requests = HabitationRequest::active()
                 ->forCurrentUser()
+                ->take(5)
                 ->get();
         $response['requests'] = $requests;
 
@@ -134,5 +135,28 @@ class ProfileController extends BaseController
         }
         
         return Response::json([$response, 'none.jpg']);
+    }
+    
+    public function postMyRequests($offset = 0, $take = 5) {
+        
+        if(Request::ajax()) {
+            $requests = HabitationRequest::active()->forCurrentUser()->offset($offset)->take($take)->get();
+            $ResponseRequest = [];
+            $i = 0;
+            foreach ($requests as $request) {
+                $ResponseRequest[$i]['request_id'] = $request->id;
+                $ResponseRequest[$i]['habitation_id'] = $request->habitation_id;
+                $ResponseRequest[$i]['title'] = $request->habitation->title;
+                $ResponseRequest[$i]['fullName'] = $request->habitation->user->getFullName();
+                $ResponseRequest[$i]['period'] = $request->getPeriod();
+                $ResponseRequest[$i]['email'] = $request->habitation->user->email;
+                $ResponseRequest[$i]['count'] = $request->count;
+                $ResponseRequest[$i]['accept'] = $request->accept;
+                $ResponseRequest[$i]['pic'] = $request->habitation->getPathPic();
+                $i++;
+            }
+            
+            return Response::json($ResponseRequest);
+        }
     }
 }
