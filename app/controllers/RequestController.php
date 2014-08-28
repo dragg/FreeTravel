@@ -38,9 +38,28 @@ class RequestController extends BaseController {
         return Response::json($response);
     }
     
-    public function getMyRequests() {
-        $requests = HabitationRequest::active()->currentUser()->get();
-        return View::make('request.my_requests', ['requests' => $requests]);
+    public function getMyRequests($offset = 0, $take = 5) {
+        $requests = HabitationRequest::active()->currentUser()->offset($offset)->take($take)->get();
+        if(Request::ajax()) {
+            $ResponseRequest = [];
+            $i = 0;
+            foreach ($requests as $request) {
+                $ResponseRequest[$i]['request_id'] = $request->id;
+                $ResponseRequest[$i]['habitation_id'] = $request->habitation_id;
+                $ResponseRequest[$i]['title'] = $request->habitation->title;
+                $ResponseRequest[$i]['fullName'] = $request->habitation->user->getFullName();
+                $ResponseRequest[$i]['period'] = $request->getPeriod();
+                $ResponseRequest[$i]['email'] = $request->habitation->user->email;
+                $ResponseRequest[$i]['count'] = $request->count;
+                $ResponseRequest[$i]['accept'] = $request->accept;
+                $ResponseRequest[$i]['pic'] = $request->habitation->getPathPic();
+                $i++;
+            }
+            
+            return Response::json($ResponseRequest);
+        } else {
+            return View::make('request.my_requests', ['requests' => $requests]);
+        }
     }
     
     protected $rulesAccept = [

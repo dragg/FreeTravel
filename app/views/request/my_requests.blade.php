@@ -44,6 +44,27 @@
                     @endforeach
                 @endif
                 
+                
+                <div class="quest-block clearfix" style="display: none" id="example">
+                    <div class="page-controls-wr">
+                        <a data-id="" href="{{ action('RequestController@postDelete') }}" class="page-conrol __close deleteRequest"></a>
+                    </div>
+                    <div class="quest-block-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="quest-block-body">
+                        <h4><a href="{{action('HabitationController@getShowHabitation')}}">Title</a></h4>
+                        <div class="quest-block-name">
+                            <p class="text-after-icon FullName"><span class="icon-small-wr"><i class="icon-small __name"></i></span><span class="FullName"></span></p>
+                            <p class="text-after-icon Period"><span class="icon-small-wr"><i class="icon-small __date"></i></span><span class="Period"></span></p>
+                            <p class="text-after-icon Email"><span class="icon-small-wr"><i class="icon-small __email"></i></span><span class="Email"></span></p>
+                            <p class="text-after-icon Count"><span class="icon-small-wr"><i class="icon-small __persons"></i></span><span class="Count"></span></p>
+                            <p class="text-after-icon StatusRequest"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
+                                <span class="StatusRequest"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <!-- /quest-block -->
             </div>
             <!-- /request-cont -->
