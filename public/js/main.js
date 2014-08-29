@@ -287,7 +287,7 @@ $(document).ready(function(){
 
     $('form#reservation').submit(function(e){
         e.preventDefault();
-        if($('#signin') === 0) {
+        if($('#signin').length === 0) {
             var method = $(this).attr('method');
             var action = $(this).attr('action');
             var data = $(this).serialize();
@@ -316,7 +316,8 @@ $(document).ready(function(){
         }
     });
 
-    $('form#accept').submit(function(e){
+    $('body').on('submit', 'form#accept', function(e){
+    //$('form#accept').submit(function(e){
         e.preventDefault();
 
         var method = $(this).attr('method');
@@ -332,7 +333,7 @@ $(document).ready(function(){
                 if(data[0] === 'Success') {
                     thisForm.parent().hide();
                     thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').show();
-                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').children('span[class="text"]').text('Заявка одобрена');
+                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').children('.text').text('Заявка одобрена');
 //                    $('#request' + thisForm.attr('class')).show();
 //                    $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка одобрена");
                     thisForm.parent().parent().siblings('.page-controls-wr').show();
@@ -366,7 +367,8 @@ $(document).ready(function(){
         });
     });
     
-    $('form#refuse').submit(function(e){
+    $('body').on('submit', 'form#refuse', function(e){
+    //$('form#refuse').submit(function(e){
         e.preventDefault();
         
         var method = $(this).attr('method');
@@ -382,7 +384,7 @@ $(document).ready(function(){
                 if(data[0] === 'Success') {
                     thisForm.parent().hide();
                     thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').show();
-                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').children('span[class="text"]').text('Заявка отклонена');
+                    thisForm.parent().parent().children('.quest-block-name').children('.answerRequest').children('.text').text('Заявка отклонена');
                     $('#request' + thisForm.attr('class')).show();
                     $('#request' + thisForm.attr('class') + ' > p > span[class="text"]').text("Заявка отклонена");
                     thisForm.parent().parent().siblings('.page-controls-wr').show();
@@ -428,6 +430,7 @@ $(document).ready(function(){
                     thisEdit.parent().hide();
                     $('#request' + thisEdit.attr('data-id')).hide();
                     $('#buttonRequest' + thisEdit.attr('data-id')).show();
+                    thisEdit.parent().parent().children('.quest-block-body').children('.quest-block-btns').show();
                     thisEdit.parent().parent().children('.quest-block-body').children('.quest-block-name').children('.answerRequest').hide();
                     thisEdit.parent().parent().addClass('__active');
                 } else if(data[0] === 'Fail') {

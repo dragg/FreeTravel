@@ -127,7 +127,7 @@
                 @endif
                 
                 <!-- quest-block -->
-                <div class="quest-block clearfix" id="example" style="display: auto">
+                <div class="quest-block clearfix" id="example" style="display: none">
                     <div class="quest-block-img">
                         <img src="" alt="">
                     </div>
@@ -142,19 +142,19 @@
                             <p class="text-after-icon Email"><span class="icon-small-wr"><i class="icon-small __email"></i></span><span class="Email"></span></p>
                             <p class="text-after-icon Count"><span class="icon-small-wr"><i class="icon-small __persons"></i></span><span class="Count"></span></p>
                             <p class="text-after-icon StatusRequest answerRequest"><span class="icon-small-wr"><i class="icon-small __info"></i></span>
-                                <span class="StatusRequest text"></span>
+                                <span class="text StatusRequest"></span>
                             </p>
 
                         </div>
 
-                        <div class="quest-block-btns" style="display: none" id="buttonRequest">
-                            {{ Form::open(['url' => action('RequestController@postAccept'), 'method' => 'post', 'id' => 'accept', 'class' => $request->id, 'style' => 'float: left']) }}
-                            {{ Form::hidden('id', $request->id)}}
+                        <div class="quest-block-btns" id="buttonRequest">
+                            {{ Form::open(['url' => action('RequestController@postAccept'), 'method' => 'post', 'id' => 'accept', 'style' => 'float: left']) }}
+                            {{ Form::hidden('id', 0)}}
                             {{ Form::submit('Принять', ['class' => 'btn--quest-block __btn-green', 'style' => 'margin-left: 0']) }}
                             {{ Form::close() }}
 
-                            {{ Form::open(['url' => action('RequestController@postRefuse'), 'method' => 'post', 'id' => 'refuse', 'class' => $request->id]) }}
-                            {{ Form::hidden('id', $request->id)}}
+                            {{ Form::open(['url' => action('RequestController@postRefuse'), 'method' => 'post', 'id' => 'refuse']) }}
+                            {{ Form::hidden('id', 0)}}
                             {{ Form::submit('Отказать', ['class' => 'btn--quest-block __btn-red']) }}
                             {{ Form::close() }}
                         </div>
